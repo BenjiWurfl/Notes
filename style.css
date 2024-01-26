@@ -409,15 +409,15 @@
 .note span{
     display: block;
     margin-top: 5px;
-    color: var(--primaryText);
+    color: var(--primaryColor);
     font-size: 16px;
 }
 .bottom-content span{
-    color: var(--primaryText);
+    color: var(--primaryColor);
     font-size: 14px;
 }
 .bottom-content .settings i{
-    color: var(--primaryText);
+    color: var(--primaryColor);
     font-size: 15px;
     cursor: pointer !important;
     padding: 0 10px;
