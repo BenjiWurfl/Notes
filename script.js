@@ -14,7 +14,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-console.log("Firebase app initialized:", app);
 const db = getFirestore(app);
 const auth = getAuth();
 const notesArr = [];
@@ -45,7 +44,6 @@ function showNotes() {
   const user = auth.currentUser;
   console.log(user)
   if(user){
-    console.log(user.uid)
     const notesRef = collection(db, "users", user.uid, "notes");
     getDocs(notesRef).then(querySnapshot => {
       notesArr.length = 0;
@@ -139,13 +137,13 @@ addBtn.addEventListener('click', (e)=>{
 });
 
 function addNoteToFirestore(newNote) {
-  const userUID = "YoFPYLvv8VbD5S04AODlibh55xN2";
-  /*if (!user) {
+  const user = auth.currentUser;
+  if (!user) {
     alert("You must be logged in to add events.");
     return;
-  }*/
+  }
 
-  const notesRef = collection(db, "users", userUID, "notes");
+  const notesRef = collection(db, "users", user.uid, "notes");
   addDoc(notesRef, newNote).then(docRef => {
     console.log("Added note with ID: ", docRef.id);
     newNote.id = docRef.id;
