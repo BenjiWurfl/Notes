@@ -111,8 +111,8 @@ closeIcon.addEventListener('click', ()=>{
 addBtn.addEventListener('click', (e)=>{
     e.preventDefault();
 
-    let noteTitle = titleEl.value,
-    noteDesc = descEl.value;
+    let noteTitle = titleEl.value;
+    let noteDesc = descEl.value;
     if (noteTitle || noteDesc) {
         let dateEl= new Date(),
         month = months[dateEl.getMonth()],
@@ -131,37 +131,31 @@ addBtn.addEventListener('click', (e)=>{
             isUpdate = false;
             notes[updateId] = newNote;
         }
-        //localStorage.setItem('notes', JSON.stringify(notes));
         addNoteToFirestore(newNote);
         closeIcon.click();
-        window.location.reload();
     }
 });
 
 function addNoteToFirestore(newNote) {
-  const user = auth.currentUser;
-  if (!user) {
-    alert("You must be logged in to add events.");
-    return;
-  }
+    const user = auth.currentUser;
+    if (!user) {
+        alert("You must be logged in to add events.");
+        return;
+    }
 
-  const notesRef = collection(db, "users", user.uid, "notes");
-  console.log(notesRef);
-  console.log(user.uid);
-  addDoc(notesRef, newNote).then(docRef => {
-    console.log("Added note with ID: ", docRef.id);
-    newNote.id = docRef.id;
-    notesArr.push(newNote);
-    updateNotes();
-  }).catch(error => {
-    console.error("Error adding event: ", error);
-  });
+    const notesRef = collection(db, "users", user.uid, "notes");
+    console.log(notesRef);
+    console.log(user.uid);
+    addDoc(notesRef, newNote).then(docRef => {
+        console.log("Added note with ID: ", docRef.id);
+        newNote.id = docRef.id;
+        notesArr.push(newNote);
+        updateNotes();
+    }).catch(error => {
+        console.error("Error adding event: ", error);
+    });
   
-  //addEventWrapper.classList.remove("active");
-  /*addEventTitle.value = "";
-  addEventDescription.value = "";
-  addEventFrom.value = "";
-  addEventTo.value = "";*/
+    //addEventWrapper.classList.remove("active");
 }
 
 function updateNotes(){
