@@ -132,7 +132,6 @@ addBtn.addEventListener('click', (e)=>{
         //localStorage.setItem('notes', JSON.stringify(notes));
         addNoteToFirestore(newNote);
         closeIcon.click();
-        showNotes();
     }
 });
 
