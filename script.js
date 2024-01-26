@@ -63,7 +63,7 @@ function showNotes() {
         }
 
         const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
-        console.log("Note: " + note);
+        console.log("Note: " + note.title);
         notesArr.push(note);
 
       })
