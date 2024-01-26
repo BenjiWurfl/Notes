@@ -63,6 +63,7 @@ function showNotes() {
         }
 
         const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
+        console.log("Note: " + note);
         notesArr.push(note);
 
       })
@@ -144,12 +145,13 @@ function addNoteToFirestore(newNote) {
   }
 
   const notesRef = collection(db, "users", user.uid, "notes");
+  console.log(notesRef);
+  console.log(user.uid);
   addDoc(notesRef, newNote).then(docRef => {
     console.log("Added note with ID: ", docRef.id);
     newNote.id = docRef.id;
-    console.log("New Note: " + newNote)
     notesArr.push(newNote);
-    updateNotes();
+    window.location.reload()
   }).catch(error => {
     console.error("Error adding event: ", error);
   });
