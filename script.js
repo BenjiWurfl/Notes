@@ -53,7 +53,7 @@ function showNotes() {
 
         // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
         if (noteData.date && noteData.date.seconds) {
-          lastUpdated = new Date(eventData.date.seconds * 1000);
+          lastUpdated = new Date(noteData.date.seconds * 1000);
         } else if (noteData.date) {
           // Wenn das Datum im String-Format vorliegt
           lastUpdated = new Date(noteData.date);
