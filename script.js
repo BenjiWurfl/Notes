@@ -154,10 +154,10 @@ function addNoteToFirestore(newNote) {
   });
   
   //addEventWrapper.classList.remove("active");
-  addEventTitle.value = "";
+  /*addEventTitle.value = "";
   addEventDescription.value = "";
   addEventFrom.value = "";
-  addEventTo.value = "";
+  addEventTo.value = "";*/
 }
 
 function updateNotes(){
