@@ -72,8 +72,30 @@ function showNotes() {
           console.error("Error loading notes: ", error);
         });
     }
+    updatePinnedItems();
   }
   
+  function updatePinnedItems() {
+    const pinnedItemsContainer = document.querySelector('#nav-content');
+  
+    // Leere den Inhalt der Sidebar
+    pinnedItemsContainer.innerHTML = '';
+  
+    // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
+    notesArr.forEach((noteObj, index) => {
+      const pinnedItem = document.createElement('div');
+      pinnedItem.classList.add('nav-button');
+      pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
+      
+      // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
+      pinnedItem.addEventListener('click', () => {
+        // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
+        console.log('Pinned item clicked:', noteObj);
+      });
+  
+      pinnedItemsContainer.appendChild(pinnedItem);
+    });
+  }
 
 function deleteNote(noteId) {
     let confirmDelete= confirm("Are you sure you want to delete this note?");
