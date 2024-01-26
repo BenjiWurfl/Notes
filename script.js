@@ -41,38 +41,43 @@ const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 let isUpdate = false, updateId;
 
 function showNotes() {
-  const user = auth.currentUser;
-  console.log(user)
-  if(user){
-    const notesRef = collection(db, "users", user.uid, "notes");
-    getDocs(notesRef).then(querySnapshot => {
-      notesArr.length = 0;
-      querySnapshot.forEach(doc => {
-        const noteData = doc.data;
-        let lastUpdated;
-
-        // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
-        if (noteData.date && noteData.date.seconds) {
-          lastUpdated = new Date(noteData.date.seconds * 1000);
-        } else if (noteData.date) {
-          // Wenn das Datum im String-Format vorliegt
-          lastUpdated = new Date(noteData.date);
-        } else {
-          // Standardwert, wenn kein Datum vorhanden ist
-          lastUpdated = new Date();
-        }
-
-        const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
-        console.log("Note: " + note.title);
-        notesArr.push(note);
-
-      })
-      updateNotes();
-    }).catch(error => {
-      console.error("Error loading notes: ", error);
-    });
-   } 
-}
+    const user = auth.currentUser;
+    console.log("Current User: ", user);
+    if (user) {
+      const notesRef = collection(db, "users", user.uid, "notes");
+      getDocs(notesRef)
+        .then(querySnapshot => {
+          console.log("Query Snapshot: ", querySnapshot);
+          notesArr.length = 0;
+          querySnapshot.forEach(doc => {
+            const noteData = doc.data();
+            console.log("Note Data: ", noteData);
+            let lastUpdated;
+  
+            // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
+            if (noteData.date && noteData.date.seconds) {
+              lastUpdated = new Date(noteData.date.seconds * 1000);
+            } else if (noteData.date) {
+              // Wenn das Datum im String-Format vorliegt
+              lastUpdated = new Date(noteData.date);
+            } else {
+              // Standardwert, wenn kein Datum vorhanden ist
+              lastUpdated = new Date();
+            }
+  
+            const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
+            console.log("Note: ", note);
+            notesArr.push(note);
+          });
+  
+          updateNotes();
+        })
+        .catch(error => {
+          console.error("Error loading notes: ", error);
+        });
+    }
+  }
+  
 
 function deleteNote(noteId) {
     let confirmDelete= confirm("Are you sure you want to delete this note?");
