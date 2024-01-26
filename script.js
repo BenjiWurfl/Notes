@@ -42,16 +42,13 @@ let isUpdate = false, updateId;
 
 function showNotes() {
     const user = auth.currentUser;
-    console.log("Current User: ", user);
     if (user) {
       const notesRef = collection(db, "users", user.uid, "notes");
       getDocs(notesRef)
         .then(querySnapshot => {
-          console.log("Query Snapshot: ", querySnapshot);
           notesArr.length = 0;
           querySnapshot.forEach(doc => {
             const noteData = doc.data();
-            console.log("Note Data: ", noteData);
             let lastUpdated;
   
             // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
@@ -66,7 +63,6 @@ function showNotes() {
             }
   
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
-            console.log("Note: ", note);
             notesArr.push(note);
           });
   
@@ -156,7 +152,7 @@ function addNoteToFirestore(newNote) {
     console.log("Added note with ID: ", docRef.id);
     newNote.id = docRef.id;
     notesArr.push(newNote);
-    window.location.reload()
+    updateNotes();
   }).catch(error => {
     console.error("Error adding event: ", error);
   });
