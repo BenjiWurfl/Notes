@@ -147,6 +147,7 @@ function addNoteToFirestore(newNote) {
   addDoc(notesRef, newNote).then(docRef => {
     console.log("Added note with ID: ", docRef.id);
     newNote.id = docRef.id;
+    console.log("New Note: " + newNote)
     notesArr.push(newNote);
     updateNotes();
   }).catch(error => {
