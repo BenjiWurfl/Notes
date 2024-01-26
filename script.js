@@ -153,7 +153,7 @@ function addNoteToFirestore(newNote) {
     console.error("Error adding event: ", error);
   });
   
-  addEventWrapper.classList.remove("active");
+  //addEventWrapper.classList.remove("active");
   addEventTitle.value = "";
   addEventDescription.value = "";
   addEventFrom.value = "";
