@@ -43,6 +43,7 @@ let isUpdate = false, updateId;
 
 function showNotes() {
   const user = auth.currentUser;
+  console.log(user)
   if(user){
     console.log(user.uid)
     const notesRef = collection(db, "users", user.uid, "notes");
