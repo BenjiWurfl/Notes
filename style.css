@@ -404,7 +404,7 @@
 .note p{
     font-size: 22px;
     font-weight: 500;
-    color: var(--secondarycolor);
+    color: var(--primaryColor);
 }
 .note span{
     display: block;
