@@ -162,6 +162,7 @@ function addNoteToFirestore(newNote) {
 
 function updateNotes(){
   notesArr.forEach((noteObj, index)=>{
+    console.log("Note obj:" + noteObj)
     let liEl=`<li class="note">
                     <div class="details">
                         <p>${noteObj.title}</p>
