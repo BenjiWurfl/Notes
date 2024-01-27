@@ -72,6 +72,7 @@ function showNotes() {
           console.error("Error loading notes: ", error);
         });
     }
+    console.log("Funktionsaufruf 'updatePinnedItems'")
     updatePinnedItems();
   }
   
@@ -87,6 +88,8 @@ function showNotes() {
       pinnedItem.classList.add('nav-button');
       pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
       
+console.log("Element: " + pinnedItem)
+
       // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
       pinnedItem.addEventListener('click', () => {
         // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
