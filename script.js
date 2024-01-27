@@ -88,7 +88,7 @@ function showNotes() {
       pinnedItem.classList.add('nav-button');
       pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
       
-console.log("Element: " + pinnedItem)
+    console.log("Element: ", pinnedItem)
 
       // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
       pinnedItem.addEventListener('click', () => {
