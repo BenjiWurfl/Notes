@@ -77,6 +77,7 @@ function showNotes() {
   }
   
   function updatePinnedItems() {
+    console.log("updatePinnedItems wird aufgerufen!");
     const pinnedItemsContainer = document.querySelector('#nav-content');
   
     // Leere den Inhalt der Sidebar
