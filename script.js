@@ -64,16 +64,18 @@ function showNotes() {
   
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
             notesArr.push(note);
+            
           });
   
           updateNotes();
+          console.log("Funktionsaufruf 'updatePinnedItems'")
+          updatePinnedItems();
+      
         })
         .catch(error => {
           console.error("Error loading notes: ", error);
         });
     }
-    console.log("Funktionsaufruf 'updatePinnedItems'")
-    updatePinnedItems();
   }
   
   function updatePinnedItems() {
