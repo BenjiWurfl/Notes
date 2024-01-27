@@ -83,8 +83,10 @@ function showNotes() {
     // Leere den Inhalt der Sidebar
     pinnedItemsContainer.innerHTML = '';
   
+    console.log("Notes Array: ", notesArr);
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
     notesArr.forEach((noteObj, index) => {
+        console.log("Note Object: ", noteObj)
       const pinnedItem = document.createElement('div');
       pinnedItem.classList.add('nav-button');
       pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
@@ -186,7 +188,6 @@ function addNoteToFirestore(newNote) {
 
 function updateNotes(){
   notesArr.forEach((noteObj, index)=>{
-    console.log("Note obj:" + noteObj)
     let liEl=`<li class="note">
                     <div class="details">
                         <p>${noteObj.title}</p>
