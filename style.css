@@ -1,14 +1,15 @@
 :root{
     --primaryColor:#fafafa;
-    --secondarycolor: #18283b;
+    --secondarycolor: #202020;
     --primaryText: #3019bd;
-    --background: #fafafa;
+    --background: #202020;
     --navbar-width: 256px;
     --navbar-width-min: 80px;
-    --navbar-dark-primary: #18283b;
+    --navbar-dark-primary: #191919;
     --navbar-dark-secondary: #2c3e50;
     --navbar-light-primary: #f5f6fa;
-    --navbar-light-secondary: #8392a5;
+    --navbar-light-secondary: #606060;
+    --navbar-border-color: #303030;
 }  
   html, body {
     margin: 0;
@@ -22,8 +23,11 @@
     height: calc(100%);
     width: 15%;
     background: var(--navbar-dark-primary);
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
+    /*border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;*/
+    border-right-color: var(--navbar-border-color);
+    border-right-width: 1px;
+    border-right-style: solid;
     display: flex;
     flex-direction: column;
     color: var(--navbar-light-primary);
@@ -37,7 +41,11 @@
     position: relative;
     width: calc(100% - 32px);
     border: none;
-    border-top: solid 1px var(--navbar-dark-secondary);
+    border-top: solid 1px var(--navbar-border-color);
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    
   }
   #nav-bar a {
     color: inherit;
@@ -50,7 +58,7 @@
   #nav-header {
     position: relative;
     left: 16px;
-    min-height: 80px;
+    min-height: 54px;
     background: var(--navbar-dark-primary);
     border-radius: 16px;
     z-index: 2;
@@ -140,7 +148,6 @@
     z-index: 1;
     transition: color 0.2s;
   }
-
   .nav-button span {
     transition: opacity 1s;
   }

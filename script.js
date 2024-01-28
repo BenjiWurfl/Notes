@@ -68,7 +68,7 @@ function showNotes() {
             
           });
   
-          updateNotes();
+          //updateNotes();
           console.log("Funktionsaufruf 'updatePinnedItems'")
           updatePinnedItems();
       
@@ -181,7 +181,7 @@ function addNoteToFirestore(newNote) {
         console.log("Added note with ID: ", docRef.id);
         newNote.id = docRef.id;
         notesArr.push(newNote);
-        updateNotes();
+        //updateNotes();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
