@@ -18,13 +18,14 @@ const db = getFirestore(app);
 const auth = getAuth();
 const notesArr = [];
 
-const addBox = document.querySelector('.add-box'),
-popupBox = document.querySelector('.popup-box'),
+const wrapper = document.querySelector('.wrapper');
+const addBox = document.querySelector('.nav-button-addNote');
+const popupBox = document.querySelector('.popup-box'),
 popupTitle = popupBox.querySelector('header p'),
 closeIcon = document.querySelector('header i'),
 titleEl = document.querySelector('input'),
 descEl = document.querySelector('textarea'),
-addBtn = document.querySelector('button ');
+addBtn = document.querySelector('button');
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -203,6 +204,6 @@ function updateNotes(){
                         </div>
                     </div>
                 </li>`;
-    addBox.insertAdjacentHTML('afterend', liEl);
+    wrapper.insertAdjacentHTML('afterend', liEl);
   });
 }
