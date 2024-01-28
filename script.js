@@ -90,21 +90,24 @@ function showNotes() {
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
     notesArr.forEach((noteObj, index) => {
         console.log("Note Object: ", noteObj)
-      const pinnedItem = document.createElement('div');
-      pinnedItem.classList.add('nav-button');
-      pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
-      
-    console.log("Element: ", pinnedItem)
+        const pinnedItem = document.createElement('div');
+        pinnedItem.classList.add('nav-button');
+        pinnedItem.dataset.noteId = noteObj.id; // Assign the note ID to a data attribute
 
-      // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
-      pinnedItem.addEventListener('click', () => {
-        // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
-        console.log('Pinned item clicked:', noteObj);
-      });
+        pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
+        
+        console.log("Element: ", pinnedItem)
+
+        // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
+        pinnedItem.addEventListener('click', () => {
+            // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
+            console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
+        });
   
-      pinnedItemsContainer.appendChild(pinnedItem);
+        pinnedItemsContainer.appendChild(pinnedItem);
     });
-  }
+}
+
 
 function deleteNote(noteId) {
     let confirmDelete= confirm("Are you sure you want to delete this note?");
