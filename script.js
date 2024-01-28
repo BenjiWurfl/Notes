@@ -192,16 +192,51 @@ function addNoteToFirestore(newNote) {
     //addEventWrapper.classList.remove("active");
 }
 
+
+// Event Listener für Toolbar
+document.getElementById('undoBtn').addEventListener('click', () => formatDoc('undo', null));
+document.getElementById('redoBtn').addEventListener('click', () => formatDoc('redo', null));
+document.getElementById('boldBtn').addEventListener('click', () => formatDoc('bold', null));
+document.getElementById('underlineBtn').addEventListener('click', () => formatDoc('underline', null));
+document.getElementById('italicBtn').addEventListener('click', () => formatDoc('italic', null));
+document.getElementById('strikeBtn').addEventListener('click', () => formatDoc('strikeThrough', null));
+document.getElementById('leftAlignBtn').addEventListener('click', () => formatDoc('justifyLeft', null));
+document.getElementById('centerAlignBtn').addEventListener('click', () => formatDoc('justifyCenter', null));
+document.getElementById('rightAlignBtn').addEventListener('click', () => formatDoc('justifyRight', null));
+document.getElementById('justifyBtn').addEventListener('click', () => formatDoc('justifyFull', null));
+document.getElementById('orderedListBtn').addEventListener('click', () => formatDoc('insertOrderedList', null));
+document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
+document.getElementById('linkBtn').addEventListener('click', addLink);
+document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
+
+// Event-Listener für Format
+document.getElementById('formatSelect').addEventListener('change', function() {
+    formatDoc('formatBlock', this.value);
+});
+
+// Event-Listener für Font Size
+document.getElementById('fontSizeSelect').addEventListener('change', function() {
+    formatDoc('fontSize', this.value);
+});
+
+// Event-Listener für Color
+document.getElementById('foreColorInput').addEventListener('input', function() {
+    formatDoc('foreColor', this.value);
+    this.value = '#000000';
+});
+
+// Event-Listener für Background
+document.getElementById('hiliteColorInput').addEventListener('input', function() {
+    formatDoc('hiliteColor', this.value);
+    this.value = '#000000';
+});
+
 function addLink() {
 	const url = prompt('Insert url');
 	formatDoc('createLink', url);
 }
 
-
-function formatDoc(cmd, value=null) {
-	if(value) {
-		document.execCommand(cmd, false, value);
-	} else {
-		document.execCommand(cmd);
-	}
+function formatDoc(cmd, value = null) {
+    console.log("formatCodeEntry")
+    document.execCommand(cmd, false, value);
 }
