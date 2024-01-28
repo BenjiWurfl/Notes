@@ -102,7 +102,7 @@ function showNotes() {
             // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
             console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
 
-            //document.getElementById('filename').value = noteObj.id;
+            document.getElementById('filename').value = noteObj.title;
 
         });
   
