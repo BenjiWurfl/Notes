@@ -470,3 +470,11 @@ form .row label{
 #show-code[data-active="true"] {
 	background: #eee;
 }
+
+.title {
+    padding-top: 16px;
+    text-align: center;
+    color: var(--primaryColor);
+    font-weight: 600;
+    font-size: xx-large;
+}
