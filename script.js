@@ -68,7 +68,6 @@ function showNotes() {
             
           });
   
-          //updateNotes();
           console.log("Funktionsaufruf 'updatePinnedItems'")
           updatePinnedItems();
       
@@ -102,12 +101,14 @@ function showNotes() {
         pinnedItem.addEventListener('click', () => {
             // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
             console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
+
+            document.getElementById('filename').value = noteObj.id;
+
         });
   
         pinnedItemsContainer.appendChild(pinnedItem);
     });
 }
-
 
 function deleteNote(noteId) {
     let confirmDelete= confirm("Are you sure you want to delete this note?");
@@ -184,7 +185,6 @@ function addNoteToFirestore(newNote) {
         console.log("Added note with ID: ", docRef.id);
         newNote.id = docRef.id;
         notesArr.push(newNote);
-        //updateNotes();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
@@ -192,21 +192,16 @@ function addNoteToFirestore(newNote) {
     //addEventWrapper.classList.remove("active");
 }
 
-function updateNotes(){
-  notesArr.forEach((noteObj, index)=>{
-    let liEl=`<li class="note">
-                    <div class="details">
-                        <p>${noteObj.title}</p>
-                        <span>${noteObj.body}</span>
-                    </div>
-                    <div class="bottom-content">
-                        <span>${noteObj.lastUpdated}</span>
-                        <div class="settings">
-                            <i onClick="updateNote(${index}, '${noteObj.title}', '${noteObj.body}')"  class="uil uil-edit"></i>
-                            <i onClick="deleteNote(${index})" class="uil uil-trash"></i>
-                        </div>
-                    </div>
-                </li>`;
-    wrapper.insertAdjacentHTML('beforeend', liEl);
-  });
+function addLink() {
+	const url = prompt('Insert url');
+	formatDoc('createLink', url);
+}
+
+
+function formatDoc(cmd, value=null) {
+	if(value) {
+		document.execCommand(cmd, false, value);
+	} else {
+		document.execCommand(cmd);
+	}
 }

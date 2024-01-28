@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root{
     --primaryColor:#fafafa;
     --secondarycolor: #202020;
@@ -14,7 +16,21 @@
   html, body {
     margin: 0;
     background: var(--background);
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+    width: 100%;
   }
+
+
+li {
+	margin-left: 16px;
+}
+
+a {
+	cursor: pointer;
+}
   
   #nav-bar {
     position: absolute;
@@ -342,7 +358,6 @@ form .row label{
     border: 1px solid #999;
 }
 
-
 .content form textarea{
     height: 150px;
     padding: 8px 15px;
@@ -357,4 +372,101 @@ form .row label{
     color: #fff;
     font-size: 17px;
     background: var(--secondarycolor);
+}
+
+.container {
+    margin-left: 15%;
+	width: 100%;
+    height: 100vh;
+	background: #303030;
+	overflow: hidden;
+}
+.toolbar {
+	padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+	background: #505050;
+}
+.toolbar .head {
+	display: flex;
+	grid-gap: 10px;
+	margin-bottom: 16px;
+	flex-wrap: wrap;
+}
+.toolbar .head > input {
+	max-width: 100px;
+	padding: 6px 10px;
+	border-radius: 6px;
+    background: #909090;
+	border: 2px solid #404040;
+	outline: none;
+}
+.toolbar .head select {
+	background: #909090;
+	border: 2px solid #404040;
+	border-radius: 6px;
+	outline: none;
+	cursor: pointer;
+}
+.toolbar .head .color {
+	background: #909090;
+	border: 2px solid #404040;
+	border-radius: 6px;
+	outline: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	grid-gap: 6px;
+	padding: 0 10px;
+}
+.toolbar .head .color span {
+	font-size: 14px;
+}
+.toolbar .head .color input {
+	border: none;
+	padding: 0;
+	width: 26px;
+	height: 26px;
+	background: #909090;
+	cursor: pointer;
+}
+.toolbar .head .color input::-moz-color-swatch {
+	width: 20px;
+	height: 20px;
+	border: none;
+	border-radius: 50%;
+}
+.toolbar .btn-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	grid-gap: 10px;
+}
+.toolbar .btn-toolbar button {
+	background: #909090;
+	border: 2px solid #404040;
+	border-radius: 6px;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+}
+.toolbar .btn-toolbar button:hover {
+	background: #303030;
+}
+#content {
+	padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 16px;
+	outline: none;
+	max-height: 50vh;
+	overflow: auto;
+    color: #fff;
+}
+#show-code[data-active="true"] {
+	background: #eee;
 }
