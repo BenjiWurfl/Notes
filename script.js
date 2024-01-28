@@ -204,6 +204,6 @@ function updateNotes(){
                         </div>
                     </div>
                 </li>`;
-    wrapper.insertAdjacentHTML('afterend', liEl);
+    wrapper.insertAdjacentHTML('beforeend', liEl);
   });
 }
