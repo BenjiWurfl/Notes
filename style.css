@@ -471,7 +471,7 @@ form .row label{
 	background: #eee;
 }
 
-.title {
+#title {
     padding-top: 16px;
     text-align: center;
     color: var(--primaryColor);
