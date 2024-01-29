@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
-const notesArr = [];
+let notesArr = [];
 
 const wrapper = document.querySelector('.wrapper');
 const addBox = document.querySelector('.nav-button-addNote');
@@ -50,17 +50,7 @@ function showNotes() {
           notesArr.length = 0;
           querySnapshot.forEach(doc => {
             const noteData = doc.data();
-            let lastUpdated;
-            // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
-            if (noteData.date && noteData.date.seconds) {
-              lastUpdated = new Date(noteData.date.seconds * 1000);
-            } else if (noteData.date) {
-              // Wenn das Datum im String-Format vorliegt
-              lastUpdated = new Date(noteData.date);
-            } else {
-              // Standardwert, wenn kein Datum vorhanden ist
-              lastUpdated = new Date();
-            }
+            let lastUpdated = noteData.date;
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
             notesArr.push(note);
           });
@@ -75,15 +65,17 @@ function showNotes() {
   }
   
   function updatePinnedItems() {
-    console.log("updatePinnedItems wird aufgerufen!");
     const pinnedItemsContainer = document.querySelector('#nav-content');
   
     // Leere den Inhalt der Sidebar
     pinnedItemsContainer.innerHTML = '';
-  
-    console.log("Notes Array: ", notesArr);
-    // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
-    notesArr.forEach((noteObj, index) => {
+
+      // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
+      notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+
+      console.log("Notes Array: ", notesArr);
+        // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
+        notesArr.forEach((noteObj, index) => {
         console.log("Note Object: ", noteObj)
         const pinnedItem = document.createElement('div');
         pinnedItem.classList.add('nav-button');
