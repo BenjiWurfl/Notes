@@ -96,6 +96,7 @@ function showNotes() {
             document.getElementById('title').innerHTML = noteObj.title;
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('content').innerHTML = noteObj.body;
+            document.getElementById('content').focus();
 
 
         });
