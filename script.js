@@ -223,7 +223,7 @@ function updateNoteToFirestore(noteId, updatedNote) {
     // Beachte, dass dies von deiner spezifischen Firestore-Implementierung abhängt
     const user = auth.currentUser;
     if (user) {
-        const noteRef = doc(db, "users", user.iud, "notes", noteId);
+        const noteRef = doc(db, "users", user.uid, "notes", noteId);
         updateDoc(noteRef, updatedNote)
             .then(() => {
                 console.log("Note updated in Firestore");
