@@ -137,15 +137,12 @@ addBtn.addEventListener('click', (e)=>{
     let noteTitle = titleEl.value;
     let noteDesc = descEl.value;
     if (noteTitle || noteDesc) {
-        let dateEl= new Date(),
-        month = months[dateEl.getMonth()],
-        day = dateEl.getDate(),
-        year = dateEl.getFullYear();
+        let dateEl= new Date()
 
         const newNote = {
             title: noteTitle,
             body: noteDesc,
-            lastUpdated: `${month} ${day} ${year}`
+            lastUpdated: dateEl
         }
         
         if (!isUpdate) {
@@ -231,9 +228,6 @@ document.getElementById('content').addEventListener('input', function() {
 
 
 function updateNoteToFirestore(noteId, updatedNote) {
-    // Hier fügst du den Code hinzu, um die Notiz in Firestore zu aktualisieren
-    // Verwende die noteId, um die richtige Notiz zu aktualisieren, und updatedNote für die aktualisierten Daten
-    // Beachte, dass dies von deiner spezifischen Firestore-Implementierung abhängt
     const user = auth.currentUser;
     if (user) {
         const noteRef = doc(db, "users", user.uid, "notes", noteId);
