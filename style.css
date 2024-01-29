@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root{
-    --primaryColor:#fafafa;
+    --primaryColor:#000;
     --secondarycolor: #202020;
     --primaryText: #3019bd;
     --background: #202020;
     --navbar-width: 256px;
     --navbar-width-min: 80px;
-    --navbar-dark-primary: #191919;
+    --navbar-dark-primary: #fff;
     --navbar-dark-secondary: #2c3e50;
-    --navbar-light-primary: #f5f6fa;
+    --navbar-light-primary: #000;
     --navbar-light-secondary: #606060;
     --navbar-border-color: #303030;
 }  
   html, body {
     margin: 0;
-    background: var(--background);
+    background: #fff;
     display: flex;
 	justify-content: center;
 	align-items: center;
@@ -34,16 +34,18 @@ a {
   
   #nav-bar {
     position: absolute;
-    left: 0vw;
-    top: 0vw;
-    height: calc(100%);
+      left: 0px;
+      top: 0px;
+    /*left: 16px;
+    top: 16px;
+    bottom: 16px;
+    border-radius: 16px;
+    height: calc(100% - 32px);*/
+      height: 100%;
     width: 15%;
-    background: var(--navbar-dark-primary);
-    /*border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;*/
-    border-right-color: var(--navbar-border-color);
-    border-right-width: 1px;
-    border-right-style: solid;
+    background: #ffffff;
+
+    box-shadow: 1px 1px 5px 1px lightgrey;
     display: flex;
     flex-direction: column;
     color: var(--navbar-light-primary);
@@ -378,103 +380,130 @@ form .row label{
     margin-left: 15%;
 	width: 100%;
     height: 100vh;
-	background: #303030;
+	background: #fff;
 	overflow: hidden;
 }
 .toolbar {
-	padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 16px;
-    padding-bottom: 16px;
-	background: #505050;
+    padding: 16px 10%;
+    background: #fff;
+    display: flex;
+    flex-direction: column; /* Änderung: Flexbox in Spaltenrichtung */
+    align-items: center;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+
 }
+
 .toolbar .head {
-	display: flex;
-	grid-gap: 10px;
-	margin-bottom: 16px;
-	flex-wrap: wrap;
+    display: flex;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center; /* Zentrieren der Elemente in der head-Reihe */
+    margin-bottom: 16px;
 }
-.toolbar .head > input {
-	max-width: 100px;
-	padding: 6px 10px;
-	border-radius: 6px;
-    background: #909090;
-	border: 2px solid #404040;
-	outline: none;
-}
+
 .toolbar .head select {
-	background: #909090;
-	border: 2px solid #404040;
-	border-radius: 6px;
-	outline: none;
-	cursor: pointer;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px 1px lightgrey;
 }
+.toolbar .head select:hover {
+
+    background: var(--primaryText);
+    color: #ffffff;
+    border: none;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+}
+
 .toolbar .head .color {
-	background: #909090;
-	border: 2px solid #404040;
-	border-radius: 6px;
-	outline: none;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	grid-gap: 6px;
-	padding: 0 10px;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    grid-gap: 6px;
+    padding: 0 10px;
 }
+.toolbar .head .color:hover {
+    background: var(--primaryText);
+    color: #ffffff;
+    border: none;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+}
+
 .toolbar .head .color span {
-	font-size: 14px;
+    font-size: 14px;
 }
+
 .toolbar .head .color input {
-	border: none;
-	padding: 0;
-	width: 26px;
-	height: 26px;
-	background: #909090;
-	cursor: pointer;
+    border: none;
+    padding: 1px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    background-color: transparent;
 }
+
 .toolbar .head .color input::-moz-color-swatch {
-	width: 20px;
-	height: 20px;
-	border: none;
-	border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
 }
+
 .toolbar .btn-toolbar {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	grid-gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-gap: 10px;
+    justify-content: center; /* Zentrieren der Elemente in der btn-toolbar-Reihe */
 }
+
 .toolbar .btn-toolbar button {
-	background: #909090;
-	border: 2px solid #404040;
-	border-radius: 6px;
-	cursor: pointer;
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 18px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
 }
+
 .toolbar .btn-toolbar button:hover {
-	background: #303030;
+    background: var(--primaryText);
+    color: #ffffff;
+    border: none;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+
 }
+
 #content {
 	padding-left: 10%;
     padding-right: 10%;
+    height: 100%;
     padding-top: 16px;
 	outline: none;
 	max-height: 50vh;
 	overflow: auto;
-    color: #fff;
+    color: var(--navbar-light-primary);
+    cursor: text;
+}
+#content:focus {
 }
 #show-code[data-active="true"] {
 	background: #eee;
 }
 
 #title {
+    width: 100%;
     padding-top: 16px;
     text-align: center;
-    color: var(--primaryColor);
+    color: var(--navbar-light-primary);
     font-weight: 600;
     font-size: xx-large;
+    cursor: text;
 }
+
