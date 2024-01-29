@@ -191,28 +191,18 @@ document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
 document.getElementById('title').addEventListener('input', function() {
-    // Hier erhältst du die Note-ID aus dem data-noteId-Attribut
     const noteId = this.dataset.noteId;
-
-    // Hier kannst du das Note-Objekt anhand der ID im notesArr finden
     const note = notesArr.find((note) => note.id === noteId);
-
-    // Aktualisiere die Note mit den Änderungen im Titel
     if (note) {
         note.title = this.innerText; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
     }
-
-    // Entferne die alte Notiz aus dem Array
     const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
     if (indexToRemove !== -1) {
         notesArr.splice(indexToRemove, 1);
     }
-
-    // Füge die aktualisierte Notiz zum Array hinzu
+    note.lastUpdated = new Date();
     notesArr.push(note);
     updatePinnedItems();
-
-    // Führe die Aktualisierung in Firestore durch
     updateNoteToFirestore(noteId, note);
 });
 
