@@ -178,26 +178,6 @@ function addNoteToFirestore(newNote) {
     //addEventWrapper.classList.remove("active");
 }
 
-function updateNoteToFirestore(noteId, updatedNote) {
-    const user = auth.currentUser;
-
-    if (!user) {
-        alert("You must be logged in to update notes.");
-        return;
-    }
-
-    const notesRef = collection(db, "users", user.uid, "notes");
-    const noteDocRef = doc(notesRef, noteId);
-
-    updateDoc(noteDocRef, updatedNote)
-        .then(() => {
-            console.log("Note updated successfully in Firestore");
-            // Optional: Hier kannst du weitere Aktionen nach der Aktualisierung durchführen
-        })
-        .catch((error) => {
-            console.error("Error updating note in Firestore: ", error);
-        });
-}
 
 // Event Listener für Toolbar
 document.getElementById('undoBtn').addEventListener('click', () => formatDoc('undo', null));
@@ -223,18 +203,49 @@ document.getElementById('title').addEventListener('input', function() {
     
         // Entferne die alte Notiz aus dem Array
         const indexToRemove = notesArr.findIndex((note) => note);
-        console.log("Index to remove: ", indexToRemove)
-        if (indexToRemove !== -1) {
+
+        const newNote = notesArr[indexToRemove]
+
+        newNote.title = this.value;
+
+        console.log("This value: ", this.value);
+        console.log("New item: ", newNote);
+
+     if (indexToRemove !== -1) {
             notesArr.splice(indexToRemove, 1);
         }
+
+
     
         // Füge die aktualisierte Notiz zum Array hinzu
-        notesArr.push(note);
+        notesArr.push(newNote);
     
         // Führe die Aktualisierung in Firestore durch
-        updateNoteToFirestore(note.id, note);
+        updateNoteToFirestore(note, newNote);
     
 });
+
+
+function updateNoteToFirestore(noteId, updatedNote) {
+    const user = auth.currentUser;
+
+    if (!user) {
+        alert("You must be logged in to update notes.");
+        return;
+    }
+
+    const notesRef = collection(db, "users", user.uid, "notes");
+    const noteDocRef = doc(notesRef, noteId);
+
+    updateDoc(noteDocRef, updatedNote)
+        .then(() => {
+            console.log("Note updated successfully in Firestore");
+            // Optional: Hier kannst du weitere Aktionen nach der Aktualisierung durchführen
+        })
+        .catch((error) => {
+            console.error("Error updating note in Firestore: ", error);
+        });
+}
 
 
 // Event-Listener für Format
