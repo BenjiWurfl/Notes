@@ -236,6 +236,7 @@ function updateNoteToFirestore(noteId, updatedNote) {
                 console.error("Error updating note in Firestore: ", error);
             });
     }
+    updatePinnedItems();
 }
 
 
