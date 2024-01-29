@@ -224,16 +224,16 @@ document.getElementById('title').addEventListener('input', function() {
         console.log("update: ", note);
     
         // Entferne die alte Notiz aus dem Array
-        const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
+        const indexToRemove = notesArr.findIndex((note) => note.id);
         if (indexToRemove !== -1) {
             notesArr.splice(indexToRemove, 1);
         }
     
         // Füge die aktualisierte Notiz zum Array hinzu
-        notesArr.push(updatedNote);
+        notesArr.push(note);
     
         // Führe die Aktualisierung in Firestore durch
-        updateNoteToFirestore(noteId, updatedNote);
+        updateNoteToFirestore(note.id, note);
     
         // Schließe das Popup oder setze die Formularfelder zurück, wie du es möchtest
         closePopup();
