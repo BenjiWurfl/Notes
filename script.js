@@ -207,6 +207,22 @@ document.getElementById('title').addEventListener('input', function() {
     updateNoteToFirestore(noteId, note);
 });
 
+document.getElementById('content').addEventListener('input', function() {
+    const noteId = this.dataset.noteId;
+    const note = notesArr.find((note) => note.id === noteId);
+    if (note) {
+        note.body = this.innerText; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
+    }
+    const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
+    if (indexToRemove !== -1) {
+        notesArr.splice(indexToRemove, 1);
+    }
+    note.lastUpdated = new Date();
+    notesArr.push(note);
+    updatePinnedItems();
+    updateNoteToFirestore(noteId, note);
+});
+
 
 function updateNoteToFirestore(noteId, updatedNote) {
     // Hier fügst du den Code hinzu, um die Notiz in Firestore zu aktualisieren

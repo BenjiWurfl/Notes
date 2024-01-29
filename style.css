@@ -506,4 +506,7 @@ form .row label{
     font-size: xx-large;
     cursor: text;
 }
+#title:focus{
+
+}
 
