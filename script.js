@@ -196,55 +196,46 @@ document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
 document.getElementById('title').addEventListener('input', function() {
+    // Hier erhältst du die Note-ID aus dem data-noteId-Attribut
+    const noteId = this.dataset.noteId;
 
-        const note = this.dataset.noteId;
+    // Hier kannst du das Note-Objekt anhand der ID im notesArr finden
+    const note = notesArr.find((note) => note.id === noteId);
 
-        console.log("update: ", note);
-    
-        // Entferne die alte Notiz aus dem Array
-        const indexToRemove = notesArr.findIndex((note) => note);
+    // Aktualisiere die Note mit den Änderungen im Titel
+    if (note) {
+        note.title = this.innerText; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
+    }
 
-        const newNote = notesArr[indexToRemove]
+    // Entferne die alte Notiz aus dem Array
+    const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
+    if (indexToRemove !== -1) {
+        notesArr.splice(indexToRemove, 1);
+    }
 
-        newNote.title = this.value;
+    // Füge die aktualisierte Notiz zum Array hinzu
+    notesArr.push(note);
 
-        console.log("This value: ", this.value);
-        console.log("New item: ", newNote);
-
-     if (indexToRemove !== -1) {
-            notesArr.splice(indexToRemove, 1);
-        }
-
-
-    
-        // Füge die aktualisierte Notiz zum Array hinzu
-        notesArr.push(newNote);
-    
-        // Führe die Aktualisierung in Firestore durch
-        updateNoteToFirestore(note, newNote);
-    
+    // Führe die Aktualisierung in Firestore durch
+    updateNoteToFirestore(noteId, note);
 });
 
 
 function updateNoteToFirestore(noteId, updatedNote) {
+    // Hier fügst du den Code hinzu, um die Notiz in Firestore zu aktualisieren
+    // Verwende die noteId, um die richtige Notiz zu aktualisieren, und updatedNote für die aktualisierten Daten
+    // Beachte, dass dies von deiner spezifischen Firestore-Implementierung abhängt
     const user = auth.currentUser;
-
-    if (!user) {
-        alert("You must be logged in to update notes.");
-        return;
+    if (user) {
+        const noteRef = doc(db, "users", user.uid, "notes", noteId);
+        updateDoc(noteRef, updatedNote)
+            .then(() => {
+                console.log("Note updated in Firestore");
+            })
+            .catch((error) => {
+                console.error("Error updating note in Firestore: ", error);
+            });
     }
-
-    const notesRef = collection(db, "users", user.uid, "notes");
-    const noteDocRef = doc(notesRef, noteId);
-
-    updateDoc(noteDocRef, updatedNote)
-        .then(() => {
-            console.log("Note updated successfully in Firestore");
-            // Optional: Hier kannst du weitere Aktionen nach der Aktualisierung durchführen
-        })
-        .catch((error) => {
-            console.error("Error updating note in Firestore: ", error);
-        });
 }
 
 
