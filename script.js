@@ -219,11 +219,13 @@ document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
 document.getElementById('title').addEventListener('input', function() {
-        const note = document.getElementById('title').dataset.noteId;
+
+
+        const note = this.dataset.noteId;
 
         console.log("update: ", note);
     
-        // Entferne die alte Notiz aus dem Array
+        // Entferne die alte Notiz aus dem Arrayﬂ
         const indexToRemove = notesArr.findIndex((note) => note.id);
         if (indexToRemove !== -1) {
             notesArr.splice(indexToRemove, 1);
