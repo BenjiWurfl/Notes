@@ -103,7 +103,7 @@ function showNotes() {
             console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
 
             document.getElementById('title').innerHTML = noteObj.title;
-            document.getElementById('title').dataset.noteId = noteObj.id;
+            document.getElementById('title').dataset.note = noteObj;
 
         });
   
@@ -221,12 +221,13 @@ document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('
 
 document.getElementById('title').addEventListener('input', function() {
 
-        const note = this.dataset.noteId;
+        const note = this.dataset.note;
 
         console.log("update: ", note);
     
-        // Entferne die alte Notiz aus dem Arrayﬂ
+        // Entferne die alte Notiz aus dem Array
         const indexToRemove = notesArr.findIndex((note) => note.id);
+        console.log("Index to remove: ", indexToRemove)
         if (indexToRemove !== -1) {
             notesArr.splice(indexToRemove, 1);
         }
@@ -237,8 +238,6 @@ document.getElementById('title').addEventListener('input', function() {
         // Führe die Aktualisierung in Firestore durch
         updateNoteToFirestore(note.id, note);
     
-        // Schließe das Popup oder setze die Formularfelder zurück, wie du es möchtest
-        closePopup();
 });
 
 
