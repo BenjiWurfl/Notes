@@ -27,8 +27,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-const months= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 function showNotes() {
@@ -103,7 +101,7 @@ function deleteNote(noteId) {
     showNotes();
 }
 
-addBox.addEventListener('click', ()=>{
+document.querySelector('.nav-button-addNote').addEventListener('click', ()=>{
     let noteTitle = "Enter Title";
     let noteDesc = "";
     let dateEl= new Date()
