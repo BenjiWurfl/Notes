@@ -18,15 +18,6 @@ const db = getFirestore(app);
 const auth = getAuth();
 let notesArr = [];
 
-const wrapper = document.querySelector('.wrapper');
-const addBox = document.querySelector('.nav-button-addNote');
-const popupBox = document.querySelector('.popup-box'),
-popupTitle = popupBox.querySelector('header p'),
-closeIcon = document.querySelector('header i'),
-titleEl = document.querySelector('input'),
-descEl = document.querySelector('textarea'),
-addBtn = document.querySelector('button');
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
       console.log("User is signed in with UID:", user.uid);
@@ -39,7 +30,6 @@ onAuthStateChanged(auth, (user) => {
 const months= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-let isUpdate = false, updateId;
 
 function showNotes() {
     const user = auth.currentUser;
@@ -114,42 +104,17 @@ function deleteNote(noteId) {
 }
 
 addBox.addEventListener('click', ()=>{
-    titleEl.focus();
-    popupBox.classList.add('show')
-});
+    let noteTitle = "Enter Title";
+    let noteDesc = "";
+    let dateEl= new Date()
 
-closeIcon.addEventListener('click', ()=>{
-    isUpdate = false;
-    titleEl.value = '';
-    descEl.value = '';
-    addBtn.innerText = 'Add Note';
-    popupTitle.innerText = 'Add a new Note';
-    popupBox.classList.remove('show');
-});
-
-addBtn.addEventListener('click', (e)=>{
-    e.preventDefault();
-
-    let noteTitle = titleEl.value;
-    let noteDesc = descEl.value;
-    if (noteTitle || noteDesc) {
-        let dateEl= new Date()
-
-        const newNote = {
-            title: noteTitle,
-            body: noteDesc,
-            lastUpdated: dateEl
-        }
-        
-        if (!isUpdate) {
-            notes.push(newNote);
-        }else{
-            isUpdate = false;
-            notes[updateId] = newNote;
-        }
-        addNoteToFirestore(newNote);
-        closeIcon.click();
+    const newNote = {
+        title: noteTitle,
+        body: noteDesc,
+        lastUpdated: dateEl
     }
+    addNoteToFirestore(newNote);
+    updatePinnedItems();
 });
 
 function addNoteToFirestore(newNote) {
