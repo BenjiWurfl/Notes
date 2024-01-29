@@ -118,17 +118,6 @@ function deleteNote(noteId) {
     showNotes();
 }
 
-function updateNote(noteId, title, desc) {
-    isUpdate = true;
-    updateId = noteId;
-    addBox.click();
-    titleEl.value = title;
-    descEl.value = desc;
-    addBtn.innerText = 'Edit Note';
-    popupTitle.innerText = 'Editing a Note';
-}
-
-
 addBox.addEventListener('click', ()=>{
     titleEl.focus();
     popupBox.classList.add('show')
@@ -192,6 +181,26 @@ function addNoteToFirestore(newNote) {
     //addEventWrapper.classList.remove("active");
 }
 
+function updateNoteToFirestore(noteId, updatedNote) {
+    const user = auth.currentUser;
+
+    if (!user) {
+        alert("You must be logged in to update notes.");
+        return;
+    }
+
+    const notesRef = collection(db, "users", user.uid, "notes");
+    const noteDocRef = doc(notesRef, noteId);
+
+    updateDoc(noteDocRef, updatedNote)
+        .then(() => {
+            console.log("Note updated successfully in Firestore");
+            // Optional: Hier kannst du weitere Aktionen nach der Aktualisierung durchführen
+        })
+        .catch((error) => {
+            console.error("Error updating note in Firestore: ", error);
+        });
+}
 
 // Event Listener für Toolbar
 document.getElementById('undoBtn').addEventListener('click', () => formatDoc('undo', null));
@@ -208,6 +217,28 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
+
+document.getElementById('title').addEventListener('input', function() {
+        const note = document.getElementById('title').dataset.noteId;
+
+        console.log("update: ", note);
+    
+        // Entferne die alte Notiz aus dem Array
+        const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
+        if (indexToRemove !== -1) {
+            notesArr.splice(indexToRemove, 1);
+        }
+    
+        // Füge die aktualisierte Notiz zum Array hinzu
+        notesArr.push(updatedNote);
+    
+        // Führe die Aktualisierung in Firestore durch
+        updateNoteToFirestore(noteId, updatedNote);
+    
+        // Schließe das Popup oder setze die Formularfelder zurück, wie du es möchtest
+        closePopup();
+});
+
 
 // Event-Listener für Format
 document.getElementById('formatSelect').addEventListener('change', function() {
