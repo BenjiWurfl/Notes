@@ -50,10 +50,10 @@ function showNotes() {
           notesArr.length = 0;
           querySnapshot.forEach(doc => {
             const noteData = doc.data();
-            console.log("Note Data: ", noteData)
-            let lastUpdated = noteData.date;
+            let lastUpdated = new Date(noteData.date.seconds * 1000);
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
-            notesArr.push(note);
+              console.log("Note Data2: ", note);
+              notesArr.push(note);
           });
           console.log("Funktionsaufruf 'updatePinnedItems'")
           updatePinnedItems();
@@ -74,7 +74,7 @@ function showNotes() {
       // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
       notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
-      console.log("Notes Array: ", notesArr);
+      console.log("Notes Array sortiert: ", notesArr);
         // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
         notesArr.forEach((noteObj, index) => {
         console.log("Note Object: ", noteObj)
