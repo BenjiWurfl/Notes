@@ -197,7 +197,7 @@ document.getElementById('title').addEventListener('input', function() {
     const noteId = this.dataset.noteId;
     const note = notesArr.find((note) => note.id === noteId);
     if (note) {
-        note.title = this.innerText; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
+        note.title = this.innerHTML; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
     }
     const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
     if (indexToRemove !== -1) {
@@ -213,7 +213,7 @@ document.getElementById('content').addEventListener('input', function() {
     const noteId = this.dataset.noteId;
     const note = notesArr.find((note) => note.id === noteId);
     if (note) {
-        note.body = this.innerText; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
+        note.body = this.innerHTML; // Hier musst du vielleicht anpassen, je nachdem, wie der Inhalt des divs dargestellt wird
     }
     const indexToRemove = notesArr.findIndex((note) => note.id === noteId);
     if (indexToRemove !== -1) {
