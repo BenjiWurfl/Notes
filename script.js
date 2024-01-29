@@ -103,6 +103,7 @@ function showNotes() {
             console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
 
             document.getElementById('title').innerHTML = noteObj.title;
+            document.getElementById('title').dataset.noteId = noteObj.id;
 
         });
   
@@ -219,7 +220,6 @@ document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
 document.getElementById('title').addEventListener('input', function() {
-
 
         const note = this.dataset.noteId;
 
