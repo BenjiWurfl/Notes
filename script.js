@@ -112,7 +112,6 @@ document.querySelector('.nav-button-addNote').addEventListener('click', ()=>{
         lastUpdated: dateEl
     }
     addNoteToFirestore(newNote);
-    updatePinnedItems();
 });
 
 function addNoteToFirestore(newNote) {
@@ -129,6 +128,7 @@ function addNoteToFirestore(newNote) {
         console.log("Added note with ID: ", docRef.id);
         newNote.id = docRef.id;
         notesArr.push(newNote);
+        updatePinnedItems();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
@@ -181,7 +181,6 @@ document.getElementById('content').addEventListener('input', function() {
     }
     note.lastUpdated = new Date();
     notesArr.push(note);
-    updatePinnedItems();
     updateNoteToFirestore(noteId, note);
 });
 
