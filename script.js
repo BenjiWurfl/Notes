@@ -50,7 +50,11 @@ function showNotes() {
           notesArr.length = 0;
           querySnapshot.forEach(doc => {
             const noteData = doc.data();
-              let lastUpdated = noteData.lastUpdated.toDate();
+            if(noteData.lastUpdated === null) {
+                let lastUpdated = noteData.lastUpdated.toDate();
+            } else {
+                let lastUpdated = new Date();
+            }
 
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
               console.log("Note Data2: ", note);
