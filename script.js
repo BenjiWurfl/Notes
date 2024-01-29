@@ -71,6 +71,7 @@ function showNotes() {
     // Leere den Inhalt der Sidebar
     pinnedItemsContainer.innerHTML = '';
 
+    console.log("Notes Array unsortiert: ", notesArr);
       // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
       notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
@@ -221,7 +222,7 @@ function updateNoteToFirestore(noteId, updatedNote) {
     // Beachte, dass dies von deiner spezifischen Firestore-Implementierung abhängt
     const user = auth.currentUser;
     if (user) {
-        const noteRef = doc(db, "users", user.uid, "notes", noteId);
+        const noteRef = doc(db, "users", user.iud, "notes", noteId);
         updateDoc(noteRef, updatedNote)
             .then(() => {
                 console.log("Note updated in Firestore");
