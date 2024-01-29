@@ -51,7 +51,6 @@ function showNotes() {
           querySnapshot.forEach(doc => {
             const noteData = doc.data();
             let lastUpdated;
-  
             // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
             if (noteData.date && noteData.date.seconds) {
               lastUpdated = new Date(noteData.date.seconds * 1000);
@@ -62,12 +61,9 @@ function showNotes() {
               // Standardwert, wenn kein Datum vorhanden ist
               lastUpdated = new Date();
             }
-  
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
             notesArr.push(note);
-            
           });
-  
           console.log("Funktionsaufruf 'updatePinnedItems'")
           updatePinnedItems();
       
@@ -91,7 +87,7 @@ function showNotes() {
         console.log("Note Object: ", noteObj)
         const pinnedItem = document.createElement('div');
         pinnedItem.classList.add('nav-button');
-        pinnedItem.dataset.noteId = noteObj.id; // Assign the note ID to a data attribute
+        pinnedItem.dataset.noteId = noteObj.id;
 
         pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
         
@@ -103,7 +99,6 @@ function showNotes() {
             console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
 
             document.getElementById('title').innerHTML = noteObj.title;
-            document.getElementById('title').dataset.note = noteObj;
 
         });
   
@@ -221,12 +216,12 @@ document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('
 
 document.getElementById('title').addEventListener('input', function() {
 
-        const note = this.dataset.note;
+        const note = this.dataset.noteId;
 
         console.log("update: ", note);
     
         // Entferne die alte Notiz aus dem Array
-        const indexToRemove = notesArr.findIndex((note) => note.id);
+        const indexToRemove = notesArr.findIndex((note) => note);
         console.log("Index to remove: ", indexToRemove)
         if (indexToRemove !== -1) {
             notesArr.splice(indexToRemove, 1);
