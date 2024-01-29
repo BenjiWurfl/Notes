@@ -215,6 +215,7 @@ document.getElementById('title').addEventListener('input', function() {
 
     // Füge die aktualisierte Notiz zum Array hinzu
     notesArr.push(note);
+    updatePinnedItems();
 
     // Führe die Aktualisierung in Firestore durch
     updateNoteToFirestore(noteId, note);
@@ -236,7 +237,6 @@ function updateNoteToFirestore(noteId, updatedNote) {
                 console.error("Error updating note in Firestore: ", error);
             });
     }
-    updatePinnedItems();
 }
 
 
