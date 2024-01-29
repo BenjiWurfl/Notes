@@ -50,7 +50,19 @@ function showNotes() {
           notesArr.length = 0;
           querySnapshot.forEach(doc => {
             const noteData = doc.data();
-            let lastUpdated = new Date(noteData.date.seconds * 1000);
+              let lastUpdated;
+              // Überprüfen Sie, ob das Datum als Timestamp gespeichert ist
+              if (noteData.date && noteData.date.seconds) {
+                  lastUpdated = new Date(noteData.date.seconds * 1000);
+              } else if (noteData.date) {
+                  // Wenn das Datum im String-Format vorliegt
+                  lastUpdated = new Date(noteData.date);
+              } else {
+                  // Standardwert, wenn kein Datum vorhanden ist
+                  console.log("Kein Datum vorhanden");
+                  lastUpdated = new Date();
+              }
+
             const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
               console.log("Note Data2: ", note);
               notesArr.push(note);
