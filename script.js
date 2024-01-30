@@ -1,6 +1,15 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getFirestore, collection, getDocs, getDoc, addDoc, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
@@ -19,12 +28,12 @@ const auth = getAuth();
 let notesArr = [];
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-      console.log("User is signed in with UID:", user.uid);
-      showNotes();
-  } else {
-      console.log("No user is signed in.");
-  }
+    if (user) {
+        console.log("User is signed in with UID:", user.uid);
+        showNotes();
+    } else {
+        console.log("No user is signed in.");
+    }
 });
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
@@ -32,48 +41,48 @@ const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 function showNotes() {
     const user = auth.currentUser;
     if (user) {
-      const notesRef = collection(db, "users", user.uid, "notes");
-      getDocs(notesRef)
-        .then(querySnapshot => {
-          notesArr.length = 0;
-          querySnapshot.forEach(doc => {
-            const noteData = doc.data();
-            let lastUpdated = noteData.lastUpdated.toDate();
+        const notesRef = collection(db, "users", user.uid, "notes");
+        getDocs(notesRef)
+            .then(querySnapshot => {
+                notesArr.length = 0;
+                querySnapshot.forEach(doc => {
+                    const noteData = doc.data();
+                    let lastUpdated = noteData.lastUpdated.toDate();
 
-            const note = { id: doc.id, ...noteData, lastUpdated: lastUpdated };
-              console.log("Note Data2: ", note);
-              notesArr.push(note);
-          });
-          console.log("Funktionsaufruf 'updatePinnedItems'")
-          updatePinnedItems();
-      
-        })
-        .catch(error => {
-          console.error("Error loading notes: ", error);
-        });
+                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
+                    console.log("Note Data2: ", note);
+                    notesArr.push(note);
+                });
+                console.log("Funktionsaufruf 'updatePinnedItems'")
+                updatePinnedItems();
+
+            })
+            .catch(error => {
+                console.error("Error loading notes: ", error);
+            });
     }
-  }
-  
-  function updatePinnedItems() {
+}
+
+function updatePinnedItems() {
     const pinnedItemsContainer = document.querySelector('#nav-content');
-  
+
     // Leere den Inhalt der Sidebar
     pinnedItemsContainer.innerHTML = '';
 
     console.log("Notes Array unsortiert: ", notesArr);
-      // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
-      notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+    // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
+    notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
-      console.log("Notes Array sortiert: ", notesArr);
-        // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
-        notesArr.forEach((noteObj, index) => {
+    console.log("Notes Array sortiert: ", notesArr);
+    // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
+    notesArr.forEach((noteObj, index) => {
         console.log("Note Object: ", noteObj)
         const pinnedItem = document.createElement('div');
         pinnedItem.classList.add('nav-button');
         pinnedItem.dataset.noteId = noteObj.id;
 
         pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
-        
+
         console.log("Element: ", pinnedItem)
 
         // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
@@ -88,23 +97,23 @@ function showNotes() {
 
             document.getElementById('content').focus()
         });
-  
+
         pinnedItemsContainer.appendChild(pinnedItem);
     });
 }
 
 function deleteNote(noteId) {
-    let confirmDelete= confirm("Are you sure you want to delete this note?");
-    if(!confirmDelete) return;
+    let confirmDelete = confirm("Are you sure you want to delete this note?");
+    if (!confirmDelete) return;
     notes.splice(noteId, 1);
     localStorage.setItem('notes', JSON.stringify(notes));
     showNotes();
 }
 
-document.querySelector('.nav-button-addNote').addEventListener('click', ()=>{
+document.querySelector('.nav-button-addNote').addEventListener('click', () => {
     let noteTitle = "Enter Title";
     let noteDesc = "";
-    let dateEl= new Date()
+    let dateEl = new Date()
 
     const newNote = {
         title: noteTitle,
@@ -132,7 +141,7 @@ function addNoteToFirestore(newNote) {
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
-  
+
     //addEventWrapper.classList.remove("active");
 }
 
@@ -153,7 +162,7 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
-document.getElementById('title').addEventListener('input', function() {
+document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
     const note = notesArr.find((note) => note.id === noteId);
     if (note) {
@@ -169,7 +178,7 @@ document.getElementById('title').addEventListener('input', function() {
     updateNoteToFirestore(noteId, note);
 });
 
-document.getElementById('content').addEventListener('input', function() {
+document.getElementById('content').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
     const note = notesArr.find((note) => note.id === noteId);
     if (note) {
@@ -201,30 +210,30 @@ function updateNoteToFirestore(noteId, updatedNote) {
 
 
 // Event-Listener für Format
-document.getElementById('formatSelect').addEventListener('change', function() {
+document.getElementById('formatSelect').addEventListener('change', function () {
     formatDoc('formatBlock', this.value);
 });
 
 // Event-Listener für Font Size
-document.getElementById('fontSizeSelect').addEventListener('change', function() {
+document.getElementById('fontSizeSelect').addEventListener('change', function () {
     formatDoc('fontSize', this.value);
 });
 
 // Event-Listener für Color
-document.getElementById('foreColorInput').addEventListener('input', function() {
+document.getElementById('foreColorInput').addEventListener('input', function () {
     formatDoc('foreColor', this.value);
     this.value = '#000000';
 });
 
 // Event-Listener für Background
-document.getElementById('hiliteColorInput').addEventListener('input', function() {
+document.getElementById('hiliteColorInput').addEventListener('input', function () {
     formatDoc('hiliteColor', this.value);
     this.value = '#000000';
 });
 
 function addLink() {
-	const url = prompt('Insert url');
-	formatDoc('createLink', url);
+    const url = prompt('Insert url');
+    formatDoc('createLink', url);
 }
 
 function formatDoc(cmd, value = null) {
