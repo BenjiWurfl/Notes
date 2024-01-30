@@ -74,15 +74,18 @@ a {
   }
   
   #nav-header {
+      width: calc(100% - 16px);
+      border-radius: 8px;
     position: relative;
-    left: 16px;
     min-height: 54px;
-    background: var(--navbar-dark-primary);
-    border-radius: 16px;
+    background: var(--primaryText);
     z-index: 2;
     display: flex;
     align-items: center;
     transition: width 0.2s;
+      left: 8px;
+      top: 8px;
+      right: 8px;
   }
   #nav-header hr {
     position: absolute;
@@ -158,14 +161,23 @@ a {
   .nav-button-addNote {
     position: relative;
     height: 54px;
-    display: flex;
-    align-items: center;
-    color: var(--navbar-light-secondary);
-    direction: ltr;
+    color: #fff;
     cursor: pointer;
     z-index: 1;
     transition: color 0.2s;
+      background-color: #3019bd;
+      margin: 8px;
+      border-radius: 5px;
+      Display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 1px 1px 5px 1px lightgrey;
+
   }
+.nav-button-addNote:hover {
+    background-color: #2d17a9;
+}
+
   .nav-button span {
     transition: opacity 1s;
   }
@@ -232,148 +244,6 @@ a {
 
 .document{
     width: 50%;
-}
-
-.wrapper{
-    margin-top: 50px;
-    margin-left: calc(15% + 50px);
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fill, 265px);
-}
-.wrapper li{
-    height: 250px;
-    list-style: none;
-    background: var(--secondarycolor);
-    border-radius: 5px;
-    padding: 15px 20px 20px;
-}
-
-.add-box{
-    color: var(--primaryColor)
-}
-.add-box, .icon, .bottom-content, .popup, header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.add-box{
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-}
-.wrapper .note{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.note p{
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--primaryColor);
-}
-.note span{
-    display: block;
-    margin-top: 5px;
-    color: var(--primaryColor);
-    font-size: 16px;
-}
-.bottom-content span{
-    color: var(--primaryColor);
-    font-size: 14px;
-}
-.bottom-content .settings i{
-    color: var(--primaryColor);
-    font-size: 15px;
-    cursor: pointer !important;
-    padding: 0 10px;
-    
-    
-}
-.popup-box{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    z-index: 2;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-}
-.popup-box .popup{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 3;
-    max-width: 400px;
-    width: 100%;
-    justify-content: center;
-    transform: translate(-50%, -50%);
-}
-.popup-box, .popup-box .popup{
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.25s ease;
-    z-index: -1;
-}
-.popup-box.show, .popup-box .popup{
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 3;
-}
-.popup .content{
-    width: calc(100% - 15px);
-    border-radius: 5px;
-    background: #fff;
-}
-.popup .content header{
-    padding: 15px 25px;
-    border-bottom: 1px solid #ccc;
-}
-.content header p{
-    font-size: 20px;
-    font-weight: 500;
-}
-.content header i{
-    color: #575757;
-    cursor: pointer;
-    font-size: 20px;
-}
-.content form{
-    margin: 15px 25px 35px;
-}
-.content form .row{
-    margin-bottom: 20px;
-}
-form .row label{
-    display: block;
-    font-size: 18px;
-    margin-bottom: 6px;
-}
-
-.content form :where(input, textarea) {
-    width: 100%;
-    height: 50px;
-    outline: none;
-    font-size: 17px;
-    padding: 0 15px;
-    border-radius: 4px;
-    border: 1px solid #999;
-}
-
-.content form textarea{
-    height: 150px;
-    padding: 8px 15px;
-    resize: none;
-}
-.content form button{
-    width: 100%;
-    height: 50px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 17px;
-    background: var(--secondarycolor);
 }
 
 .container {
@@ -476,7 +346,7 @@ form .row label{
     background: var(--primaryText);
     color: #ffffff;
     border: none;
-    box-shadow: 1px 1px 5px 1px lightgrey;
+    box-shadow: 1px 1px 5px 1px #3019bd;
 
 }
 
@@ -501,12 +371,12 @@ form .row label{
     width: 100%;
     padding-top: 16px;
     text-align: center;
-    color: var(--navbar-light-primary);
+    color: var(--primaryText);
     font-weight: 600;
     font-size: xx-large;
     cursor: text;
+    outline: none;
 }
 #title:focus{
-
 }
 
