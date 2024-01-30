@@ -94,6 +94,7 @@ function updatePinnedItems() {
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('content').innerHTML = noteObj.body;
             document.getElementById('content').dataset.noteId = noteObj.id;
+            document.getElementById('last-updated').innerHTML = noteObj.lastUpdated;
 
             document.getElementById('content').focus()
         });

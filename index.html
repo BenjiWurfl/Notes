@@ -12,6 +12,8 @@
 
 <div id="nav-bar">
     <div class="add-box nav-button-addNote" target="_blank"><span>+ Add Note</span></div>
+    <br>
+    <div class="nav-bar-heading">NOTES</div>
     <div id="nav-content">
         <div class="nav-button"><i class="fas fa-thumbtack"></i><span>Loading notes...</span></div>
     </div>
@@ -47,6 +49,7 @@
                 <span>Background</span>
                 <input type="color" id="hiliteColorInput">
             </div>
+
         </div>
         <div class="btn-toolbar">
             <button id="undoBtn"><i class='bx bx-undo'></i></button>
@@ -64,6 +67,10 @@
             <button id="linkBtn"><i class='bx bx-link'></i></button>
             <button id="unlinkBtn"><i class='bx bx-unlink'></i></button>
         </div>
+        <div>
+            <br>
+        <span> Last edited: <div id="last-updated"></div></span>
+    </div>
     </div>
     <div id="title" contenteditable="true" spellcheck="false">
         Loading title...

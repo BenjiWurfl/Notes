@@ -135,6 +135,13 @@ a {
     background-color: #2d17a9;
 }
 
+.nav-bar-heading{
+    padding-left: 3px;
+    font-size: x-small;
+    color: #303030;
+    font-weight: bolder;
+}
+
 * {
     margin: 0;
     padding: 0;
