@@ -94,8 +94,8 @@ function updatePinnedItems() {
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('content').innerHTML = noteObj.body;
             document.getElementById('content').dataset.noteId = noteObj.id;
-            let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', time: "numeric" };
-            let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us", options)
+            let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+            let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us")
             document.getElementById('last-updated').innerHTML = noteDate;
 
             document.getElementById('content').focus()
