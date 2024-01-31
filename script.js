@@ -165,10 +165,14 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
-document.getElementById('copy').addEventListener('click', function (event) {
-    event.preventDefault();
-    document.execCommand('copy', false, this.value);
-});
+function copyToClipboard() {
+    var copyText = document.getElementById("text-content").value;
+    navigator.clipboard.writeText(copyText).then(() => {
+        // Alert the user that the action took place.
+        // Nobody likes hidden stuff being done under the hood!
+        alert("Copied to clipboard");
+    });
+}
 
 document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
