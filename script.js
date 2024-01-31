@@ -98,7 +98,7 @@ function updatePinnedItems() {
             let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us", options)
             document.getElementById('last-updated').innerHTML = noteDate;
 
-            document.getElementById('content').focus()
+            document.getElementById('text-content').focus()
         });
 
         pinnedItemsContainer.appendChild(pinnedItem);
