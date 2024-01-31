@@ -164,7 +164,7 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
-document.querySelector('.item').addEventListener('click', () => {
+document.querySelector('.copy').addEventListener('click', () => {
     formatDoc('copy', this.value);
 });
 

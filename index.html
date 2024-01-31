@@ -10,54 +10,6 @@
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="content">
-        <ul class="menu">
-            <li class="item">
-                <i class='bx bx-terminal'></i>
-                <span>Ask AI</span>
-            </li>
-            <li class="item">
-                <i class='bx bx-copy-alt'></i>
-                <span>Copy</span>
-            </li>
-            <li class="item">
-                <i class='bx bx-paste'></i>
-                <span>Paste</span>
-            </li>
-
-            <!--<li class="item share">
-                <div>
-                    <i class='bx bx-paste' ></i>
-                    <span>Paste</span>
-                </div>
-                <i class="uil uil-angle-right"></i>
-                <ul class="share-menu">
-                    <li class="item">
-                        <i class="uil uil-twitter-alt"></i>
-                        <span>Twitter</span>
-                    </li>
-                    <li class="item">
-                        <i class="uil uil-instagram"></i>
-                        <span>Instagram</span>
-                    </li>
-                    <li class="item">
-                        <i class="uil uil-dribbble"></i>
-                        <span>Dribble</span>
-                    </li>
-                    <li class="item">
-                        <i class="uil uil-telegram-alt"></i>
-                        <span>Telegram</span>
-                    </li>
-                </ul>
-            </li>-->
-            <li class="item">
-                <i class="bx bx-trash"></i>
-                <span>Delete</span>
-            </li>
-        </ul>
-    </div>
-</div>
 
 <div id="nav-bar">
     <div class="add-box nav-button-addNote" target="_blank"><span>+ Add Note</span></div>
@@ -126,6 +78,56 @@
     </div>
     <div id="text-content" contenteditable="true" spellcheck="false">
 
+    </div>
+</div>
+
+
+<div class="wrapper">
+    <div class="content">
+        <ul class="menu">
+            <li class="item copy">
+                <i class='bx bx-terminal'></i>
+                <span>Ask AI</span>
+            </li>
+            <li class="item" onclick="copyToClipboard()">
+                <i class='bx bx-copy-alt'></i>
+                <span>Copy</span>
+            </li>
+            <li class="item">
+                <i class='bx bx-paste'></i>
+                <span>Paste</span>
+            </li>
+
+            <!--<li class="item share">
+                <div>
+                    <i class='bx bx-paste' ></i>
+                    <span>Paste</span>
+                </div>
+                <i class="uil uil-angle-right"></i>
+                <ul class="share-menu">
+                    <li class="item">
+                        <i class="uil uil-twitter-alt"></i>
+                        <span>Twitter</span>
+                    </li>
+                    <li class="item">
+                        <i class="uil uil-instagram"></i>
+                        <span>Instagram</span>
+                    </li>
+                    <li class="item">
+                        <i class="uil uil-dribbble"></i>
+                        <span>Dribble</span>
+                    </li>
+                    <li class="item">
+                        <i class="uil uil-telegram-alt"></i>
+                        <span>Telegram</span>
+                    </li>
+                </ul>
+            </li>-->
+            <li class="item">
+                <i class="bx bx-trash"></i>
+                <span>Delete</span>
+            </li>
+        </ul>
     </div>
 </div>
 
