@@ -165,7 +165,7 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 
-document.querySelector('.copy').addEventListener('copy', function (event) {
+document.getElementById('copy').addEventListener('click', function (event) {
     event.preventDefault();
     document.execCommand('copy', false, null);
 });
