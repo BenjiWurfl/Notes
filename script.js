@@ -95,7 +95,7 @@ function updatePinnedItems() {
             document.getElementById('text-content').innerHTML = noteObj.body;
             document.getElementById('text-content').dataset.noteId = noteObj.id;
             let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-            let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us", options)
+            let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
             document.getElementById('last-updated').innerHTML = noteDate;
 
             document.getElementById('text-content').focus()
@@ -164,15 +164,6 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
-
-function copyToClipboard() {
-    var copyText = document.getElementById("text-content").value;
-    navigator.clipboard.writeText(copyText).then(() => {
-        // Alert the user that the action took place.
-        // Nobody likes hidden stuff being done under the hood!
-        alert("Copied to clipboard");
-    });
-}
 
 document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
@@ -253,23 +244,12 @@ function formatDoc(cmd, value = null) {
     document.execCommand(cmd, false, value);
 }
 
-const contextMenu = document.querySelector(".wrapper");
-//const shareMenu = contextMenu.querySelector(".share-menu");
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the span element
+    const loadingSpan = document.querySelector('.nav-button span');
 
-window.addEventListener("contextmenu", e => {
-    e.preventDefault();
-    let x = e.offsetX, y = e.offsetY,
-        winWidth = window.innerWidth,
-        winHeight = window.innerHeight,
-        cmWidth = contextMenu.offsetWidth,
-        cmHeight = contextMenu.offsetHeight;
-
-    x = x > winWidth - cmWidth ? winWidth - cmWidth - 5 : x;
-    y = y > winHeight - cmHeight ? winHeight - cmHeight - 5 : y;
-
-    contextMenu.style.left = `${x}px`;
-    contextMenu.style.top = `${y}px`;
-    contextMenu.style.visibility = "visible";
+    // Truncate the text content to 17 characters
+    if (loadingSpan.textContent.length > 17) {
+        loadingSpan.textContent = loadingSpan.textContent.substring(0, 15) + '...';
+    }
 });
-
-document.addEventListener("click", () => contextMenu.style.visibility = "hidden");
