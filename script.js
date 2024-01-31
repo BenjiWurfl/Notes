@@ -92,8 +92,8 @@ function updatePinnedItems() {
 
             document.getElementById('title').innerHTML = noteObj.title;
             document.getElementById('title').dataset.noteId = noteObj.id;
-            document.getElementById('content').innerHTML = noteObj.body;
-            document.getElementById('content').dataset.noteId = noteObj.id;
+            document.getElementById('text-content').innerHTML = noteObj.body;
+            document.getElementById('text-content').dataset.noteId = noteObj.id;
             let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
             let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us", options)
             document.getElementById('last-updated').innerHTML = noteDate;
@@ -165,14 +165,7 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.querySelector('.item').addEventListener('click', () => {
-    navigator.clipboard.writeText(this.value).then(
-        () => {
-            console.log("Copy was successful");
-        },
-        () => {
-            console.log("Copy failed");
-        }
-    )
+    formatDoc('copy', this.value);
 });
 
 document.getElementById('title').addEventListener('input', function () {
