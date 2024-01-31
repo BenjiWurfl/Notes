@@ -167,7 +167,7 @@ document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('
 
 document.getElementById('copy').addEventListener('click', function (event) {
     event.preventDefault();
-    document.execCommand('copy', false, null);
+    document.execCommand('copy', false, this.value);
 });
 
 document.getElementById('title').addEventListener('input', function () {
