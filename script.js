@@ -164,8 +164,10 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
-document.querySelector('.copy').addEventListener('click', () => {
-    formatDoc('copy', this.value);
+
+document.querySelector('.copy').addEventListener('copy', function (event) {
+    event.preventDefault();
+    document.execCommand('COPY', false, null);
 });
 
 document.getElementById('title').addEventListener('input', function () {
