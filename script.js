@@ -164,6 +164,16 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
+document.querySelector('.item').addEventListener('click', () => {
+    navigator.clipboard.writeText(this.value).then(
+        () => {
+            console.log("Copy was successful");
+        },
+        () => {
+            console.log("Copy failed");
+        }
+    )
+});
 
 document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
@@ -181,7 +191,7 @@ document.getElementById('title').addEventListener('input', function () {
     updateNoteToFirestore(noteId, note);
 });
 
-document.getElementById('content').addEventListener('input', function () {
+document.getElementById('text-content').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
     const note = notesArr.find((note) => note.id === noteId);
     if (note) {
@@ -243,3 +253,24 @@ function formatDoc(cmd, value = null) {
     console.log("formatCodeEntry")
     document.execCommand(cmd, false, value);
 }
+
+const contextMenu = document.querySelector(".wrapper");
+//const shareMenu = contextMenu.querySelector(".share-menu");
+
+window.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    let x = e.offsetX, y = e.offsetY,
+        winWidth = window.innerWidth,
+        winHeight = window.innerHeight,
+        cmWidth = contextMenu.offsetWidth,
+        cmHeight = contextMenu.offsetHeight;
+
+    x = x > winWidth - cmWidth ? winWidth - cmWidth - 5 : x;
+    y = y > winHeight - cmHeight ? winHeight - cmHeight - 5 : y;
+
+    contextMenu.style.left = `${x}px`;
+    contextMenu.style.top = `${y}px`;
+    contextMenu.style.visibility = "visible";
+});
+
+document.addEventListener("click", () => contextMenu.style.visibility = "hidden");
