@@ -82,8 +82,13 @@ function updatePinnedItems() {
         pinnedItem.dataset.noteId = noteObj.id;
         let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
         let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
+        let noteTitle = noteObj.title;
+        // Truncate the text content to 17 characters
+        if (noteTitle.length > 17) {
+            noteTitle = noteTitle.substring(0, 15) + '...';
+        }
 
-        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span id="titleOfNote">${noteObj.title}</span><span id="last-updated">${noteDate}</span></div>`
+        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span id="titleOfNote">${noteTitle}</span><span id="last-updated">${noteDate}</span></div>`
 
         console.log("Element: ", pinnedItem)
 
@@ -97,12 +102,7 @@ function updatePinnedItems() {
             document.getElementById('text-content').innerHTML = noteObj.body;
             document.getElementById('text-content').dataset.noteId = noteObj.id;
 
-            const loadingSpan = document.getElementById("titleOfNote");
 
-            // Truncate the text content to 17 characters
-            if (loadingSpan.textContent.length > 17) {
-                loadingSpan.textContent = loadingSpan.textContent.substring(0, 15) + '...';
-            }
 
             document.getElementById('text-content').focus()
         });
