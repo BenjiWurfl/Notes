@@ -53,7 +53,7 @@ function showNotes() {
                     console.log("Note Data2: ", note);
                     notesArr.push(note);
                 });
-                console.log("Funktionsaufruf 'updatePinnedItems'")
+                console.log("Funktionsaufruf 'updatePinnedItems'");
                 updatePinnedItems();
 
             })
@@ -85,12 +85,13 @@ function updatePinnedItems() {
         let noteTitle = noteObj.title;
         // Truncate the text content to 17 characters
         if (noteTitle.length > 17) {
+            console.log(noteTitle.length);
             noteTitle = noteTitle.substring(0, 15) + '...';
         }
 
-        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span id="titleOfNote">${noteTitle}</span><span id="last-updated">${noteDate}</span></div>`
+        pinnedItem.innerHTML = `<div class="nav-button"><i class="fas fa-thumbtack"></i><span>${noteTitle}</span><span id="last-updated">${noteDate}</span></div>`
 
-        console.log("Element: ", pinnedItem)
+        console.log("Element: ", pinnedItem);
 
         // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
         pinnedItem.addEventListener('click', () => {
@@ -101,8 +102,6 @@ function updatePinnedItems() {
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('text-content').innerHTML = noteObj.body;
             document.getElementById('text-content').dataset.noteId = noteObj.id;
-
-
 
             document.getElementById('text-content').focus()
         });
