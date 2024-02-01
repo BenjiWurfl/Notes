@@ -83,7 +83,7 @@ function updatePinnedItems() {
         let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
         let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
 
-        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span>${noteObj.title}</span><span id="last-updated">${noteDate}</span></div>`
+        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span id="titleOfNote">${noteObj.title}</span><span id="last-updated">${noteDate}</span></div>`
 
         console.log("Element: ", pinnedItem)
 
@@ -96,6 +96,13 @@ function updatePinnedItems() {
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('text-content').innerHTML = noteObj.body;
             document.getElementById('text-content').dataset.noteId = noteObj.id;
+
+            const loadingSpan = document.getElementById("titleOfNote");
+
+            // Truncate the text content to 17 characters
+            if (loadingSpan.textContent.length > 17) {
+                loadingSpan.textContent = loadingSpan.textContent.substring(0, 15) + '...';
+            }
 
             document.getElementById('text-content').focus()
         });
@@ -242,13 +249,3 @@ function formatDoc(cmd, value = null) {
     console.log("formatCodeEntry")
     document.execCommand(cmd, false, value);
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Get the span element
-    const loadingSpan = document.querySelector('.nav-button span');
-
-    // Truncate the text content to 17 characters
-    if (loadingSpan.textContent.length > 17) {
-        loadingSpan.textContent = loadingSpan.textContent.substring(0, 15) + '...';
-    }
-});
