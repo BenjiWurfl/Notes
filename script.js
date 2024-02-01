@@ -81,7 +81,7 @@ function updatePinnedItems() {
         pinnedItem.classList.add('nav-button');
         pinnedItem.dataset.noteId = noteObj.id;
 
-        pinnedItem.innerHTML = `<i class="fas fa-thumbtack"></i><span>${noteObj.title}</span>`;
+        pinnedItem.innerHTML = `div className="nav-button"><i className="fas fa-thumbtack"></i><span>${noteObj.title}.</span><span>id="last-updated"></span></div>`
 
         console.log("Element: ", pinnedItem)
 
