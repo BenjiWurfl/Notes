@@ -80,8 +80,10 @@ function updatePinnedItems() {
         const pinnedItem = document.createElement('div');
         pinnedItem.classList.add('nav-button');
         pinnedItem.dataset.noteId = noteObj.id;
+        let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+        let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
 
-        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span>${noteObj.title}.</span><span id="last-updated"></span></div>`
+        pinnedItem.innerHTML = `<div className="nav-button"><i className="fas fa-thumbtack"></i><span>${noteObj.title}</span><span id="last-updated">${noteDate}</span></div>`
 
         console.log("Element: ", pinnedItem)
 
@@ -94,9 +96,6 @@ function updatePinnedItems() {
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('text-content').innerHTML = noteObj.body;
             document.getElementById('text-content').dataset.noteId = noteObj.id;
-            let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-            let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
-            document.getElementById('last-updated').innerHTML = noteDate;
 
             document.getElementById('text-content').focus()
         });
