@@ -86,7 +86,7 @@ function updatePinnedItems() {
 
         console.log(noteTitle)
 
-        pinnedItem.innerHTML = `<div class="nav-button"><i class="fas fa-thumbtack"></i><span>${noteTitle}</span><span id="last-updated">${noteDate}</span></div>`
+        pinnedItem.innerHTML = `<span>${noteTitle}</span><span id="last-updated">${noteDate}</span>`
 
 
         // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
