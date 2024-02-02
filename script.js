@@ -50,10 +50,8 @@ function showNotes() {
                     let lastUpdated = noteData.lastUpdated.toDate();
 
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
-                    console.log("Note Data2: ", note);
                     notesArr.push(note);
                 });
-                console.log("Funktionsaufruf 'updatePinnedItems'");
                 updatePinnedItems();
 
             })
@@ -69,14 +67,11 @@ function updatePinnedItems() {
     // Leere den Inhalt der Sidebar
     pinnedItemsContainer.innerHTML = '';
 
-    console.log("Notes Array unsortiert: ", notesArr);
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
-    console.log("Notes Array sortiert: ", notesArr);
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
     notesArr.forEach((noteObj, index) => {
-        console.log("Note Object: ", noteObj)
         const pinnedItem = document.createElement('div');
         pinnedItem.classList.add('nav-button');
         pinnedItem.dataset.noteId = noteObj.id;
@@ -93,13 +88,10 @@ function updatePinnedItems() {
 
         pinnedItem.innerHTML = `<div class="nav-button"><i class="fas fa-thumbtack"></i><span>${noteTitle}</span><span id="last-updated">${noteDate}</span></div>`
 
-        console.log("Element: ", pinnedItem);
 
         // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
         pinnedItem.addEventListener('click', () => {
             // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
-            console.log('Pinned item clicked:', noteObj.id, noteObj.title, noteObj.body);
-
             document.getElementById('title').innerHTML = noteObj.title;
             document.getElementById('title').dataset.noteId = noteObj.id;
             document.getElementById('text-content').innerHTML = noteObj.body;
@@ -141,10 +133,7 @@ function addNoteToFirestore(newNote) {
     }
 
     const notesRef = collection(db, "users", user.uid, "notes");
-    console.log(notesRef);
-    console.log(user.uid);
     addDoc(notesRef, newNote).then(docRef => {
-        console.log("Added note with ID: ", docRef.id);
         newNote.id = docRef.id;
         notesArr.push(newNote);
         updatePinnedItems();
@@ -210,7 +199,6 @@ function updateNoteToFirestore(noteId, updatedNote) {
         const noteRef = doc(db, "users", user.uid, "notes", noteId);
         updateDoc(noteRef, updatedNote)
             .then(() => {
-                console.log("Note updated in Firestore");
             })
             .catch((error) => {
                 console.error("Error updating note in Firestore: ", error);
