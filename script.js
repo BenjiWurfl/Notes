@@ -83,11 +83,13 @@ function updatePinnedItems() {
         let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
         let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
         let noteTitle = noteObj.title;
-        // Truncate the text content to 17 characters
+        // Truncate the text content to 15 characters
         if (noteTitle.length > 15) {
             console.log(noteTitle.length);
             noteTitle = noteTitle.substring(0, 13) + '...';
         }
+
+        console.log(noteTitle)
 
         pinnedItem.innerHTML = `<div class="nav-button"><i class="fas fa-thumbtack"></i><span>${noteTitle}</span><span id="last-updated">${noteDate}</span></div>`
 
