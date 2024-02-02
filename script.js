@@ -40,22 +40,85 @@ onAuthStateChanged(auth, (user) => {
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 function showNotes() {
+    notesArr.length = 0;
+    projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "notes");
         const projectsRef = collection(db, "users", user.uid, "projects");
         getDocs(projectsRef)
             .then(querySnapshot => {
-                projectsArr.length = 0;
                 querySnapshot.forEach(doc => {
                     const projectData = doc.data();
                     let dueDate = projectData.dueDate.toDate()
 
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
-                    console.log("Projekt: ", project);
+
                     projectsArr.push(project);
+                    addProjectToNavbar(project);
                 });
                 updatePinnedItems();
+            })
+            .catch(error => {
+                console.error("Error loading projects: ", error);
+            });
+    }
+}
+
+function addProjectToNavbar(project) {
+    const pinnedProjectsContainer = document.querySelector('#nav-content');
+
+    const pinnedProject = document.createElement('a');
+    pinnedProject.classList.add('nav-project');
+    pinnedProject.dataset.projectID = project.id;
+    let dueDate = project.dueDate.toLocaleDateString("en-us");
+    let projectTitle = project.title;
+    // Truncate the text content to 15 characters
+    if (projectTitle.length > 15) {
+        console.log(noteTitle.length);
+        projectTitle = projectTitle.substring(0, 13) + '...';
+    }
+    console.log(projectTitle);
+
+    pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
+        <span id="projecttitle">${projectTitle}</span>
+        <span id="last-updated">${dueDate}</span>`
+
+    pinnedProjectsContainer.appendChild(pinnedProject);
+
+    const user = auth.currentUser;
+    if (user) {
+        const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
+        getDocs(notesRef)
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    const noteData = doc.data();
+                    let lastUpdated = noteData.lastUpdated.toDate()
+
+                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
+
+                    notesArr.push(note);
+
+                    const pinnedNotesContainer = document.querySelector('#nav-sub-notes');
+                    const pinnedNote = document.createElement('a');
+                    pinnedNote.classList.add('sub-note');
+                    pinnedNote.dataset.noteID = note.id;
+                    lastUpdated = lastUpdated.toLocaleDateString("en-us");
+                    let noteTitle = project.title;
+                    // Truncate the text content to 15 characters
+                    if (noteTitle.length > 12) {
+                        console.log(noteTitle.length);
+                        noteTitle = noteTitle.substring(0, 9) + '...';
+                    }
+                    console.log(noteTitle);
+
+                    pinnedNote.innerHTML = noteTitle;
+
+                    pinnedNotesContainer.appendChild(pinnedNote);
+
+                });
+
+
             })
             .catch(error => {
                 console.error("Error loading projects: ", error);
