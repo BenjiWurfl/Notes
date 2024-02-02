@@ -26,6 +26,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 let notesArr = [];
+let projectsArr = []
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -42,21 +43,22 @@ function showNotes() {
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "notes");
-        getDocs(notesRef)
+        const projectsRef = collection(db, "users", user.uid, "projects");
+        getDocs(projectsRef)
             .then(querySnapshot => {
-                notesArr.length = 0;
+                projectsArr.length = 0;
                 querySnapshot.forEach(doc => {
-                    const noteData = doc.data();
-                    let lastUpdated = noteData.lastUpdated.toDate();
+                    const projectData = doc.data();
+                    let dueDate = projectData.dueDate.toDate()
 
-                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
-                    notesArr.push(note);
+                    const project = {id: doc.id, ...projectData, dueDate: dueDate};
+                    console.log("Projekt: ", project);
+                    projectsArr.push(project);
                 });
                 updatePinnedItems();
-
             })
             .catch(error => {
-                console.error("Error loading notes: ", error);
+                console.error("Error loading projects: ", error);
             });
     }
 }
@@ -69,11 +71,12 @@ function updatePinnedItems() {
 
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+    projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate)
 
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
     notesArr.forEach((noteObj, index) => {
         const pinnedItem = document.createElement('div');
-        pinnedItem.classList.add('nav-button');
+        pinnedItem.classList.add('nav-project');
         pinnedItem.dataset.noteId = noteObj.id;
         let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
         let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
@@ -112,7 +115,7 @@ function deleteNote(noteId) {
     showNotes();
 }
 
-document.querySelector('.nav-button-addNote').addEventListener('click', () => {
+document.querySelector('.nav-project-addNote').addEventListener('click', () => {
     let noteTitle = "Enter Title";
     let noteDesc = "";
     let dateEl = new Date()
@@ -238,3 +241,8 @@ function formatDoc(cmd, value = null) {
     console.log("formatCodeEntry")
     document.execCommand(cmd, false, value);
 }
+
+document.querySelector('.nav-project').addEventListener('click', () => {
+    const subNotes = document.querySelector('.nav-sub-notes');
+    subNotes.classList.toggle('show');
+});

@@ -95,8 +95,8 @@ a {
     height: 16px;
 }
 
-.nav-button {
-    padding-left: 16px;
+.nav-project {
+    padding-left: 8px;
     padding-right: 16px;
     width: 100%;
     height: 35px;
@@ -112,12 +112,50 @@ a {
     white-space: nowrap;
 }
 
-.nav-button:hover {
+.nav-project:hover {
+}
+
+#projecttitle:hover {
     background-color: #f5f5f5;
+    border-radius: 16px;
 
 }
 
-.nav-button-addNote {
+.bx bx-chevron-down {
+    background-color: #f5f5f5;
+}
+
+.nav-sub-notes {
+    display: none; /* Verstecke die Unterelemente standardmäßig */
+}
+
+.sub-note {
+    width: 100%;
+    display: flex;
+    padding-left: 32px;
+}
+
+.nav-sub-notes.show {
+    display: block; /* Zeige die Unterelemente, wenn die Klasse 'show' vorhanden ist */
+}
+
+.nav-note {
+    padding-left: 32px;
+    padding-right: 16px;
+    height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    color: var(--navbar-light-secondary);
+    direction: ltr;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.nav-project-addNote {
     position: relative;
     height: 45px;
     color: #fff;
@@ -133,7 +171,7 @@ a {
     box-shadow: 1px 1px 5px 1px lightgrey;
 }
 
-.nav-button-addNote:hover {
+.nav-project-addNote:hover {
     background-color: #2d17a9;
 }
 
