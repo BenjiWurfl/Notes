@@ -57,7 +57,7 @@ function showNotes() {
                     projectsArr.push(project);
                     addProjectToNavbar(project);
                 });
-                updatePinnedItems();
+                //updatePinnedItems();
             })
             .catch(error => {
                 console.error("Error loading projects: ", error);
@@ -99,7 +99,7 @@ function addProjectToNavbar(project) {
 
                     notesArr.push(note);
 
-                    const pinnedNotesContainer = document.querySelector('#nav-sub-notes');
+                    const pinnedNotesContainer = document.querySelector('.nav-sub-notes');
                     const pinnedNote = document.createElement('a');
                     pinnedNote.classList.add('sub-note');
                     pinnedNote.dataset.noteID = note.id;
