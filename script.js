@@ -308,6 +308,3 @@ function formatDoc(cmd, value = null) {
     console.log("formatCodeEntry")
     document.execCommand(cmd, false, value);
 }
-
-document.querySelector('.nav-project').addEventListener('click', () => {
-});
