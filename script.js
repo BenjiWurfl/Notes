@@ -83,48 +83,9 @@ function addProjectToNavbar(project) {
     pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
         <span id="projecttitle">${projectTitle}</span>
         <span id="last-updated">${dueDate}</span>`
-    pinnedProject.addEventListener('click', flipDropdown)
 
     pinnedProjectsContainer.appendChild(pinnedProject);
-
-    const user = auth.currentUser;
-    if (user) {
-        const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
-        getDocs(notesRef)
-            .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                    const noteData = doc.data();
-                    let lastUpdated = noteData.lastUpdated.toDate();
-
-                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
-
-                    notesArr.push(note);
-
-                    const pinnedNotesContainer = document.querySelector('.nav-sub-notes');
-                    const pinnedNote = document.createElement('a');
-                    pinnedNote.classList.add('sub-note');
-                    pinnedNote.dataset.noteID = note.id;
-                    lastUpdated = lastUpdated.toLocaleDateString("en-us");
-                    let noteTitle = project.title;
-                    // Truncate the text content to 15 characters
-                    if (noteTitle.length > 12) {
-                        console.log(noteTitle.length);
-                        noteTitle = noteTitle.substring(0, 9) + '...';
-                    }
-                    console.log(noteTitle);
-
-                    pinnedNote.innerHTML = noteTitle;
-
-                    pinnedNotesContainer.appendChild(pinnedNote);
-
-                });
-
-
-            })
-            .catch(error => {
-                console.error("Error loading projects: ", error);
-            });
-    }
+    pinnedProject.addEventListener('click', flipDropdown)
 }
 
 function updatePinnedItems() {
@@ -309,5 +270,42 @@ function formatDoc(cmd, value = null) {
 
 function flipDropdown() {
     const subNotes = document.querySelector('.nav-sub-notes');
+    const user = auth.currentUser;
+    if (user) {
+        const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
+        getDocs(notesRef)
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    const noteData = doc.data();
+                    let lastUpdated = noteData.lastUpdated.toDate();
+
+                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
+
+                    notesArr.push(note);
+
+                    const pinnedNote = document.createElement('a');
+                    pinnedNote.classList.add('sub-note');
+                    pinnedNote.dataset.noteID = note.id;
+                    lastUpdated = lastUpdated.toLocaleDateString("en-us");
+                    let noteTitle = project.title;
+                    // Truncate the text content to 15 characters
+                    if (noteTitle.length > 12) {
+                        console.log(noteTitle.length);
+                        noteTitle = noteTitle.substring(0, 9) + '...';
+                    }
+                    console.log(noteTitle);
+
+                    pinnedNote.innerHTML = noteTitle;
+
+                    subNotes.appendChild(pinnedNote);
+
+                });
+
+
+            })
+            .catch(error => {
+                console.error("Error loading projects: ", error);
+            });
+    }
     subNotes.classList.toggle('show');
 }
