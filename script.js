@@ -83,11 +83,8 @@ function addProjectToNavbar(project) {
     pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
         <span id="projecttitle">${projectTitle}</span>
         <span id="last-updated">${dueDate}</span>`
+    pinnedProject.addEventListener('click', flipDropdown)
 
-    pinnedProject.onclick(function () {
-        const subNotes = document.querySelector('.nav-sub-notes');
-        subNotes.classList.toggle('show');
-    });
     pinnedProjectsContainer.appendChild(pinnedProject);
 
     const user = auth.currentUser;
@@ -307,4 +304,10 @@ function addLink() {
 function formatDoc(cmd, value = null) {
     console.log("formatCodeEntry")
     document.execCommand(cmd, false, value);
+}
+
+
+function flipDropdown() {
+    const subNotes = document.querySelector('.nav-sub-notes');
+    subNotes.classList.toggle('show');
 }
