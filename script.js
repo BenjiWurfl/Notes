@@ -84,6 +84,10 @@ function addProjectToNavbar(project) {
         <span id="projecttitle">${projectTitle}</span>
         <span id="last-updated">${dueDate}</span>`
 
+    pinnedProject.onclick(function () {
+        const subNotes = document.querySelector('.nav-sub-notes');
+        subNotes.classList.toggle('show');
+    });
     pinnedProjectsContainer.appendChild(pinnedProject);
 
     const user = auth.currentUser;
@@ -93,7 +97,7 @@ function addProjectToNavbar(project) {
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const noteData = doc.data();
-                    let lastUpdated = noteData.lastUpdated.toDate()
+                    let lastUpdated = noteData.lastUpdated.toDate();
 
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
@@ -306,6 +310,4 @@ function formatDoc(cmd, value = null) {
 }
 
 document.querySelector('.nav-project').addEventListener('click', () => {
-    const subNotes = document.querySelector('.nav-sub-notes');
-    subNotes.classList.toggle('show');
 });
