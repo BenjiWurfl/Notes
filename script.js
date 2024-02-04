@@ -297,6 +297,7 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
 }
 
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
+    console.log("Load notes");
     subNotes.innerHTML = '';
 
     const user = auth.currentUser;
@@ -343,6 +344,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
 }
 
 function appendAddNoteButton(project, subNotes) {
+    console.log("Add AddNoteButton");
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('nav-project-addNote');
     const addNoteSpan = document.createElement('span');
