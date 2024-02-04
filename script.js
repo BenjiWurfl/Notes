@@ -88,13 +88,7 @@ function addProjectToNavbar(project) {
     let isDropdownOpen = false;
     pinnedProject.addEventListener('click', () => {
         isDropdownOpen = !isDropdownOpen;
-        if (isDropdownOpen) {
-            // Dropdown öffnen
-            flipDropdown(project, pinnedProjectsContainer);
-        } else {
-            // Dropdown schließen
-            subNotes.classList.remove('show');
-        }
+        flipDropdown(project, pinnedProjectsContainer, isDropdownOpen);
     });
 }
 
@@ -278,47 +272,51 @@ function formatDoc(cmd, value = null) {
 }
 
 
-function flipDropdown(project, pinnedProjectsContainer) {
+function flipDropdown(project, pinnedProjectsContainer, isDropdownOpen) {
     const subNotes = document.createElement('div');
-    subNotes.classList.add('nav-sub-notes');
-    pinnedProjectsContainer.appendChild(subNotes)
-    console.log(subNotes)
-    const user = auth.currentUser;
-    if (user) {
-        const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
-        getDocs(notesRef)
-            .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                    const noteData = doc.data();
-                    let lastUpdated = noteData.lastUpdated.toDate();
+    if (isDropdownOpen) {
+        subNotes.classList.add('nav-sub-notes');
+        pinnedProjectsContainer.appendChild(subNotes)
+        console.log(subNotes)
+        const user = auth.currentUser;
+        if (user) {
+            const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
+            getDocs(notesRef)
+                .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        const noteData = doc.data();
+                        let lastUpdated = noteData.lastUpdated.toDate();
 
-                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
+                        const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
-                    notesArr.push(note);
+                        notesArr.push(note);
 
-                    const pinnedNote = document.createElement('a');
-                    pinnedNote.classList.add('sub-note');
-                    pinnedNote.dataset.noteID = note.id;
-                    // lastUpdated = lastUpdated.toLocaleDateString("en-us");
-                    let noteTitle = note.title;
-                    // Truncate the text content to 15 characters
-                    if (noteTitle.length > 12) {
-                        console.log(noteTitle.length);
-                        noteTitle = noteTitle.substring(0, 9) + '...';
-                    }
-                    console.log(noteTitle);
+                        const pinnedNote = document.createElement('a');
+                        pinnedNote.classList.add('sub-note');
+                        pinnedNote.dataset.noteID = note.id;
+                        // lastUpdated = lastUpdated.toLocaleDateString("en-us");
+                        let noteTitle = note.title;
+                        // Truncate the text content to 15 characters
+                        if (noteTitle.length > 12) {
+                            console.log(noteTitle.length);
+                            noteTitle = noteTitle.substring(0, 9) + '...';
+                        }
+                        console.log(noteTitle);
 
-                    pinnedNote.innerHTML = noteTitle;
+                        pinnedNote.innerHTML = noteTitle;
 
-                    subNotes.appendChild(pinnedNote);
+                        subNotes.appendChild(pinnedNote);
 
+                    });
+
+
+                })
+                .catch(error => {
+                    console.error("Error loading projects: ", error);
                 });
-
-
-            })
-            .catch(error => {
-                console.error("Error loading projects: ", error);
-            });
+        }
+        subNotes.classList.toggle('show');
+    } else {
+        subNotes.classList.remove('show');
     }
-    subNotes.classList.toggle('show');
 }
