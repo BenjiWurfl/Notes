@@ -157,6 +157,19 @@ a {
 
 .nav-project-addNote {
     position: relative;
+    height: 20px;
+    color: #606060;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.2s;
+    margin: 8px;
+    border-radius: 5px;
+    Display: flex;
+    align-items: center;
+}
+
+.nav-project-addProject {
+    position: relative;
     height: 45px;
     color: #fff;
     cursor: pointer;

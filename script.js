@@ -148,7 +148,7 @@ function deleteNote(noteId) {
 
 document.querySelector('.nav-project-addProject').addEventListener('click', () => {
     let noteTitle = "Enter Title";
-    let dateEl = new Date()
+    let dateEl = new Date();
 
     const newNote = {
         title: noteTitle,
