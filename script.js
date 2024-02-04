@@ -279,7 +279,6 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
         subNotes.innerHTML = '';
         subNotes.classList.add('nav-sub-notes');
         pinnedProjectsContainer.appendChild(subNotes)
-        console.log(subNotes)
         const user = auth.currentUser;
         if (user) {
             const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
@@ -306,6 +305,17 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
                         console.log(noteTitle);
 
                         pinnedNote.innerHTML = noteTitle;
+
+                        pinnedNote.addEventListener('click', () => {
+                            // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
+                            document.getElementById('title').innerHTML = note.title;
+                            document.getElementById('title').dataset.noteId = note.id;
+                            document.getElementById('text-content').innerHTML = note.body;
+                            document.getElementById('text-content').dataset.noteId = note.id;
+
+                            document.getElementById('text-content').focus()
+                        });
+
 
                         subNotes.appendChild(pinnedNote);
 
