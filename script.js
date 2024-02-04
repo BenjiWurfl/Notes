@@ -297,7 +297,6 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
 }
 
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
-    console.log("Load notes");
     subNotes.innerHTML = '';
 
     const user = auth.currentUser;
@@ -330,6 +329,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
 
                         document.getElementById('text-content').focus();
                     });
+                    console.log("Load notes");
 
                     subNotes.appendChild(pinnedNote);
                 });
