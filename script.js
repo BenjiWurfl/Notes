@@ -338,7 +338,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
 
 function appendAddNoteButton(project) {
     const addNoteButton = document.createElement('div');
-    addNoteButton.classList.add('add-box nav-project-addNote');
+    addNoteButton.classList.add('nav-project-addNote');
     const addNoteSpan = document.createElement('span');
     addNoteSpan.innerHTML = '+ Add Note';
 
