@@ -42,7 +42,6 @@ const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 function showNotes() {
     const navContent = document.querySelector('#nav-content');
     navContent.innerHTML = '';
-    notesArr.length = 0;
     projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
