@@ -85,7 +85,17 @@ function addProjectToNavbar(project) {
         <span id="last-updated">${dueDate}</span>`
 
     pinnedProjectsContainer.appendChild(pinnedProject);
-    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer))
+    let isDropdownOpen = false;
+    pinnedProject.addEventListener('click', () => {
+        isDropdownOpen = !isDropdownOpen;
+        if (isDropdownOpen) {
+            // Dropdown öffnen
+            flipDropdown(project, pinnedProjectsContainer, subNotes);
+        } else {
+            // Dropdown schließen
+            subNotes.classList.remove('show');
+        }
+    });
 }
 
 function updatePinnedItems() {
