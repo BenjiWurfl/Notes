@@ -145,14 +145,13 @@ function deleteNote(noteId) {
 
 document.querySelector('.nav-project-addProject').addEventListener('click', () => {
     let noteTitle = "Enter Title";
-    let dateEl = new Date();
+    let dueDate = new Date();
 
-    const newNote = {
+    const newProject = {
         title: noteTitle,
-        body: noteDesc,
-        lastUpdated: dateEl
+        dueDate: dueDate
     }
-    addNoteToFirestore(newNote);
+    addProjectToFirestore(newProject);
 });
 
 function addNoteToFirestore(newNote) {
@@ -166,6 +165,23 @@ function addNoteToFirestore(newNote) {
     addDoc(notesRef, newNote).then(docRef => {
         newNote.id = docRef.id;
         notesArr.push(newNote);
+        showNotes();
+    }).catch(error => {
+        console.error("Error adding event: ", error);
+    });
+}
+
+function addProjectToFirestore(newProject) {
+    const user = auth.currentUser;
+    if (!user) {
+        alert("You must be logged in to add events.");
+        return;
+    }
+
+    const projectsRef = collection(db, "users", user.uid, "projects");
+    addDoc(projectsRef, newProject).then(docRef => {
+        newProject.id = docRef.id;
+        projectsArr.push(newProject);
         showNotes();
     }).catch(error => {
         console.error("Error adding event: ", error);
@@ -202,6 +218,7 @@ document.getElementById('title').addEventListener('input', function () {
     note.lastUpdated = new Date();
     notesArr.push(note);
     updatePinnedItems();
+
     updateNoteToFirestore(noteId, note);
 });
 
