@@ -148,7 +148,7 @@ a {
 }
 
 .nav-sub-notes.show {
-    display: block; /* Zeige die Unterelemente, wenn die Klasse 'show' vorhanden ist */
+    display: flex; /* Zeige die Unterelemente, wenn die Klasse 'show' vorhanden ist */
 }
 
 .nav-note {
