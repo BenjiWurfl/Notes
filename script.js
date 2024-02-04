@@ -90,7 +90,7 @@ function addProjectToNavbar(project) {
         isDropdownOpen = !isDropdownOpen;
         if (isDropdownOpen) {
             // Dropdown öffnen
-            flipDropdown(project, pinnedProjectsContainer, subNotes);
+            flipDropdown(project, pinnedProjectsContainer);
         } else {
             // Dropdown schließen
             subNotes.classList.remove('show');
