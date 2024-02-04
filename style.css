@@ -115,6 +115,18 @@ a {
 .nav-project:hover {
 }
 
+.nav-project .dropdown {
+    transition: transform 0.3s ease; /* Füge eine Transition für den Pfeil hinzu */
+}
+
+.nav-project[data-isDropdownOpen="true"] .dropdown {
+    transform: rotate(90deg); /* Drehe den Pfeil, wenn das Dropdown geöffnet ist */
+}
+
+.nav-project[data-isDropdownOpen="false"] .dropdown {
+    transform: rotate(-90deg); /* Drehe den Pfeil, wenn das Dropdown geöffnet ist */
+}
+
 #projecttitle:hover {
     background-color: #f5f5f5;
     border-radius: 16px;
