@@ -85,11 +85,8 @@ function addProjectToNavbar(project) {
         <span id="last-updated">${dueDate}</span>`
 
     pinnedProjectsContainer.appendChild(pinnedProject);
-    let isDropdownOpen = false;
-    pinnedProject.addEventListener('click', () => {
-        isDropdownOpen = !isDropdownOpen;
-        flipDropdown(project, pinnedProjectsContainer, isDropdownOpen);
-    });
+    pinnedProject.dataset.isDropdownOpen = "false";
+    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject))
 }
 
 function updatePinnedItems() {
@@ -272,9 +269,9 @@ function formatDoc(cmd, value = null) {
 }
 
 
-function flipDropdown(project, pinnedProjectsContainer, isDropdownOpen) {
+function flipDropdown(project, pinnedProjectsContainer, pinnedProject) {
     const subNotes = document.createElement('div');
-    if (isDropdownOpen) {
+    if (pinnedProject.dataset.isDropdownOpen === "false") {
         subNotes.classList.add('nav-sub-notes');
         pinnedProjectsContainer.appendChild(subNotes)
         console.log(subNotes)
@@ -315,8 +312,10 @@ function flipDropdown(project, pinnedProjectsContainer, isDropdownOpen) {
                     console.error("Error loading projects: ", error);
                 });
         }
+        pinnedProject.dataset.isDropdownOpen = "true";
         subNotes.classList.toggle('show');
     } else {
+        pinnedProject.dataset.isDropdownOpen = "false";
         subNotes.classList.remove('show');
     }
 }
