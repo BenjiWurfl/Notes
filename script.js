@@ -72,6 +72,7 @@ function addProjectToNavbar(project) {
     const pinnedProject = document.createElement('a');
     pinnedProject.classList.add('nav-project');
     pinnedProject.dataset.projectID = project.id;
+
     let dueDate = project.dueDate.toLocaleDateString("en-us");
     let projectTitle = project.title;
     // Truncate the text content to 15 characters
@@ -88,7 +89,7 @@ function addProjectToNavbar(project) {
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
     const subNotes = document.createElement('div');
     subNotes.classList.add('nav-sub-notes');
-    pinnedProjectsContainer.appendChild(subNotes);
+    pinnedProject.appendChild(subNotes);
 
     pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes))
 }
@@ -295,8 +296,6 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
 
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     subNotes.innerHTML = '';
-    subNotes.classList.add('nav-sub-notes');
-    pinnedProject.appendChild(subNotes);  // Ändern Sie diese Zeile
 
     const user = auth.currentUser;
     if (user) {
