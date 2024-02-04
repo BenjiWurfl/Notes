@@ -296,7 +296,7 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     subNotes.innerHTML = '';
     subNotes.classList.add('nav-sub-notes');
-    pinnedProjectsContainer.appendChild(subNotes);
+    pinnedProject.appendChild(subNotes);  // Ändern Sie diese Zeile
 
     const user = auth.currentUser;
     if (user) {
