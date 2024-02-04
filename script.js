@@ -85,7 +85,9 @@ function addProjectToNavbar(project) {
         <span id="last-updated">${dueDate}</span>`
 
     pinnedProjectsContainer.appendChild(pinnedProject);
-    pinnedProject.addEventListener('click', flipDropdown(project))
+    const subNotes = document.createElement('div');
+    subNotes.classList.add('nav-sub-notes');
+    pinnedProject.addEventListener('click', flipDropdown(project, subNotes))
 }
 
 function updatePinnedItems() {
@@ -268,8 +270,7 @@ function formatDoc(cmd, value = null) {
 }
 
 
-function flipDropdown(project) {
-    const subNotes = document.querySelector('.nav-sub-notes');
+function flipDropdown(project, subNotes) {
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
