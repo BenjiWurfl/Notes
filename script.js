@@ -276,6 +276,7 @@ function formatDoc(cmd, value = null) {
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     if (pinnedProject.dataset.isDropdownOpen === "false") {
+        subNotes.innerHTML = '';
         subNotes.classList.add('nav-sub-notes');
         pinnedProjectsContainer.appendChild(subNotes)
         console.log(subNotes)
