@@ -87,6 +87,7 @@ function addProjectToNavbar(project) {
     pinnedProjectsContainer.appendChild(pinnedProject);
     const subNotes = document.createElement('div');
     subNotes.classList.add('nav-sub-notes');
+    pinnedProjectsContainer.appendChild(subNotes)
     pinnedProject.addEventListener('click', flipDropdown(project, subNotes))
 }
 
