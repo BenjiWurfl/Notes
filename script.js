@@ -286,8 +286,8 @@ function flipDropdown(project) {
                     const pinnedNote = document.createElement('a');
                     pinnedNote.classList.add('sub-note');
                     pinnedNote.dataset.noteID = note.id;
-                    lastUpdated = lastUpdated.toLocaleDateString("en-us");
-                    let noteTitle = project.title;
+                    // lastUpdated = lastUpdated.toLocaleDateString("en-us");
+                    let noteTitle = note.title;
                     // Truncate the text content to 15 characters
                     if (noteTitle.length > 12) {
                         console.log(noteTitle.length);
