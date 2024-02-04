@@ -271,6 +271,7 @@ function formatDoc(cmd, value = null) {
 
 
 function flipDropdown(project, subNotes) {
+    console.log(subNotes)
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
