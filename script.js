@@ -333,9 +333,9 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                 console.error("Error loading projects: ", error);
             });
     }
-    appendAddNoteButton(project, subNotes);
     pinnedProject.dataset.isDropdownOpen = "true";
     subNotes.classList.toggle('show');
+    appendAddNoteButton(project, subNotes);
 }
 
 function appendAddNoteButton(project, subNotes) {
