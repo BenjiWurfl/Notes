@@ -77,10 +77,8 @@ function addProjectToNavbar(project) {
     let projectTitle = project.title;
     // Truncate the text content to 15 characters
     if (projectTitle.length > 15) {
-        console.log(noteTitle.length);
         projectTitle = projectTitle.substring(0, 13) + '...';
     }
-    console.log(projectTitle);
 
     pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
         <span id="projecttitle">${projectTitle}</span>
@@ -116,11 +114,8 @@ function updatePinnedItems() {
         let noteTitle = noteObj.title;
         // Truncate the text content to 15 characters
         if (noteTitle.length > 15) {
-            console.log(noteTitle.length);
             noteTitle = noteTitle.substring(0, 13) + '...';
         }
-
-        console.log(noteTitle)
 
         pinnedItem.innerHTML = `<span>${noteTitle}</span><span id="last-updated">${noteDate}</span>`
 
@@ -229,7 +224,7 @@ document.getElementById('text-content').addEventListener('input', function () {
 function updateNoteToFirestore(noteId, updatedNote) {
     const user = auth.currentUser;
     if (user) {
-        const noteRef = doc(db, "users", user.uid, "notes", noteId);
+        const noteRef = doc(db, "users", user.uid, "projects", updatedNote.dataset.parentProject, "notes");
         updateDoc(noteRef, updatedNote)
             .then(() => {
             })
