@@ -89,7 +89,7 @@ function addProjectToNavbar(project) {
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
     const subNotes = document.createElement('div');
     subNotes.classList.add('nav-sub-notes');
-    pinnedProject.appendChild(subNotes);
+    pinnedProjectsContainer.appendChild(subNotes);
 
     pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes))
 }
