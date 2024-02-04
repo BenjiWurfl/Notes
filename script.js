@@ -86,7 +86,12 @@ function addProjectToNavbar(project) {
 
     pinnedProjectsContainer.appendChild(pinnedProject);
     pinnedProject.dataset.isDropdownOpen = "false";
-    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject))
+    // Deklaration der subNotes außerhalb der flipDropdown-Funktion
+    const subNotes = document.createElement('div');
+    subNotes.classList.add('nav-sub-notes');
+    pinnedProjectsContainer.appendChild(subNotes);
+
+    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes))
 }
 
 function updatePinnedItems() {
@@ -269,8 +274,7 @@ function formatDoc(cmd, value = null) {
 }
 
 
-function flipDropdown(project, pinnedProjectsContainer, pinnedProject) {
-    const subNotes = document.createElement('div');
+function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     if (pinnedProject.dataset.isDropdownOpen === "false") {
         subNotes.classList.add('nav-sub-notes');
         pinnedProjectsContainer.appendChild(subNotes)
