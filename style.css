@@ -126,7 +126,19 @@ a {
 }
 
 .nav-sub-notes {
-    display: none; /* Verstecke die Unterelemente standardmäßig */
+    padding-left: 32px;
+    padding-right: 16px;
+    height: 20px;
+    display: none;
+    justify-content: flex-start;
+    color: var(--navbar-light-secondary);
+    direction: ltr;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+    white-space: nowrap;
 }
 
 .sub-note {
