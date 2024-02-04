@@ -288,6 +288,8 @@ function formatDoc(cmd, value = null) {
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     if (pinnedProject.dataset.isDropdownOpen === "false") {
         loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes);
+        appendAddNoteButton(project, subNotes);
+
     } else {
         pinnedProject.dataset.isDropdownOpen = "false";
         subNotes.classList.remove('show');
@@ -338,7 +340,6 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
 
     pinnedProject.dataset.isDropdownOpen = "true";
     subNotes.classList.toggle('show');
-    appendAddNoteButton(project, subNotes);
 }
 
 function appendAddNoteButton(project, subNotes) {
