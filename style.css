@@ -120,11 +120,13 @@ a {
 }
 
 .nav-project[data-isDropdownOpen="true"] .dropdown {
-    transform: rotate(90deg); /* Drehe den Pfeil, wenn das Dropdown geöffnet ist */
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .nav-project[data-isDropdownOpen="false"] .dropdown {
-    transform: rotate(-90deg); /* Drehe den Pfeil, wenn das Dropdown geöffnet ist */
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 #projecttitle:hover {
