@@ -296,7 +296,8 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes)
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     subNotes.innerHTML = '';
     subNotes.classList.add('nav-sub-notes');
-    pinnedProjectsContainer.appendChild(subNotes)
+    pinnedProjectsContainer.appendChild(subNotes);
+
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
@@ -305,45 +306,37 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                 querySnapshot.forEach(doc => {
                     const noteData = doc.data();
                     let lastUpdated = noteData.lastUpdated.toDate();
-
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
-
-                    notesArr.push(note);
 
                     const pinnedNote = document.createElement('a');
                     pinnedNote.classList.add('sub-note');
                     pinnedNote.dataset.noteID = note.id;
-                    // lastUpdated = lastUpdated.toLocaleDateString("en-us");
+
                     let noteTitle = note.title;
-                    // Truncate the text content to 15 characters
+
                     if (noteTitle.length > 12) {
-                        console.log(noteTitle.length);
                         noteTitle = noteTitle.substring(0, 9) + '...';
                     }
-                    console.log(noteTitle);
 
                     pinnedNote.innerHTML = noteTitle;
 
                     pinnedNote.addEventListener('click', () => {
-                        // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
                         document.getElementById('title').innerHTML = note.title;
                         document.getElementById('title').dataset.noteId = note.id;
                         document.getElementById('text-content').innerHTML = note.body;
                         document.getElementById('text-content').dataset.noteId = note.id;
 
-                        document.getElementById('text-content').focus()
+                        document.getElementById('text-content').focus();
                     });
 
-
                     subNotes.appendChild(pinnedNote);
-
                 });
-
             })
             .catch(error => {
-                console.error("Error loading projects: ", error);
+                console.error("Error loading notes: ", error);
             });
     }
+
     pinnedProject.dataset.isDropdownOpen = "true";
     subNotes.classList.toggle('show');
     appendAddNoteButton(project, subNotes);
