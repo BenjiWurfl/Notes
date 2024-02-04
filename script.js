@@ -330,13 +330,13 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
             .catch(error => {
                 console.error("Error loading projects: ", error);
             });
-        appendAddNoteButton(project);
+        appendAddNoteButton(project, subNotes);
     }
     pinnedProject.dataset.isDropdownOpen = "true";
     subNotes.classList.toggle('show');
 }
 
-function appendAddNoteButton(project) {
+function appendAddNoteButton(project, subNotes) {
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('nav-project-addNote');
     const addNoteSpan = document.createElement('span');
@@ -356,6 +356,8 @@ function appendAddNoteButton(project) {
         }
         addNoteToFirestore(newNote);
     });
+
+    subNotes.appendChild(addNoteButton);
 
 
 }
