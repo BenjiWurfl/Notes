@@ -146,9 +146,8 @@ function deleteNote(noteId) {
     showNotes();
 }
 
-document.querySelector('.nav-project-addNote').addEventListener('click', () => {
+document.querySelector('.nav-project-addProject').addEventListener('click', () => {
     let noteTitle = "Enter Title";
-    let noteDesc = "";
     let dateEl = new Date()
 
     const newNote = {
@@ -166,16 +165,14 @@ function addNoteToFirestore(newNote) {
         return;
     }
 
-    const notesRef = collection(db, "users", user.uid, "notes");
+    const notesRef = collection(db, "users", user.uid, "projects", newNote.parentProject, "notes");
     addDoc(notesRef, newNote).then(docRef => {
         newNote.id = docRef.id;
         notesArr.push(newNote);
-        updatePinnedItems();
+        showNotes();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
-
-    //addEventWrapper.classList.remove("active");
 }
 
 
@@ -276,61 +273,89 @@ function formatDoc(cmd, value = null) {
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     if (pinnedProject.dataset.isDropdownOpen === "false") {
-        subNotes.innerHTML = '';
-        subNotes.classList.add('nav-sub-notes');
-        pinnedProjectsContainer.appendChild(subNotes)
-        const user = auth.currentUser;
-        if (user) {
-            const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
-            getDocs(notesRef)
-                .then(querySnapshot => {
-                    querySnapshot.forEach(doc => {
-                        const noteData = doc.data();
-                        let lastUpdated = noteData.lastUpdated.toDate();
-
-                        const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
-
-                        notesArr.push(note);
-
-                        const pinnedNote = document.createElement('a');
-                        pinnedNote.classList.add('sub-note');
-                        pinnedNote.dataset.noteID = note.id;
-                        // lastUpdated = lastUpdated.toLocaleDateString("en-us");
-                        let noteTitle = note.title;
-                        // Truncate the text content to 15 characters
-                        if (noteTitle.length > 12) {
-                            console.log(noteTitle.length);
-                            noteTitle = noteTitle.substring(0, 9) + '...';
-                        }
-                        console.log(noteTitle);
-
-                        pinnedNote.innerHTML = noteTitle;
-
-                        pinnedNote.addEventListener('click', () => {
-                            // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
-                            document.getElementById('title').innerHTML = note.title;
-                            document.getElementById('title').dataset.noteId = note.id;
-                            document.getElementById('text-content').innerHTML = note.body;
-                            document.getElementById('text-content').dataset.noteId = note.id;
-
-                            document.getElementById('text-content').focus()
-                        });
-
-
-                        subNotes.appendChild(pinnedNote);
-
-                    });
-
-
-                })
-                .catch(error => {
-                    console.error("Error loading projects: ", error);
-                });
-        }
-        pinnedProject.dataset.isDropdownOpen = "true";
-        subNotes.classList.toggle('show');
+        loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes);
     } else {
         pinnedProject.dataset.isDropdownOpen = "false";
         subNotes.classList.remove('show');
     }
+}
+
+function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
+    subNotes.innerHTML = '';
+    subNotes.classList.add('nav-sub-notes');
+    pinnedProjectsContainer.appendChild(subNotes)
+    const user = auth.currentUser;
+    if (user) {
+        const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
+        getDocs(notesRef)
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    const noteData = doc.data();
+                    let lastUpdated = noteData.lastUpdated.toDate();
+
+                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
+
+                    notesArr.push(note);
+
+                    const pinnedNote = document.createElement('a');
+                    pinnedNote.classList.add('sub-note');
+                    pinnedNote.dataset.noteID = note.id;
+                    // lastUpdated = lastUpdated.toLocaleDateString("en-us");
+                    let noteTitle = note.title;
+                    // Truncate the text content to 15 characters
+                    if (noteTitle.length > 12) {
+                        console.log(noteTitle.length);
+                        noteTitle = noteTitle.substring(0, 9) + '...';
+                    }
+                    console.log(noteTitle);
+
+                    pinnedNote.innerHTML = noteTitle;
+
+                    pinnedNote.addEventListener('click', () => {
+                        // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
+                        document.getElementById('title').innerHTML = note.title;
+                        document.getElementById('title').dataset.noteId = note.id;
+                        document.getElementById('text-content').innerHTML = note.body;
+                        document.getElementById('text-content').dataset.noteId = note.id;
+
+                        document.getElementById('text-content').focus()
+                    });
+
+
+                    subNotes.appendChild(pinnedNote);
+
+                });
+
+            })
+            .catch(error => {
+                console.error("Error loading projects: ", error);
+            });
+        appendAddNoteButton(project);
+    }
+    pinnedProject.dataset.isDropdownOpen = "true";
+    subNotes.classList.toggle('show');
+}
+
+function appendAddNoteButton(project) {
+    const addNoteButton = document.createElement('div');
+    addNoteButton.classList.add('add-box nav-project-addNote');
+    const addNoteSpan = document.createElement('span');
+    addNoteSpan.innerHTML = '+ Add Note';
+
+    addNoteButton.appendChild(addNoteSpan);
+    addNoteButton.addEventListener('click', () => {
+        let noteTitle = "Enter Title";
+        let noteDesc = "";
+        let dateEl = new Date()
+
+        const newNote = {
+            title: noteTitle,
+            body: noteDesc,
+            lastUpdated: dateEl,
+            parentProject: project.id
+        }
+        addNoteToFirestore(newNote);
+    });
+
+
 }
