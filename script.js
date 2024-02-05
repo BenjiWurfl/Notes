@@ -374,20 +374,18 @@ const popupBox = document.querySelector('.popup-box'),
     addBtn = document.querySelector('.btn');
 
 closeIcon.addEventListener('click', () => {
-    console.log("asfddf")
     titleEl.value = '';
     dateEl.value = '';
-    addBtn.innerText = 'Add PROJECT';
-    popupBox.classList.remove('show');
+    //popupBox.classList.remove('show');
 });
 
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let projectTitle = titleEl.value,
-        projectDate = dateEl.value;
+        projectDate = dateEl.value.getTime()
     const newProject = {
         title: projectTitle,
-        dueDate: projectDate.getTime()
+        dueDate: projectDate
     }
     addProjectToFirestore(newProject);
     closeIcon.click();
