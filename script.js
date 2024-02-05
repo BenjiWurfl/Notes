@@ -143,7 +143,7 @@ function deleteNote(noteId) {
     showNotes();
 }
 
-document.querySelector('.nav-project-addProject').addEventListener('click', () => {
+/*document.querySelector('.nav-project-addProject').addEventListener('click', () => {
     let noteTitle = "Enter Title";
     let dueDate = new Date();
 
@@ -152,7 +152,7 @@ document.querySelector('.nav-project-addProject').addEventListener('click', () =
         dueDate: dueDate
     }
     addProjectToFirestore(newProject);
-});
+});*/
 
 function addNoteToFirestore(newNote) {
     const user = auth.currentUser;
