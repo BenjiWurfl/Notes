@@ -51,7 +51,7 @@ function showNotes() {
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const projectData = doc.data();
-                    let dueDate = projectData.dueDate.toDate()
+                    let dueDate = new Date(projectData.dueDate);
 
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
 
@@ -177,10 +177,6 @@ function addProjectToFirestore(newProject) {
         alert("You must be logged in to add events.");
         return;
     }
-
-    // Umwandlung des Datums in einen Firestore-Timestamp
-    newProject.dueDate = newProject.dueDate.getTime(); // Hier wird das Datum als Firestore-Timestamp gespeichert
-
 
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
