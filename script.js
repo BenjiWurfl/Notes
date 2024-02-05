@@ -179,9 +179,6 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    let time = Timestamp.fromDate(newProject.dueDate);
-    newProject.dueDate = time;
-
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
