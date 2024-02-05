@@ -376,8 +376,8 @@ a {
 }
 
 .popup-box, .popup-box .popup {
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
     transition: all 0.25s ease;
     z-index: -1;
     width: 100%;
