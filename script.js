@@ -366,3 +366,37 @@ function appendAddNoteButton(project, subNotes) {
 
     subNotes.appendChild(addNoteButton);
 }
+
+const addBox = document.querySelector('.nav-project-addProject'),
+    popupBox = document.querySelector('.popup-box'),
+    popupTitle = popupBox.querySelector('header p'),
+    closeIcon = document.querySelector('header i'),
+    titleEl = document.querySelector('.inputTitle'),
+    dateEl = document.querySelector('.inputDate'),
+    addBtn = document.querySelector('button');
+
+addBox
+    .addEventListener('click', () => {
+        titleEl.focus();
+        popupBox.classList.add('show')
+    });
+closeIcon.addEventListener('click', () => {
+    titleEl.value = '';
+    dateEl.value = '';
+    addBtn.innerText = 'Add PROJECT';
+    popupTitle.innerText = 'Add a new Project';
+    popupBox.classList.remove('show');
+});
+
+addBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let projectTitle = titleEl.value,
+        projectDate = dateEl.value;
+    const newNote = {
+        title: projectTitle,
+        dueDate: projectDate
+    }
+    addProjectToFirestore(newNote);
+    closeIcon.click();
+    window.location.reload();
+});
