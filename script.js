@@ -179,7 +179,7 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    let date = newProject.dueDate.parse('01 Jan 2000 00:00:00 GMT');
+    let date = new Date(newProject.dueDate);
     newProject.dueDate = Timestamp.fromDate(date);
 
 
