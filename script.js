@@ -178,6 +178,12 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
+    // Umwandlung des Datums in einen Firestore-Timestamp
+    const timestamp = firebase.firestore.Timestamp.fromDate(new Date(newProject.dueDate));
+
+    newProject.dueDate = timestamp; // Hier wird das Datum als Firestore-Timestamp gespeichert
+
+
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
@@ -381,8 +387,9 @@ closeIcon.addEventListener('click', () => {
 
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    let projectTitle = titleEl.value,
-        projectDate = dateEl.value.getTime()
+    let projectTitle = titleEl.value;
+    let projectDate = dateEl.value;
+
     const newProject = {
         title: projectTitle,
         dueDate: projectDate
