@@ -7,7 +7,8 @@ import {
     addDoc,
     deleteDoc,
     updateDoc,
-    doc
+    doc,
+    Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
@@ -51,7 +52,7 @@ function showNotes() {
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const projectData = doc.data();
-                    let dueDate = new Date(projectData.dueDate);
+                    let dueDate = projectData.dueDate.toDate()
 
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
 
@@ -177,6 +178,9 @@ function addProjectToFirestore(newProject) {
         alert("You must be logged in to add events.");
         return;
     }
+
+    let time = Timestamp.fromDate(newProject.dueDate);
+    newProject.dueDate = time;
 
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
