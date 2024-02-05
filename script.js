@@ -377,6 +377,7 @@ const addBox = document.querySelector('.nav-project-addProject'),
 
 addBox
     .addEventListener('click', () => {
+        console.log("AddProject clicked");
         titleEl.focus();
         popupBox.classList.add('show')
     });
