@@ -179,7 +179,7 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    let time = Timestamp.fromDate(newProject.dueDate.getMilliseconds());
+    let time = Timestamp.fromDate(newProject.dueDate);
     newProject.dueDate = time;
 
     const projectsRef = collection(db, "users", user.uid, "projects");
@@ -386,7 +386,7 @@ closeIcon.addEventListener('click', () => {
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let projectTitle = titleEl.value;
-    let projectDate = dateEl.value;
+    let projectDate = new Date(dateEl.value);
 
     const newProject = {
         title: projectTitle,
