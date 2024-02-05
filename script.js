@@ -179,9 +179,7 @@ function addProjectToFirestore(newProject) {
     }
 
     // Umwandlung des Datums in einen Firestore-Timestamp
-    const timestamp = app.db.Timestamp.fromDate(new Date(newProject.dueDate));
-
-    newProject.dueDate = timestamp; // Hier wird das Datum als Firestore-Timestamp gespeichert
+    newProject.dueDate = newProject.dueDate.getTime(); // Hier wird das Datum als Firestore-Timestamp gespeichert
 
 
     const projectsRef = collection(db, "users", user.uid, "projects");
