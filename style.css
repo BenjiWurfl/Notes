@@ -359,6 +359,11 @@ a {
     background: rgba(0, 0, 0, 0.4);
 }
 
+.popup-box.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .popup-box .popup {
     position: absolute;
     top: 50%;
