@@ -385,11 +385,11 @@ addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let projectTitle = titleEl.value,
         projectDate = dateEl.value;
-    const newNote = {
+    const newProject = {
         title: projectTitle,
-        dueDate: projectDate
+        dueDate: projectDate.getTime()
     }
-    addProjectToFirestore(newNote);
+    addProjectToFirestore(newProject);
     closeIcon.click();
     window.location.reload();
 });
