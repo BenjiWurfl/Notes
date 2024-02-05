@@ -1,23 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="winter">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="style.css">
     <title>Notes</title>
 </head>
 <body>
 
+<dialog id="my_modal_1" class="modal">
+    <div class="modal-box bg-secondary items-center">
+        <h3 class="font-bold text-lg text-white mb-5 text-center">Add Project <i
+                class="closeIcon bx bx-x bx-lg text-right"></i></h3>
+
+        <input type="text" placeholder="Name of the project" class="input w-full max-w-xl mb-5 inputTitle"/>
+        <p class=" text-m text-white my-5 text-center inputDate">Due date:</p>
+        <input type="date" class="input w-full max-w-xl"/>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn content-center">Submit</button>
+            </form>
+        </div>
+    </div>
+</dialog>
 
 <div id="nav-bar">
-    <div class="add-box nav-project-addProject" target="_blank"><span>+ Add Project</span></div>
+    <div class="add-box nav-project-addProject" onclick="my_modal_1.showModal()" target="_blank">
+        <span>+ Add Project</span></div>
     <br>
     <div class="nav-bar-heading">NOTES</div>
     <div id="nav-content"></div>
     </div>
-
 
 
 <div class="container">
@@ -80,30 +96,10 @@
     </div>
     <div id="text-content" contenteditable="true" spellcheck="false">
     </div>
-    <div class="popup-box">
-        <div class="popup">
-            <div class="content">
-                <header>
-                    <p>Add a new project</p>
-                    <i class="bx bx-x"></i>
-                </header>
-                <form action="#">
-                    <div class="row title">
-                        <label for="">Title</label>
-                        <input class="inputTitle" type="text">
-                    </div>
-                    <div class="row date">
-                        <label for="">Due Date</label>
-                        <input class="inputDate" type="date">
-                    </div>
-                    <button>Add Note</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
 </div>
 
+<script src="https://cdn.tailwindcss.com"></script>
 <script type="module" src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="

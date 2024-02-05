@@ -367,25 +367,17 @@ function appendAddNoteButton(project, subNotes) {
     subNotes.appendChild(addNoteButton);
 }
 
-const addBox = document.querySelector('.nav-project-addProject'),
-    popupBox = document.querySelector('.popup-box'),
-    popupTitle = popupBox.querySelector('header p'),
-    closeIcon = document.querySelector('header i'),
+const popupBox = document.querySelector('.popup-box'),
+    closeIcon = document.querySelector('.closeIcon'),
     titleEl = document.querySelector('.inputTitle'),
     dateEl = document.querySelector('.inputDate'),
-    addBtn = document.querySelector('button');
+    addBtn = document.querySelector('.btn');
 
-addBox
-    .addEventListener('click', () => {
-        console.log("AddProject clicked");
-        titleEl.focus();
-        popupBox.classList.add('show')
-    });
 closeIcon.addEventListener('click', () => {
+    console.log("asfddf")
     titleEl.value = '';
     dateEl.value = '';
     addBtn.innerText = 'Add PROJECT';
-    popupTitle.innerText = 'Add a new Project';
     popupBox.classList.remove('show');
 });
 
