@@ -52,7 +52,7 @@ function showNotes() {
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const projectData = doc.data();
-                    let dueDate = projectData.dueDate.toDate()
+                    let dueDate = projectData.dueDate.toDate();
 
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
 
@@ -178,6 +178,10 @@ function addProjectToFirestore(newProject) {
         alert("You must be logged in to add events.");
         return;
     }
+
+    let date = newProject.dueDate.parse('01 Jan 2000 00:00:00 GMT');
+    newProject.dueDate = Timestamp.fromDate(date);
+
 
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
