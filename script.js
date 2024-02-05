@@ -179,7 +179,7 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    let time = Timestamp.fromM(newProject.dueDate.getMilliseconds());
+    let time = Timestamp.fromDate(newProject.dueDate.getMilliseconds());
     newProject.dueDate = time;
 
     const projectsRef = collection(db, "users", user.uid, "projects");
