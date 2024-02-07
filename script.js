@@ -310,6 +310,8 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotesU
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotesUl) {
     subNotesUl.innerHTML = '';
 
+    const subNotesLi = document.createElement('li');
+
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
@@ -345,14 +347,13 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                     });
                     console.log("Load notes");
 
-                    const subNotesLi = document.createElement('li');
                     subNotesUl.appendChild(subNotesLi);
 
                     subNotesLi.appendChild(pinnedNote);
                 });
                 console.log("----------------------")
-                console.log("Sub notes: ", subNotes)
-                appendAddNoteButton(project, subNotes);
+                console.log("Sub notes: ", subNotesUl)
+                appendAddNoteButton(project, subNotesLi);
                 document.getElementById('dropdown-example').classList.toggle('hidden');
             })
             .catch(error => {
