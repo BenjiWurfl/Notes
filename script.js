@@ -375,7 +375,11 @@ closeIcon.addEventListener('click', () => {
     titleEl.value = '';
     dateEl.value = '';
     modal.removeAttribute('open')
-    modal.parentNode.removeChild(modal);
+    const myModal = document.getElementById('my_modal_1');
+
+// Die close()-Methode aufrufen, um das Dialogfenster zu schließen
+    myModal.close();
+
 });
 
 addBtn.addEventListener('click', (e) => {
