@@ -179,6 +179,8 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
+    console.log("AddProjectClicked")
+
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
