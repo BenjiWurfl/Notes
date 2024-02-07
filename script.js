@@ -305,10 +305,7 @@ function formatDoc(cmd, value = null) {
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
     console.log("Flip")
-    pinnedProject.onclick = document.getElementById('dropdown-example').classList.toggle('hidden');
-    if (!pinnedProject.classList.contains('hidden')) {
-        loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes);
-    }
+    loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes);
 }
 
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes) {
@@ -350,6 +347,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                     subNotes.appendChild(pinnedNote);
                 });
                 appendAddNoteButton(project, subNotes);
+                pinnedProject.onclick = document.getElementById('dropdown-example').classList.toggle('hidden');
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
