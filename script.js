@@ -77,7 +77,7 @@ function addProjectToNavbar(project) {
     const pinnedProjAndNotes = document.createElement('li');
     const pinnedProject = document.createElement('button');
     pinnedProject.type = 'button';
-    pinnedProject.classList.add('flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100');
+    pinnedProject.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'pl-11', 'group', 'hover:bg-gray-100');
     pinnedProject.dataset.projectID = project.id;
 
     let dueDate = project.dueDate.toLocaleDateString("en-us");
@@ -103,7 +103,7 @@ function addProjectToNavbar(project) {
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
     const subNotesUl = document.createElement('ul');
     subNotesUl.id = 'dropdown-example';
-    subNotesUl.classList.add('hidden py-2 space-y-2');
+    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
     const subNotesLi = document.createElement('li');
     subNotesUl.appendChild(subNotesLi);
 
@@ -324,7 +324,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
                     const pinnedNote = document.createElement('a');
-                    pinnedNote.classList.add('flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100');
+                    pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'pl-11', 'group', 'hover:bg-gray-100');
                     pinnedNote.dataset.noteID = note.id;
 
 
@@ -359,7 +359,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
 function appendAddNoteButton(project, subNotes) {
     console.log("Add AddNoteButton");
     const addNoteButton = document.createElement('a');
-    addNoteButton.classList.add('nav-project-addNote flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100');
+    addNoteButton.classList.add('nav-project-addNote', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'pl-11', 'group', 'hover:bg-gray-100');
     addNoteButton.innerHTML = '+ Add Note';
 
     addNoteButton.addEventListener('click', () => {
