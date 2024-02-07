@@ -1,14 +1,11 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import {
-    getFirestore,
-    collection,
-    getDocs,
-    getDoc,
     addDoc,
-    deleteDoc,
-    updateDoc,
+    collection,
     doc,
-    Timestamp
+    getDocs,
+    getFirestore,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
@@ -179,8 +176,7 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    let date = new Date(newProject.dueDate);
-    newProject.dueDate = Timestamp.fromDate(date);
+    newProject.dueDate = new Date(newProject.dueDate);
 
 
     const projectsRef = collection(db, "users", user.uid, "projects");
