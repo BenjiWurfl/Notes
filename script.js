@@ -176,13 +176,14 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    console.log("AddProjectClicked")
+    console.log("AddProjectClicked");
 
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
         projectsArr.push(newProject);
         showNotes();
+        closeIcon.click();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
@@ -389,5 +390,5 @@ addBtn.addEventListener('click', (e) => {
         dueDate: projectDate
     }
     addProjectToFirestore(newProject);
-    closeIcon.click();
+
 });
