@@ -46,7 +46,6 @@ function showNotes() {
     projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
-        const notesRef = collection(db, "users", user.uid, "notes");
         const projectsRef = collection(db, "users", user.uid, "projects");
         getDocs(projectsRef)
             .then(querySnapshot => {
@@ -57,9 +56,8 @@ function showNotes() {
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
 
                     projectsArr.push(project);
-                    addProjectToNavbar(project);
                 });
-                //updatePinnedItems();
+                updatePinnedItems();
             })
             .catch(error => {
                 console.error("Error loading projects: ", error);
@@ -96,11 +94,6 @@ function addProjectToNavbar(project) {
 }
 
 function updatePinnedItems() {
-    const pinnedItemsContainer = document.querySelector('#nav-content');
-
-    // Leere den Inhalt der Sidebar
-    pinnedItemsContainer.innerHTML = '';
-
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
     projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate)
@@ -110,7 +103,7 @@ function updatePinnedItems() {
     })
 
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
-    notesArr.forEach((noteObj, index) => {
+    /*notesArr.forEach((noteObj, index) => {
         const pinnedItem = document.createElement('div');
         pinnedItem.classList.add('nav-project');
         pinnedItem.dataset.noteId = noteObj.id;
@@ -137,7 +130,7 @@ function updatePinnedItems() {
         });
 
         pinnedItemsContainer.appendChild(pinnedItem);
-    });
+    });*/
 }
 
 function deleteNote(noteId) {
