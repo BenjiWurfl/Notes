@@ -75,7 +75,7 @@ function addProjectToNavbar(project) {
     let dueDate = project.dueDate.toLocaleDateString("en-us");
     let projectTitle = project.title;
     // Truncate the text content to 15 characters
-    if (projectTitle.length > 7) {
+    if (projectTitle.length > 6) {
         projectTitle = projectTitle.substring(0, 5) + '...';
     }
 
