@@ -325,6 +325,8 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                     pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
                     pinnedNote.dataset.noteID = note.id;
 
+                    console.log("Notiz: ", pinnedNote)
+
 
                     let noteTitle = note.title;
 
@@ -346,8 +348,10 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
 
                     subNotes.appendChild(pinnedNote);
                 });
+                console.log("----------------------")
+                console.log("Sub notes: ", subNotes)
                 appendAddNoteButton(project, subNotes);
-                pinnedProject.onclick = document.getElementById('dropdown-example').classList.toggle('hidden');
+                document.getElementById('dropdown-example').classList.toggle('hidden');
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
