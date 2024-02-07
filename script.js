@@ -304,6 +304,7 @@ function formatDoc(cmd, value = null) {
 
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
+    console.log("Flip")
     pinnedProject.onclick = document.getElementById('dropdown-example').classList.toggle('hidden');
     if (!pinnedProject.classList.contains('hidden')) {
         loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes);
