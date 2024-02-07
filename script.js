@@ -325,7 +325,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
                     const pinnedNote = document.createElement('a');
-                    pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'pl-11', 'group', 'hover:bg-gray-100');
+                    pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
                     pinnedNote.dataset.noteID = note.id;
 
 
