@@ -217,9 +217,8 @@ document.getElementById('title').addEventListener('input', function () {
     }
     note.lastUpdated = new Date();
     notesArr.push(note);
-    updatePinnedItems();
-
     updateNoteToFirestore(noteId, note);
+    showNotes();
 });
 
 document.getElementById('text-content').addEventListener('input', function () {
