@@ -394,5 +394,8 @@ addBtn.addEventListener('click', (e) => {
         dueDate: projectDate
     }
     addProjectToFirestore(newProject);
-    closeIcon.click();
+    const myModal = document.getElementById('my_modal_1');
+
+    // Die close()-Methode aufrufen, um das Dialogfenster zu schließen
+    myModal.close();
 });
