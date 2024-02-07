@@ -390,5 +390,7 @@ addBtn.addEventListener('click', (e) => {
         dueDate: projectDate
     }
     addProjectToFirestore(newProject);
+    console.log("Added proj to firestore");
     closeIcon.click();
+    console.log("Closed");
 });
