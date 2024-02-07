@@ -375,6 +375,7 @@ closeIcon.addEventListener('click', () => {
     titleEl.value = '';
     dateEl.value = '';
     modal.removeAttribute('open')
+    modal.parentNode.removeChild(modal);
 });
 
 addBtn.addEventListener('click', (e) => {
