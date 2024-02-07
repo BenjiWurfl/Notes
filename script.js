@@ -105,6 +105,10 @@ function updatePinnedItems() {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
     projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate)
 
+    projectsArr.forEach((project, index) => {
+        addProjectToNavbar(project);
+    })
+
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
     notesArr.forEach((noteObj, index) => {
         const pinnedItem = document.createElement('div');
