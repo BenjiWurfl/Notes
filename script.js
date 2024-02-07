@@ -365,7 +365,7 @@ function appendAddNoteButton(project, subNotes) {
     subNotes.appendChild(addNoteButton);
 }
 
-const popupBox = document.querySelector('.popup-box'),
+const modal = document.querySelector('.modal'),
     closeIcon = document.querySelector('.closeIcon'),
     titleEl = document.querySelector('.inputTitle'),
     dateEl = document.querySelector('.inputDate'),
@@ -374,7 +374,7 @@ const popupBox = document.querySelector('.popup-box'),
 closeIcon.addEventListener('click', () => {
     titleEl.value = '';
     dateEl.value = '';
-    //popupBox.classList.remove('show');
+    modal.removeAttribute('open')
 });
 
 addBtn.addEventListener('click', (e) => {
