@@ -382,7 +382,7 @@ addBtn.addEventListener('click', (e) => {
     let projectTitle = titleEl.value;
     console.log(projectTitle);
     let projectDate = new Date(dateEl.value);
-    console.log(projectDate);
+    console.log(dateEl.value);
 
     const newProject = {
         title: projectTitle,
