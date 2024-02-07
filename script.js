@@ -390,5 +390,4 @@ addBtn.addEventListener('click', (e) => {
     }
     addProjectToFirestore(newProject);
     closeIcon.click();
-    window.location.reload();
 });
