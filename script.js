@@ -41,8 +41,15 @@ onAuthStateChanged(auth, (user) => {
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 function showNotes() {
-    const navContent = document.querySelector('#nav-content');
-    navContent.innerHTML = '';
+    const navContent = document.querySelector('.nav-content');
+    navContent.innerHTML = '<li>\n' +
+        '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-blue-700 hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
+        '                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
+        '                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>\n' +
+        '                    </svg>\n' +
+        '                    <span class="flex-1 ms-3 text-left whitespace-nowrap">Add a Project</span>\n' +
+        '                </button>\n' +
+        '            </li>';
     projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
@@ -66,10 +73,11 @@ function showNotes() {
 }
 
 function addProjectToNavbar(project) {
-    const pinnedProjectsContainer = document.querySelector('#nav-content');
-
-    const pinnedProject = document.createElement('a');
-    pinnedProject.classList.add('nav-project');
+    const pinnedProjectsContainer = document.querySelector('.nav-content');
+    const pinnedProjAndNotes = document.createElement('li');
+    const pinnedProject = document.createElement('button');
+    pinnedProject.type = 'button';
+    pinnedProject.classList.add('flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100');
     pinnedProject.dataset.projectID = project.id;
 
     let dueDate = project.dueDate.toLocaleDateString("en-us");
@@ -79,18 +87,28 @@ function addProjectToNavbar(project) {
         projectTitle = projectTitle.substring(0, 12) + '...';
     }
 
-    pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
+    /*pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
         <span id="projecttitle">${projectTitle}</span>
-        <span id="last-updated">${dueDate}</span>`
+        <span id="last-updated">${dueDate}</span>`*/
+    pinnedProject.innerHTML = `<svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                         <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2z"></path>
+                    </svg>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">${projectTitle}</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>`
+    pinnedProjectsContainer.appendChild(pinnedProjAndNotes)
+    pinnedProjAndNotes.appendChild(pinnedProject);
 
-    pinnedProjectsContainer.appendChild(pinnedProject);
-    pinnedProject.dataset.isDropdownOpen = "false";
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
-    const subNotes = document.createElement('div');
-    subNotes.classList.add('nav-sub-notes');
-    pinnedProjectsContainer.appendChild(subNotes);
+    const subNotesUl = document.createElement('ul');
+    subNotesUl.id = 'dropdown-example';
+    subNotesUl.classList.add('hidden py-2 space-y-2');
+    const subNotesLi = document.createElement('li');
+    subNotesUl.appendChild(subNotesLi);
 
-    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes))
+    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotesLi))
+
 }
 
 function updatePinnedItems() {
@@ -286,11 +304,9 @@ function formatDoc(cmd, value = null) {
 
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotes) {
-    if (pinnedProject.dataset.isDropdownOpen === "false") {
+    pinnedProject.onclick = document.getElementById('dropdown-example').classList.toggle('hidden');
+    if (!pinnedProject.classList.contains('hidden')) {
         loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotes);
-    } else {
-        pinnedProject.dataset.isDropdownOpen = "false";
-        subNotes.classList.remove('show');
     }
 }
 
@@ -308,8 +324,9 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
                     const pinnedNote = document.createElement('a');
-                    pinnedNote.classList.add('sub-note');
+                    pinnedNote.classList.add('flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100');
                     pinnedNote.dataset.noteID = note.id;
+
 
                     let noteTitle = note.title;
 
@@ -337,19 +354,14 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                 console.error("Error loading notes: ", error);
             });
     }
-
-    pinnedProject.dataset.isDropdownOpen = "true";
-    subNotes.classList.toggle('show');
 }
 
 function appendAddNoteButton(project, subNotes) {
     console.log("Add AddNoteButton");
-    const addNoteButton = document.createElement('div');
-    addNoteButton.classList.add('nav-project-addNote');
-    const addNoteSpan = document.createElement('span');
-    addNoteSpan.innerHTML = '+ Add Note';
+    const addNoteButton = document.createElement('a');
+    addNoteButton.classList.add('nav-project-addNote flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100');
+    addNoteButton.innerHTML = '+ Add Note';
 
-    addNoteButton.appendChild(addNoteSpan);
     addNoteButton.addEventListener('click', () => {
         let noteTitle = "Enter Title";
         let noteDesc = "";
