@@ -176,10 +176,6 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    let dateString = newProject.dueDate; // Assuming the value is in a valid date string format
-    let parts = dateString.split('/'); // Assuming date is in format MM/DD/YYYY
-    newProject.dueDate = new Date(parts[2], parts[0] - 1, parts[1]); // Year, month (0-indexed), day
-
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
@@ -384,7 +380,9 @@ closeIcon.addEventListener('click', () => {
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let projectTitle = titleEl.value;
+    console.log(projectTitle);
     let projectDate = new Date(dateEl.value);
+    console.log(projectDate);
 
     const newProject = {
         title: projectTitle,
