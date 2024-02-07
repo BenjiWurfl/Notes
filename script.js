@@ -1,11 +1,14 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import {
-    addDoc,
-    collection,
-    doc,
-    getDocs,
     getFirestore,
-    updateDoc
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc,
+    Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
@@ -365,7 +368,7 @@ function appendAddNoteButton(project, subNotes) {
     subNotes.appendChild(addNoteButton);
 }
 
-const modal = document.querySelector('.modal'),
+const popupBox = document.querySelector('.popup-box'),
     closeIcon = document.querySelector('.closeIcon'),
     titleEl = document.querySelector('.inputTitle'),
     dateEl = document.querySelector('.inputDate'),
@@ -374,23 +377,19 @@ const modal = document.querySelector('.modal'),
 closeIcon.addEventListener('click', () => {
     titleEl.value = '';
     dateEl.value = '';
-    modal.removeAttribute('open');
-    window.location.reload();
+    //popupBox.classList.remove('show');
 });
 
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let projectTitle = titleEl.value;
-    console.log(projectTitle);
     let projectDate = new Date(dateEl.value);
-    console.log(dateEl.value);
 
     const newProject = {
         title: projectTitle,
         dueDate: projectDate
     }
     addProjectToFirestore(newProject);
-    console.log("Added proj to firestore");
     closeIcon.click();
-    console.log("Closed");
+    window.location.reload();
 });
