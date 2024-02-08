@@ -298,21 +298,23 @@ function formatDoc(cmd, value = null) {
 
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes) {
-    console.log("Flip")
-    loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes);
+    const subNotesUl = document.createElement('ul');
+    subNotesUl.id = 'dropdown-example';
+    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
+
+    if (subNotesUl) {
+        // Wenn subNotesUl bereits existiert, entferne es
+        subNotesUl.remove();
+    } else {
+        // Wenn subNotesUl nicht existiert, lade die Notizen des Projekts
+        loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl);
+    }
 }
 
-function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes) {
+function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl) {
 
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
     //const subNotesContainer = document.createElement('li');
-
-    if (subNotesUl) {
-        subNotesUl.classList.toggle('hidden');
-    } else {
-        const subNotesUl = document.createElement('ul');
-        subNotesUl.id = 'dropdown-example';
-        subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
         subNotesUl.classList.toggle('hidden');
 
         pinnedProjAndNotes.appendChild(subNotesUl);
@@ -367,7 +369,6 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
                     console.error("Error loading notes: ", error);
                 });
         }
-    }
 }
 
 function appendAddNoteButton(project, subNotes) {
