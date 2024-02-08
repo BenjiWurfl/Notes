@@ -355,6 +355,8 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
                 });
                 console.log("----------------------")
                 console.log("PROJEKT: ", pinnedProjectsContainer);
+                const subNotesLi = document.createElement('li');
+
                 appendAddNoteButton(project, subNotesLi);
                 subNotesUl.classList.toggle('hidden');
             })
