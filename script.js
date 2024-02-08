@@ -42,14 +42,14 @@ const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 function showNotes() {
     const navContent = document.querySelector('.nav-content');
-    navContent.innerHTML = '<li>\n' +
+    /*navContent.innerHTML = '<li>\n' +
         '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-blue-700 hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
         '                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
         '                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>\n' +
         '                    </svg>\n' +
         '                    <span class="flex-1 ms-3 text-left whitespace-nowrap">Add a Project</span>\n' +
         '                </button>\n' +
-        '            </li>';
+        '            </li>';*/
     projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
@@ -101,10 +101,7 @@ function addProjectToNavbar(project) {
     pinnedProjAndNotes.appendChild(pinnedProject);
 
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
-    const subNotesUl = document.createElement('ul');
-    subNotesUl.id = 'dropdown-example';
-    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
-
+    const subNotesUl = document.getElementById('dropdown-example');
 
     pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotesUl))
 
@@ -354,7 +351,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, sub
                 console.log("----------------------")
                 console.log("Sub notes: ", subNotesUl)
                 appendAddNoteButton(project, subNotesLi);
-                document.getElementById('dropdown-example').classList.toggle('hidden');
+                subNotesUl.classList.toggle('hidden');
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
