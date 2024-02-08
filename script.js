@@ -315,6 +315,8 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
 
     pinnedProjAndNotes.appendChild(subNotesUl);
 
+    subNotesUl.classList.remove('hidden');
+
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
