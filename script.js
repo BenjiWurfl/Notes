@@ -102,6 +102,9 @@ function addProjectToNavbar(project) {
 
     // Deklaration der subNotes außerhalb der flipDropdown-Funktion
     const subNotesUl = document.getElementById('dropdown-example');
+    subNotesUl.id = 'dropdown-example';
+    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
+
 
     pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotesUl))
 
