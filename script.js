@@ -73,6 +73,43 @@ function showNotes() {
     }
 }
 
+function addNoteToNavbar(note) {
+    const pinnedNotesContainer = document.querySelector('.nav-content');
+    const pinnedNotes = document.createElement('li');
+    const pinnedNote = document.createElement('button');
+    pinnedNote.type = 'button';
+    pinnedNote.classList.add('projectButton', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
+    pinnedNote.dataset.noteID = note.id;
+
+    let lastUpdated = project.dueDate.toLocaleDateString("en-us");
+    let noteTitle = note.title;
+    // Truncate the text content to 15 characters
+    if (noteTitle.length > 14) {
+        noteTitle = noteTitle.substring(0, 12) + '...';
+    }
+
+    pinnedNote.innerHTML = `<svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                                <path d="M12.186 14.552c-.617 0-.977.587-.977 1.373 0 .791.371 1.35.983 1.35.617 0 .971-.588.971-1.374 0-.726-.348-1.349-.977-1.349z"></path><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.155 17.454c-.426.354-1.073.521-1.864.521-.475 0-.81-.03-1.038-.06v-3.971a8.16 8.16 0 0 1 1.235-.083c.768 0 1.266.138 1.655.432.42.312.684.81.684 1.522 0 .775-.282 1.309-.672 1.639zm2.99.546c-1.2 0-1.901-.906-1.901-2.058 0-1.211.773-2.116 1.967-2.116 1.241 0 1.919.929 1.919 2.045-.001 1.325-.805 2.129-1.985 2.129zm4.655-.762c.275 0 .581-.061.762-.132l.138.713c-.168.084-.546.174-1.037.174-1.397 0-2.117-.869-2.117-2.021 0-1.379.983-2.146 2.207-2.146.474 0 .833.096.995.18l-.186.726a1.979 1.979 0 0 0-.768-.15c-.726 0-1.29.438-1.29 1.338 0 .809.48 1.318 1.296 1.318zM14 9h-1V4l5 5h-4z"></path><path d="M7.584 14.563c-.203 0-.335.018-.413.036v2.645c.078.018.204.018.317.018.828.006 1.367-.449 1.367-1.415.006-.84-.485-1.284-1.271-1.284z"></path>                    
+                            </svg>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">${noteTitle}</span>`
+    pinnedNotesContainer.appendChild(pinnedNotes)
+    pinnedNotes.appendChild(pinnedNote);
+
+    pinnedNote.addEventListener('click', () => loadDataOfNote(note))
+
+}
+
+function loadDataOfNote(note) {
+    document.getElementById('title').innerHTML = note.title;
+    document.getElementById('title').dataset.noteId = note.id;
+    document.getElementById('text-content').innerHTML = note.body;
+    document.getElementById('text-content').dataset.noteId = note.id;
+
+    document.getElementById('text-content').focus();
+
+}
+
+
 function addProjectToNavbar(project) {
     const pinnedProjectsContainer = document.querySelector('.nav-content');
     const pinnedProjAndNotes = document.createElement('li');
@@ -97,7 +134,7 @@ function addProjectToNavbar(project) {
                     </svg>
                     <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">${projectTitle}</span>
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
                     </svg>`
     pinnedProjectsContainer.appendChild(pinnedProjAndNotes)
     pinnedProjAndNotes.appendChild(pinnedProject);
@@ -106,9 +143,16 @@ function addProjectToNavbar(project) {
 
 }
 
+function updatePinnedNotes() {
+    notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+
+    notesArr.forEach((note, index) => {
+        addNoteToNavbar(note);
+    })
+}
+
 function updatePinnedItems() {
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
-    notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
     projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate)
 
     projectsArr.forEach((project, index) => {
@@ -297,38 +341,25 @@ function formatDoc(cmd, value = null) {
     document.execCommand(cmd, false, value);
 }
 
-const subNotesUl = document.createElement('ul');
-subNotesUl.id = 'dropdown-example';
-subNotesUl.classList.add('py-2', 'space-y-2');
-
-
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes) {
-    let placeholder = pinnedProject.dataset.isDropdown;
-    document.querySelectorAll('.projectButton').forEach(proj => {
-        proj.classList.add('hidden');
-        proj.dataset.isDropdown = "false";
-    })
 
-    pinnedProject.dataset.isDropdown = placeholder;
-
-    if (pinnedProject.dataset.isDropdown === "false") {
-        loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl);
-        pinnedProject.dataset.isDropdown = "true";
-    } else {
-        pinnedProject.dataset.isDropdown = "false";
-        subNotesUl.innerHTML = '';
-        if (!subNotesUl.classList.contains('hidden')) {
-            subNotesUl.classList.add('hidden');
-        }
-    }
+    loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl);
 }
 
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl) {
 
-    pinnedProjAndNotes.appendChild(subNotesUl);
+    const navContent = document.querySelector('.nav-content');
 
-    subNotesUl.classList.remove('hidden');
-
+    navContent.innerHTML = '';
+    navContent.innerHTML = '<li>\n' +
+        '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-blue-700 hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
+        '                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
+        '                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>\n' +
+        '                    </svg>\n' +
+        '                    <span class="flex-1 ms-3 text-left whitespace-nowrap">Add a Note</span>\n' +
+        '                </button>\n' +
+        '            </li>';
+    notesArr.length = 0;
     const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
@@ -339,70 +370,14 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
                     let lastUpdated = noteData.lastUpdated.toDate();
                     const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
-                    const pinnedNote = document.createElement('a');
-                    pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
-                    pinnedNote.dataset.noteID = note.id;
-
-                    const subNotesLi = document.createElement('li');
-
-
-                    let noteTitle = note.title;
-
-                    if (noteTitle.length > 12) {
-                        noteTitle = noteTitle.substring(0, 9) + '...';
-                    }
-
-                    pinnedNote.innerHTML = noteTitle;
-
-                    pinnedNote.addEventListener('click', () => {
-                        document.getElementById('title').innerHTML = note.title;
-                        document.getElementById('title').dataset.noteId = note.id;
-                        document.getElementById('text-content').innerHTML = note.body;
-                        document.getElementById('text-content').dataset.noteId = note.id;
-
-                        document.getElementById('text-content').focus();
-                    });
-                    console.log("Load notes");
-
-                    subNotesUl.appendChild(subNotesLi);
-
-                    subNotesLi.appendChild(pinnedNote);
-                    console.log("Notiz: ", subNotesUl)
+                    notesArr.push(note);
                 });
-                console.log("----------------------")
-                console.log("PROJEKT: ", pinnedProjectsContainer);
-
-                appendAddNoteButton(project, subNotesUl);
+                updatePinnedNotes();
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
             });
     }
-}
-
-function appendAddNoteButton(project, subNotesUl) {
-    const subNotesLi = document.createElement('li');
-    subNotesUl.appendChild(subNotesLi);
-    console.log("Add AddNoteButton");
-    const addNoteButton = document.createElement('a');
-    addNoteButton.classList.add('flex', 'items-center', 'bg-gray-200', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group');
-    addNoteButton.innerHTML = '+ Add Note';
-
-    addNoteButton.addEventListener('click', () => {
-        let noteTitle = "Enter Title";
-        let noteDesc = "";
-        let dateEl = new Date()
-
-        const newNote = {
-            title: noteTitle,
-            body: noteDesc,
-            lastUpdated: dateEl,
-            parentProject: project.id
-        }
-        addNoteToFirestore(newNote);
-    });
-
-    subNotesLi.appendChild(addNoteButton);
 }
 
 const modal = document.querySelector('.modal'),
