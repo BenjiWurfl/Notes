@@ -79,6 +79,7 @@ function addProjectToNavbar(project) {
     pinnedProject.type = 'button';
     pinnedProject.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
     pinnedProject.dataset.projectID = project.id;
+    pinnedProject.dataset.isDropdown = "false";
 
     let dueDate = project.dueDate.toLocaleDateString("en-us");
     let projectTitle = project.title;
@@ -99,7 +100,6 @@ function addProjectToNavbar(project) {
                     </svg>`
     pinnedProjectsContainer.appendChild(pinnedProjAndNotes)
     pinnedProjAndNotes.appendChild(pinnedProject);
-
 
     pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes))
 
@@ -296,79 +296,74 @@ function formatDoc(cmd, value = null) {
     document.execCommand(cmd, false, value);
 }
 
+const subNotesUl = document.createElement('ul');
+subNotesUl.id = 'dropdown-example';
+subNotesUl.classList.add('py-2', 'space-y-2');
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes) {
-    const subNotesUl = document.createElement('ul');
-    subNotesUl.id = 'dropdown-example';
-    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
-
-    if (subNotesUl) {
-        // Wenn subNotesUl bereits existiert, entferne es
-        subNotesUl.remove();
-    } else {
-        // Wenn subNotesUl nicht existiert, lade die Notizen des Projekts
+    if (pinnedProject.dataset.isDropdown === "false") {
         loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl);
+        pinnedProject.dataset.isDropdown = "true";
+    } else {
+        pinnedProject.dataset.isDropdown = "false";
+        subNotesUl.innerHTML = '';
     }
 }
 
 function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl) {
 
-    // Deklaration der subNotes außerhalb der flipDropdown-Funktion
-    //const subNotesContainer = document.createElement('li');
-        subNotesUl.classList.toggle('hidden');
+    pinnedProjAndNotes.appendChild(subNotesUl);
 
-        pinnedProjAndNotes.appendChild(subNotesUl);
+    const user = auth.currentUser;
+    if (user) {
+        const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
+        getDocs(notesRef)
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    const noteData = doc.data();
+                    let lastUpdated = noteData.lastUpdated.toDate();
+                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
-        const user = auth.currentUser;
-        if (user) {
-            const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
-            getDocs(notesRef)
-                .then(querySnapshot => {
-                    querySnapshot.forEach(doc => {
-                        const noteData = doc.data();
-                        let lastUpdated = noteData.lastUpdated.toDate();
-                        const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
+                    const pinnedNote = document.createElement('a');
+                    pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
+                    pinnedNote.dataset.noteID = note.id;
 
-                        const pinnedNote = document.createElement('a');
-                        pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
-                        pinnedNote.dataset.noteID = note.id;
-
-                        const subNotesLi = document.createElement('li');
-
-
-                        let noteTitle = note.title;
-
-                        if (noteTitle.length > 12) {
-                            noteTitle = noteTitle.substring(0, 9) + '...';
-                        }
-
-                        pinnedNote.innerHTML = noteTitle;
-
-                        pinnedNote.addEventListener('click', () => {
-                            document.getElementById('title').innerHTML = note.title;
-                            document.getElementById('title').dataset.noteId = note.id;
-                            document.getElementById('text-content').innerHTML = note.body;
-                            document.getElementById('text-content').dataset.noteId = note.id;
-
-                            document.getElementById('text-content').focus();
-                        });
-                        console.log("Load notes");
-
-                        subNotesUl.appendChild(subNotesLi);
-
-                        subNotesLi.appendChild(pinnedNote);
-                        console.log("Notiz: ", subNotesUl)
-                    });
-                    console.log("----------------------")
-                    console.log("PROJEKT: ", pinnedProjectsContainer);
                     const subNotesLi = document.createElement('li');
 
-                    appendAddNoteButton(project, subNotesLi);
-                })
-                .catch(error => {
-                    console.error("Error loading notes: ", error);
+
+                    let noteTitle = note.title;
+
+                    if (noteTitle.length > 12) {
+                        noteTitle = noteTitle.substring(0, 9) + '...';
+                    }
+
+                    pinnedNote.innerHTML = noteTitle;
+
+                    pinnedNote.addEventListener('click', () => {
+                        document.getElementById('title').innerHTML = note.title;
+                        document.getElementById('title').dataset.noteId = note.id;
+                        document.getElementById('text-content').innerHTML = note.body;
+                        document.getElementById('text-content').dataset.noteId = note.id;
+
+                        document.getElementById('text-content').focus();
+                    });
+                    console.log("Load notes");
+
+                    subNotesUl.appendChild(subNotesLi);
+
+                    subNotesLi.appendChild(pinnedNote);
+                    console.log("Notiz: ", subNotesUl)
                 });
-        }
+                console.log("----------------------")
+                console.log("PROJEKT: ", pinnedProjectsContainer);
+                const subNotesLi = document.createElement('li');
+
+                appendAddNoteButton(project, subNotesLi);
+            })
+            .catch(error => {
+                console.error("Error loading notes: ", error);
+            });
+    }
 }
 
 function appendAddNoteButton(project, subNotes) {
