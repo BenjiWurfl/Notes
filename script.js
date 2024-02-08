@@ -350,15 +350,15 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
                 subNotesUl.appendChild(subNotesLi);
 
                 subNotesLi.appendChild(pinnedNote);
-                console.log("Notiz: ", subNotesUl)
-            });
+                console.log("Notiz: ", subNotesUl);
                 console.log("----------------------")
                 console.log("PROJEKT: ", pinnedProjectsContainer);
                 appendAddNoteButton(project, subNotesLi);
                 subNotesUl.classList.toggle('hidden');
+            })
             .catch(error => {
-            console.error("Error loading notes: ", error);
-        });
+                console.error("Error loading notes: ", error);
+            });
     }
 }
 
