@@ -78,7 +78,7 @@ function addProjectToNavbar(project) {
     const pinnedProjAndNotes = document.createElement('li');
     const pinnedProject = document.createElement('button');
     pinnedProject.type = 'button';
-    pinnedProject.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
+    pinnedProject.classList.add('projectButton', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
     pinnedProject.dataset.projectID = project.id;
     pinnedProject.dataset.isDropdown = "false";
 
@@ -301,14 +301,25 @@ const subNotesUl = document.createElement('ul');
 subNotesUl.id = 'dropdown-example';
 subNotesUl.classList.add('py-2', 'space-y-2');
 
+
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes) {
+    let placeholder = pinnedProject.dataset.isDropdown;
+    document.querySelectorAll('.projectButton').forEach(proj => {
+        proj.classList.add('hidden');
+        proj.dataset.isDropdown = "false";
+    })
+
+    pinnedProject.dataset.isDropdown = placeholder;
+
     if (pinnedProject.dataset.isDropdown === "false") {
         loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl);
         pinnedProject.dataset.isDropdown = "true";
     } else {
         pinnedProject.dataset.isDropdown = "false";
         subNotesUl.innerHTML = '';
-        subNotesUl.classList.add('hidden');
+        if (!subNotesUl.classList.contains('hidden')) {
+            subNotesUl.classList.add('hidden');
+        }
     }
 }
 
