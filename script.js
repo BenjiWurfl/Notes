@@ -81,7 +81,7 @@ function addNoteToNavbar(note) {
     pinnedNote.classList.add('projectButton', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
     pinnedNote.dataset.noteID = note.id;
 
-    let lastUpdated = project.dueDate.toLocaleDateString("en-us");
+    let lastUpdated = note.lastUpdated.toLocaleDateString("en-us");
     let noteTitle = note.title;
     // Truncate the text content to 15 characters
     if (noteTitle.length > 14) {
@@ -139,7 +139,7 @@ function addProjectToNavbar(project) {
     pinnedProjectsContainer.appendChild(pinnedProjAndNotes)
     pinnedProjAndNotes.appendChild(pinnedProject);
 
-    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes))
+    pinnedProject.addEventListener('click', () => flipDropdown(project))
 
 }
 
@@ -341,12 +341,12 @@ function formatDoc(cmd, value = null) {
     document.execCommand(cmd, false, value);
 }
 
-function flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes) {
+function flipDropdown(project) {
 
-    loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl);
+    loadNotesOfProject(project);
 }
 
-function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pinnedProjAndNotes, subNotesUl) {
+function loadNotesOfProject(project) {
 
     const navContent = document.querySelector('.nav-content');
 
