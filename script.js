@@ -359,9 +359,8 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
                 });
                 console.log("----------------------")
                 console.log("PROJEKT: ", pinnedProjectsContainer);
-                const subNotesLi = document.createElement('li');
 
-                appendAddNoteButton(project, subNotesLi);
+                appendAddNoteButton(project, subNotesUl);
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
@@ -369,7 +368,9 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
     }
 }
 
-function appendAddNoteButton(project, subNotes) {
+function appendAddNoteButton(project, subNotesUl) {
+    const subNotesLi = document.createElement('li');
+    subNotesUl.appendChild(subNotesLi);
     console.log("Add AddNoteButton");
     const addNoteButton = document.createElement('a');
     addNoteButton.classList.add('nav-project-addNote', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
@@ -389,7 +390,7 @@ function appendAddNoteButton(project, subNotes) {
         addNoteToFirestore(newNote);
     });
 
-    subNotes.appendChild(addNoteButton);
+    subNotesLi.appendChild(addNoteButton);
 }
 
 const modal = document.querySelector('.modal'),
