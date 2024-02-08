@@ -373,7 +373,7 @@ function appendAddNoteButton(project, subNotesUl) {
     subNotesUl.appendChild(subNotesLi);
     console.log("Add AddNoteButton");
     const addNoteButton = document.createElement('a');
-    addNoteButton.classList.add('nav-project-addNote', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
+    addNoteButton.classList.add('flex', 'items-center', 'bg-gray-200', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group');
     addNoteButton.innerHTML = '+ Add Note';
 
     addNoteButton.addEventListener('click', () => {
