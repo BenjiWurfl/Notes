@@ -100,13 +100,8 @@ function addProjectToNavbar(project) {
     pinnedProjectsContainer.appendChild(pinnedProjAndNotes)
     pinnedProjAndNotes.appendChild(pinnedProject);
 
-    // Deklaration der subNotes außerhalb der flipDropdown-Funktion
-    const subNotesUl = document.getElementById('dropdown-example');
-    subNotesUl.id = 'dropdown-example';
-    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
 
-
-    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotesUl))
+    pinnedProject.addEventListener('click', () => flipDropdown(project, pinnedProjectsContainer, pinnedProject))
 
 }
 
@@ -304,11 +299,20 @@ function formatDoc(cmd, value = null) {
 
 function flipDropdown(project, pinnedProjectsContainer, pinnedProject, subNotesUl) {
     console.log("Flip")
-    loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotesUl);
+    loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject);
 }
 
-function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, subNotesUl) {
-    subNotesUl.innerHTML = '';
+function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject) {
+
+    // Deklaration der subNotes außerhalb der flipDropdown-Funktion
+    const subNotesContainer = document.createElement('li');
+
+    const subNotesUl = document.createElement('ul');
+    subNotesUl.id = 'dropdown-example';
+    subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
+
+    subNotesContainer.appendChild(subNotesUl);
+
 
     const subNotesLi = document.createElement('li');
 
