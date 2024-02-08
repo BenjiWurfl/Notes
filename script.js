@@ -310,6 +310,7 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
     const subNotesUl = document.createElement('ul');
     subNotesUl.id = 'dropdown-example';
     subNotesUl.classList.add('hidden', 'py-2', 'space-y-2');
+    subNotesUl.classList.toggle('hidden');
 
     pinnedProjAndNotes.appendChild(subNotesUl);
 
@@ -358,7 +359,6 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
                 const subNotesLi = document.createElement('li');
 
                 appendAddNoteButton(project, subNotesLi);
-                subNotesUl.classList.toggle('hidden');
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
