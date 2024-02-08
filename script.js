@@ -318,39 +318,41 @@ function loadNotesOfProject(project, pinnedProjectsContainer, pinnedProject, pin
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
         getDocs(notesRef)
             .then(querySnapshot => {
-                const noteData = querySnapshot.data();
-                let lastUpdated = noteData.lastUpdated.toDate();
-                const note = {id: querySnapshot.id, ...noteData, lastUpdated: lastUpdated};
+                querySnapshot.forEach(doc => {
+                    const noteData = doc.data();
+                    let lastUpdated = noteData.lastUpdated.toDate();
+                    const note = {id: doc.id, ...noteData, lastUpdated: lastUpdated};
 
-                const pinnedNote = document.createElement('a');
-                pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
-                pinnedNote.dataset.noteID = note.id;
+                    const pinnedNote = document.createElement('a');
+                    pinnedNote.classList.add('flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
+                    pinnedNote.dataset.noteID = note.id;
 
-                const subNotesLi = document.createElement('li');
+                    const subNotesLi = document.createElement('li');
 
 
-                let noteTitle = note.title;
+                    let noteTitle = note.title;
 
-                if (noteTitle.length > 12) {
-                    noteTitle = noteTitle.substring(0, 9) + '...';
-                }
+                    if (noteTitle.length > 12) {
+                        noteTitle = noteTitle.substring(0, 9) + '...';
+                    }
 
-                pinnedNote.innerHTML = noteTitle;
+                    pinnedNote.innerHTML = noteTitle;
 
-                pinnedNote.addEventListener('click', () => {
-                    document.getElementById('title').innerHTML = note.title;
-                    document.getElementById('title').dataset.noteId = note.id;
-                    document.getElementById('text-content').innerHTML = note.body;
-                    document.getElementById('text-content').dataset.noteId = note.id;
+                    pinnedNote.addEventListener('click', () => {
+                        document.getElementById('title').innerHTML = note.title;
+                        document.getElementById('title').dataset.noteId = note.id;
+                        document.getElementById('text-content').innerHTML = note.body;
+                        document.getElementById('text-content').dataset.noteId = note.id;
 
-                    document.getElementById('text-content').focus();
+                        document.getElementById('text-content').focus();
+                    });
+                    console.log("Load notes");
+
+                    subNotesUl.appendChild(subNotesLi);
+
+                    subNotesLi.appendChild(pinnedNote);
+                    console.log("Notiz: ", subNotesUl)
                 });
-                console.log("Load notes");
-
-                subNotesUl.appendChild(subNotesLi);
-
-                subNotesLi.appendChild(pinnedNote);
-                console.log("Notiz: ", subNotesUl);
                 console.log("----------------------")
                 console.log("PROJEKT: ", pinnedProjectsContainer);
                 appendAddNoteButton(project, subNotesLi);
