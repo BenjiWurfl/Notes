@@ -306,7 +306,8 @@ function flipDropdown(project, pinnedProjectsContainer, pinnedProject, pinnedPro
         pinnedProject.dataset.isDropdown = "true";
     } else {
         pinnedProject.dataset.isDropdown = "false";
-        pinnedProjectsContainer.removeChild(subNotesUl);
+        subNotesUl.innerHTML = '';
+        subNotesUl.classList.add('hidden');
     }
 }
 
