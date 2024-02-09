@@ -365,7 +365,7 @@ function loadNotesOfProject(project) {
         '                       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>' +
         '                    </svg>' +
         '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">' + project.title + '</span>'
-    addNotesButton.addEventListener('click', addNewNote(project));
+    //addNotesButton.addEventListener('click', addNewNote(project));
     addNotesButtonLi.appendChild(addNotesButton);
     navContent.appendChild(addNotesButtonLi);
 
