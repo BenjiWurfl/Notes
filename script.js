@@ -350,6 +350,7 @@ function flipDropdown(project) {
 }
 
 function backToProjects() {
+    console.log("Back to projects");
     showNotes();
 }
 
