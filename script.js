@@ -66,6 +66,7 @@ function showNotes() {
     }
 }
 
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("User is signed in with UID:", user.uid);
