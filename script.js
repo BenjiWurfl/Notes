@@ -349,10 +349,6 @@ function flipDropdown(project) {
     loadNotesOfProject(project);
 }
 
-function backToProjects() {
-    console.log("Back to projects");
-    showNotes();
-}
 
 function loadNotesOfProject(project) {
 
@@ -368,12 +364,25 @@ function loadNotesOfProject(project) {
         '                </button>\n' +
         '            </li>' +
         '<li>\n' +
-        '                <button onclick="backToProjects()" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"><svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
+        '                <button class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"><svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
         '                    <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>                    </svg>\n' +
         '\n' +
         '                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">' + project.title + '</span>\n' +
         '                </button>\n' +
         '            </li>';
+
+    const backToProjectsLi = document.createElement('li');
+    const backToProjectsButton = document.createElement('button');
+    backToProjectsButton.classList.add("flex", "items-center", "w-full", "p-2", "text-gray-900", "transition", "duration-75", "rounded-lg", "group", "hover:bg-gray-100");
+    backToProjectsButton.innerHTML = '' +
+        '                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
+        '                       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>' +
+        '                    </svg>' +
+        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">\' + project.title + \'</span>'
+    backToProjectsButton.addEventListener('click', showNotes);
+    backToProjectsLi.appendChild(backToProjectsButton);
+    navContent.appendChild(backToProjectsLi);
+
     notesArr.length = 0;
     const user = auth.currentUser;
     if (user) {
