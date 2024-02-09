@@ -209,12 +209,12 @@ function addNewNote(project) {
     const newNote = {
         title: noteTitle,
         lastUpdated: lastUpdated,
-        parentProject: project.parentProject
+        parentProject: project.id
     }
-    addNoteToFirestore(newNote, project);
+    addNoteToFirestore(newNote);
 }
 
-function addNoteToFirestore(newNote, project) {
+function addNoteToFirestore(newNote) {
     const user = auth.currentUser;
     if (!user) {
         alert("You must be logged in to add events.");
