@@ -28,6 +28,7 @@ const db = getFirestore(app);
 const auth = getAuth();
 let notesArr = [];
 let projectsArr = []
+const user = auth.currentUser;
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -52,7 +53,6 @@ function showNotes() {
         '                </button>\n' +
         '            </li>';
     projectsArr.length = 0;
-    const user = auth.currentUser;
     if (user) {
         const projectsRef = collection(db, "users", user.uid, "projects");
         getDocs(projectsRef)
@@ -210,7 +210,6 @@ function deleteNote(noteId) {
 });*/
 
 function addNoteToFirestore(newNote) {
-    const user = auth.currentUser;
     if (!user) {
         alert("You must be logged in to add events.");
         return;
@@ -227,7 +226,6 @@ function addNoteToFirestore(newNote) {
 }
 
 function addProjectToFirestore(newProject) {
-    const user = auth.currentUser;
     if (!user) {
         alert("You must be logged in to add events.");
         return;
@@ -296,7 +294,6 @@ document.getElementById('text-content').addEventListener('input', function () {
 
 
 function updateNoteToFirestore(noteId, updatedNote) {
-    const user = auth.currentUser;
     if (user) {
         const noteRef = doc(db, "users", user.uid, "projects", updatedNote.dataset.parentProject, "notes");
         updateDoc(noteRef, updatedNote)
@@ -367,7 +364,6 @@ function loadNotesOfProject(project) {
         '                </button>\n' +
         '            </li>';
     notesArr.length = 0;
-    const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
         getDocs(notesRef)
