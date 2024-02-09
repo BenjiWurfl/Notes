@@ -16,28 +16,32 @@
 
 
 <dialog id="my_modal_1" class="modal">
-    <div class="modal-box bg-secondary items-center">
-        <h3 class="font-bold text-lg text-white mb-5 text-center">Add Project <i
-                class="closeIcon bx bx-x bx-lg text-right"></i></h3>
+    <div class="modal-box bg-secondary">
+        <i class="closeIcon bx bx-x bx-lg text-white self-right"></i>
+        <h3 class="font-bold text-lg text-white mb-5 text-center -mt-10">Add Project</h3>
 
         <input type="text" placeholder="Name of the project" class="input w-full max-w-xl mb-5 inputTitle"/>
         <p class="text-m text-white my-5 text-center">Due date:</p>
-        <input type="date" class="input w-full max-w-xl inputDate"/>
+        <input type="date" class="input w-full max-w-xl inputDate mb-5"/>
+        <div class="col-span-2 sm:col-span-1">
+            <p class="text-m text-white my-5 text-center">Category</p>
+            <select id="category"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                <option selected="">Select category</option>
+                <option value="School">School</option>
+                <option value="Work">Work</option>
+                <option value="Leisure">Leisure Time</option>
+
+            </select>
+        </div>
+
         <div class="modal-action">
             <form method="dialog">
-                <button class="btn content-center">Submit</button>
+                <button class="submit-btn btn content-center">Submit</button>
             </form>
         </div>
     </div>
 </dialog>
-<!--
-<div id="nav-bar">
-    <div class="add-box nav-project-addProject" onclick="my_modal_1.showModal()" target="_blank">
-        <span>+ Add Project</span></div>
-    <br>
-    <div class="nav-bar-heading">NOTES</div>
-    <div id="nav-content"></div>
-</div>-->
 
 
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
