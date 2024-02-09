@@ -367,6 +367,7 @@ function loadNotesOfProject(project) {
         '                </button>\n' +
         '            </li>';
     notesArr.length = 0;
+    const user = auth.currentUser;
     if (user) {
         const notesRef = collection(db, "users", user.uid, "projects", project.id, "notes");
         getDocs(notesRef)
