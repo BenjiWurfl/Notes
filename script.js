@@ -355,21 +355,15 @@ function loadNotesOfProject(project) {
     const navContent = document.querySelector('.nav-content');
 
     navContent.innerHTML = '';
-    navContent.innerHTML = '<li>\n' +
+    navContent.innerHTML = '' +
+        '               <li>\n' +
         '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-blue-700 hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
         '                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
         '                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>\n' +
         '                    </svg>\n' +
         '                    <span class="flex-1 ms-3 text-left whitespace-nowrap">Add a Note</span>\n' +
-        '                </button>\n' +
-        '            </li>' +
-        '<li>\n' +
-        '                <button class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"><svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
-        '                    <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>                    </svg>\n' +
-        '\n' +
-        '                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">' + project.title + '</span>\n' +
-        '                </button>\n' +
-        '            </li>';
+        '                </button> ' +
+        '               </li>'
 
     const backToProjectsLi = document.createElement('li');
     const backToProjectsButton = document.createElement('button');
