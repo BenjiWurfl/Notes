@@ -211,10 +211,10 @@ function addNewNote(project) {
         lastUpdated: lastUpdated,
         parentProject: project.id
     }
-    addNoteToFirestore(newNote);
+    addNoteToFirestore(newNote, project);
 }
 
-function addNoteToFirestore(newNote) {
+function addNoteToFirestore(newNote, project) {
     const user = auth.currentUser;
     if (!user) {
         alert("You must be logged in to add events.");
@@ -225,7 +225,7 @@ function addNoteToFirestore(newNote) {
     addDoc(notesRef, newNote).then(docRef => {
         newNote.id = docRef.id;
         notesArr.push(newNote);
-        updatePinnedNotes();
+        loadNotesOfProject(project)
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
@@ -281,7 +281,10 @@ document.getElementById('title').addEventListener('input', function () {
     note.lastUpdated = new Date();
     notesArr.push(note);
     updateNoteToFirestore(noteId, note);
-    showNotes();
+
+    const project = projectsArr.find((project) => note.dataset.parentProject);
+
+    loadNotesOfProject(project);
 });
 
 document.getElementById('text-content').addEventListener('input', function () {
