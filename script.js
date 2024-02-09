@@ -372,7 +372,7 @@ function loadNotesOfProject(project) {
         '                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
         '                       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>' +
         '                    </svg>' +
-        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">\' + project.title + \'</span>'
+        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">' + project.title + '</span>'
     backToProjectsButton.addEventListener('click', showNotes);
     backToProjectsLi.appendChild(backToProjectsButton);
     navContent.appendChild(backToProjectsLi);
