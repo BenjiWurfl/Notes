@@ -285,6 +285,8 @@ document.getElementById('title').addEventListener('input', function () {
 
     const project = projectsArr.find((project) => note.parentProject);
 
+    console.log("Project: ", project);
+
     loadNotesOfProject(project);
 });
 
