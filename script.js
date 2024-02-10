@@ -307,7 +307,7 @@ document.getElementById('text-content').addEventListener('input', function () {
 function updateNoteToFirestore(updatedNote) {
     const user = auth.currentUser;
     if (user) {
-        const noteRef = doc(db, "users", user.uid, "projects", updatedNote.dataset.parentProject, "notes");
+        const noteRef = doc(db, "users", user.uid, "projects", updatedNote.parentProject, "notes");
         updateDoc(noteRef, updatedNote)
             .then(() => {
             })
