@@ -299,11 +299,12 @@ document.getElementById('text-content').addEventListener('input', function () {
     }
     note.lastUpdated = new Date();
     notesArr.push(note);
-    updateNoteToFirestore(noteId, note);
+    console.log(note);
+    updateNoteToFirestore(note);
 });
 
 
-function updateNoteToFirestore(noteId, updatedNote) {
+function updateNoteToFirestore(updatedNote) {
     const user = auth.currentUser;
     if (user) {
         const noteRef = doc(db, "users", user.uid, "projects", updatedNote.dataset.parentProject, "notes");
