@@ -283,7 +283,7 @@ document.getElementById('title').addEventListener('input', function () {
     notesArr.push(note);
     updateNoteToFirestore(noteId, note);
 
-    const project = projectsArr.find((project) => note.dataset.parentProject);
+    const project = projectsArr.find((project) => note.parentProject);
 
     loadNotesOfProject(project);
 });
@@ -369,7 +369,7 @@ function loadNotesOfProject(project) {
         '                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
         '                       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>' +
         '                    </svg>' +
-        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"> + Add a new Project </span>'
+        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"> Add a Note </span>'
     addNotesButton.addEventListener('click', () => addNewNote(project));
     addNotesButtonLi.appendChild(addNotesButton);
     navContent.appendChild(addNotesButtonLi);
