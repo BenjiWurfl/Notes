@@ -281,7 +281,7 @@ document.getElementById('title').addEventListener('input', function () {
     }
     note.lastUpdated = new Date();
     notesArr.push(note);
-    updateNoteToFirestore(noteId, note);
+    updateNoteToFirestore(note);
 
     const project = projectsArr.find((project) => note.parentProject);
 
