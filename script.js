@@ -308,7 +308,7 @@ function updateNoteToFirestore(updatedNote) {
     const user = auth.currentUser;
     console.log("Updated note: ", updatedNote);
     if (user) {
-        const noteRef = doc(db, "users", user.uid, "projects", updatedNote.parentProject, "notes");
+        const noteRef = doc(db, "users", user.uid, "projects", updatedNote.parentProject, "notes", updatedNote.id);
         updateDoc(noteRef, updatedNote)
             .then(() => {
             })
