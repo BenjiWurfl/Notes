@@ -149,7 +149,7 @@ function addProjectToNavbar(project) {
 
 function updatePinnedNotes() {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
-
+    console.log("Update")
     notesArr.forEach((note, index) => {
         addNoteToNavbar(note);
     })
