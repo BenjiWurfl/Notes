@@ -283,7 +283,7 @@ document.getElementById('title').addEventListener('input', function () {
     notesArr.push(note);
     updateNoteToFirestore(note);
 
-    const project = projectsArr.find((project) => note.parentProject);
+    const project = projectsArr.find((project) => project.id === note.parentProject); // Hier wurde project.id === note.parentProject korrigiert
 
     console.log("Project: ", project);
 
