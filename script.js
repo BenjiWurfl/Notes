@@ -208,6 +208,7 @@ function addNewNote(project) {
 
     const newNote = {
         title: noteTitle,
+        body: "",
         lastUpdated: lastUpdated,
         parentProject: project.id
     }
@@ -225,7 +226,7 @@ function addNoteToFirestore(newNote, project) {
     addDoc(notesRef, newNote).then(docRef => {
         newNote.id = docRef.id;
         notesArr.push(newNote);
-        loadNotesOfProject(project)
+        loadNotesOfProject(project);
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
