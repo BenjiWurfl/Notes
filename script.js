@@ -134,7 +134,7 @@ function addProjectToNavbar(project) {
         '                        <svg  xmlns="http://www.w3.org/2000/svg" class="text-gray-50" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="black" stroke-linecap="round" stroke-linejoin="round">\n' +
         '                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 14.707L11 12.414V6h2v5.586l3.707 3.707-1.414 1.414z"></path>\n' +
         '                        </svg>\n' +
-        '                        <p class="text-sm  ml-1">' + project.dueDate + '</p>\n' +
+        '                        <p class="text-sm  ml-1">' + project.dueDate.toLocaleDateString("en-us") + '</p>\n' +
         '                    </div>\n' +
         '                </div>\n' +
         '            </div>'
