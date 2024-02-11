@@ -37,7 +37,7 @@ function showNotes() {
     const navContent = document.querySelector('.nav-content');
     navContent.innerHTML = '';
     navContent.innerHTML = '<li>\n' +
-        '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-blue-700 hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
+        '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-[#3019bd] hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
         '                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
         '                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>\n' +
         '                    </svg>\n' +
