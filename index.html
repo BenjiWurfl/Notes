@@ -78,7 +78,31 @@
     </div>
 </aside>
 
-<div class="container">
+<div class="p-4 sm:ml-64 mx-auto container">
+
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 container-for-cards">
+        <div class="rounded">
+
+            <div class="w-full h-32 flex flex-col justify-between bg-yellow-400 rounded-lg border border-yellow-400 mb-6 py-5 px-4">
+                <div>
+                    <h4 class="text-gray-800 text-center font-bold mb-3">School</h4>
+                </div>
+                <div>
+                    <div class="flex items-center text-gray-800 justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-50" width="20" height="20"
+                             viewBox="0 0 24 24" stroke-width="1" fill="black" stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 14.707L11 12.414V6h2v5.586l3.707 3.707-1.414 1.414z"></path>
+                        </svg>
+                        <p class="text-sm  ml-1">March 28, 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container hidden">
     <div class="toolbar">
         <div class="head">
             <label for="formatSelect"></label><select id="formatSelect">
