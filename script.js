@@ -166,8 +166,6 @@ function addProjectToNavbar(project) {
 }
 
 function updatePinnedNotes() {
-    const richTextEditor = document.querySelector('.textEditor');
-    richTextEditor.classList.toggle('hidden');
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
     console.log("Update")
     notesArr.forEach((note, index) => {
@@ -382,7 +380,7 @@ function flipDropdown(project) {
 function loadNotesOfProject(project) {
 
     const richTextEditor = document.querySelector('.textEditor');
-    richTextEditor.classList.toggle('hidden');
+    richTextEditor.classList.remove('hidden');
 
     const navContent = document.querySelector('.nav-content');
 
