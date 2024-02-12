@@ -76,7 +76,7 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-function addNoteToNavbar(note) {
+function addNoteToNavbar(note, containerForNoteCards) {
     const pinnedNotesContainer = document.querySelector('.nav-content');
     const pinnedNotes = document.createElement('li');
     const pinnedNote = document.createElement('button');
@@ -85,8 +85,6 @@ function addNoteToNavbar(note) {
     pinnedNote.dataset.noteID = note.id;
 
 
-    const containerForNoteCards = document.querySelector('.container-for-cards');
-    containerForNoteCards.innerHTML = "";
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="w-full h-32 flex flex-col justify-between bg-[#3019bd] rounded-lg border border-yellow-400 mb-6 py-5 px-4">\n' +
@@ -138,7 +136,7 @@ function loadDataOfNote(note) {
 }
 
 
-function addProjectToNavbar(project) {
+function addProjectToNavbar(project, containerForProjectCards) {
     const pinnedProjectsContainer = document.querySelector('.nav-content');
     const pinnedProjAndNotes = document.createElement('li');
     const pinnedProject = document.createElement('button');
@@ -147,8 +145,6 @@ function addProjectToNavbar(project) {
     pinnedProject.dataset.projectID = project.id;
     pinnedProject.dataset.isDropdown = "false";
 
-    const containerForProjectCards = document.querySelector('.container-for-cards');
-    containerForProjectCards.innerHTML = "";
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="w-full h-32 flex flex-col justify-between bg-[#3019bd] rounded-lg border border-yellow-400 mb-6 py-5 px-4">\n' +
@@ -193,18 +189,26 @@ function addProjectToNavbar(project) {
 
 function updatePinnedNotes() {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+
+    const containerForNoteCards = document.querySelector('.container-for-cards');
+    containerForNoteCards.innerHTML = "";
+
     console.log("Update")
     notesArr.forEach((note, index) => {
-        addNoteToNavbar(note);
+        addNoteToNavbar(note, containerForNoteCards);
     })
 }
 
 function updatePinnedItems() {
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
-    projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate)
+    projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate);
+
+    const containerForProjectCards = document.querySelector('.container-for-cards');
+    containerForProjectCards.innerHTML = "";
+
 
     projectsArr.forEach((project, index) => {
-        addProjectToNavbar(project);
+        addProjectToNavbar(project, containerForProjectCards);
     })
 
     // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
