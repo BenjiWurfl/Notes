@@ -186,7 +186,7 @@ function addProjectToNavbar(project, containerForProjectCards) {
     pinnedProjectsContainer.appendChild(pinnedProjAndNotes);
     pinnedProjAndNotes.appendChild(pinnedProject);*/
 
-    pinnedProject.addEventListener('click', () => flipDropdown(project));
+    //pinnedProject.addEventListener('click', () => flipDropdown(project));
     roundedDiv.addEventListener('click', () => flipDropdown(project));
 }
 
