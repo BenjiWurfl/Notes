@@ -222,7 +222,7 @@ function updatePinnedItems() {
 
     const addProjectDiv = document.createElement('div');
     addProjectDiv.classList.add('rounded');
-    addProjectDiv.innerHTML = '<div onclick="my_modal_1.showModal()" class="w-full h-32 flex justify-center bg-[#170E48] rounded-lg border border-yellow-400 mb-6 py-5 px-4 cursor-pointer">\n' +
+    addProjectDiv.innerHTML = '<div onclick="my_modal_1.showModal()" class="w-full h-27 justify-center bg-[#170E48] rounded-lg border border-yellow-400 mb-6 py-5 px-4 cursor-pointer">\n' +
         '                <div>\n' +
         '                    <h4 class="text-white text-center font-bold mb-3"> Add Project </h4>\n' +
         '                </div>\n' +
