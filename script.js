@@ -147,7 +147,7 @@ function addProjectToNavbar(project, containerForProjectCards) {
 
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="w-full h-32 flex flex-col justify-between bg-[#3019bd] rounded-lg border border-yellow-400 mb-6 py-5 px-4">\n' +
+    roundedDiv.innerHTML = '<div class="w-full h-25 flex flex-col justify-between bg-[#3019bd] rounded-lg border border-yellow-400 mb-6 py-5 px-4">\n' +
         '                <div>\n' +
         '                    <h4 class="text-white text-center font-bold mb-3">' + project.title + '</h4>\n' +
         '                </div>\n' +
@@ -159,7 +159,7 @@ function addProjectToNavbar(project, containerForProjectCards) {
         '                        <p class="text-sm  ml-1">' + project.dueDate.toLocaleDateString("en-us") + '</p>\n' +
         '                    </div>\n' +
         '                </div>\n' +
-        '            </div>'
+        '            </div>';
     containerForProjectCards.appendChild(roundedDiv);
 
     let dueDate = project.dueDate.toLocaleDateString("en-us");
@@ -178,13 +178,13 @@ function addProjectToNavbar(project, containerForProjectCards) {
                     <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">${projectTitle}</span>
                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                        </svg>`
+                        </svg>`;
 
-    pinnedProjectsContainer.appendChild(pinnedProjAndNotes)
+    pinnedProjectsContainer.appendChild(pinnedProjAndNotes);
     pinnedProjAndNotes.appendChild(pinnedProject);
 
-    pinnedProject.addEventListener('click', () => flipDropdown(project))
-
+    pinnedProject.addEventListener('click', () => flipDropdown(project));
+    roundedDiv.addEventListener('click', () => flipDropdown(project));
 }
 
 function updatePinnedNotes() {
@@ -202,6 +202,10 @@ function updatePinnedNotes() {
 function updatePinnedItems() {
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
     projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate);
+
+    const richTextEditor = document.querySelector('.textEditor');
+    richTextEditor.classList.add('hidden');
+
 
     const containerForProjectCards = document.querySelector('.container-for-cards');
     containerForProjectCards.innerHTML = "";
