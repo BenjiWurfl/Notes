@@ -465,3 +465,14 @@ function findAdd(select) {
         let newCategory = prompt("Enter a name of the new Category: ");
     }
 }
+
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.getElementById('sidebar-multi-level-sidebar');
+
+sidebarToggle.addEventListener('click', function () {
+    if (sidebar.classList.contains('sm:hidden')) {
+        sidebar.classList.remove('sm:hidden');
+    } else {
+        sidebar.classList.add('sm:hidden');
+    }
+});
