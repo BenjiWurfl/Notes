@@ -217,11 +217,17 @@ function updatePinnedItems() {
     const containerForCards = document.querySelector('.container-for-cards');
     containerForCards.classList.remove('hidden');
 
-
-
-
     const containerForProjectCards = document.querySelector('.container-for-cards');
     containerForProjectCards.innerHTML = "";
+
+    const addProjectDiv = document.createElement('div');
+    addProjectDiv.classList.add('rounded');
+    addProjectDiv.innerHTML = '<div onclick="my_modal_1.showModal()" class="w-full h-25 flex flex-col justify-between bg-[#170E48] rounded-lg border border-yellow-400 mb-6 py-5 px-4 cursor-pointer">\n' +
+        '                <div>\n' +
+        '                    <h4 class="text-white text-center font-bold mb-3"> Add Project </h4>\n' +
+        '                </div>\n' +
+        '            </div>';
+    containerForProjectCards.appendChild(addProjectDiv);
 
 
     projectsArr.forEach((project, index) => {
