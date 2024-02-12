@@ -91,6 +91,7 @@ function addNoteToNavbar(note) {
         noteTitle = noteTitle.substring(0, 12) + '...';
     }
 
+
     const containerForNoteCards = document.querySelector('.container-for-cards');
     containerForNoteCards.innerHTML = "";
     const roundedDiv = document.createElement('div');
