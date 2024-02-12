@@ -14,30 +14,6 @@
 
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-<aside id="sidebar-multi-level-sidebar"
-       class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform
-       bg-gray-50 hidden"
-       aria-label="sidebar-multi-level-sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 border-r-2">
-        <ul class="space-y-2 font-medium nav-content">
-            <li>
-                <button type="button" onclick="my_modal_1.showModal()"
-                        class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-blue-700 hover:text-white"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true"
-                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-                    </svg>
-                    <span class="flex-1 ms-3 text-left whitespace-nowrap">Add a Project</span>
-                </button>
-            </li>
-            <li>
-                <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                </ul>
-            </li>
-        </ul>
-    </div>
-</aside>
 
 
 <dialog id="my_modal_1" class="modal">
