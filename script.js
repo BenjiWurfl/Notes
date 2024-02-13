@@ -220,12 +220,13 @@ function updatePinnedItems() {
     const containerForProjectCards = document.querySelector('.container-for-cards');
     containerForProjectCards.innerHTML = "";
 
+    const title = document.createElement('div');
+    title.classList.add('text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
+    title.innerHTML = 'Projects';
+
     const addProjectDiv = document.createElement('div');
     addProjectDiv.classList.add('rounded');
-    addProjectDiv.innerHTML = '' +
-        '<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 container-for-cards">\n' +
-        '    <div class="sm:col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4">\n' +
-        '<div onclick="my_modal_1.showModal()" class="w-full h-25 justify-center bg-[#170E48] rounded-lg border border-yellow-400 mb-6 py-5 px-4 cursor-pointer">\n' +
+    addProjectDiv.innerHTML = '<div onclick="my_modal_1.showModal()" class="w-full h-25 col-span-4 justify-center bg-[#170E48] rounded-lg border border-yellow-400 mb-6 py-5 px-4 cursor-pointer">\n' +
         '                <div>\n' +
         '                    <h4 class="text-white text-center font-bold mb-3"> Add Project </h4>\n' +
         '                </div>\n' +
@@ -235,9 +236,8 @@ function updatePinnedItems() {
         '                        </svg>\n' +
         '                        <p class="text-sm  ml-1"></p>\n' +
         '                    </div>\n' +
-        '       </div>\n' +
-        '   </div>' +
         '</div>';
+    containerForProjectCards.appendChild(title);
     containerForProjectCards.appendChild(addProjectDiv);
 
 
