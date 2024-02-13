@@ -223,7 +223,7 @@ function updatePinnedItems() {
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
     title.innerHTML = 'Projects' +
-        '<div class="ml-4 bg-[#ab7fff] w-10 h-10 font-bold text-xl text-white rounded cursor-pointer flex justify-center items-center"> + </div>';
+        '<div class="ml-4 bg-[#cbd2ff] w-10 h-10 font-bold text-xl text-white shadow-md rounded cursor-pointer flex justify-center items-center"> + </div>';
     containerForProjectCards.appendChild(title);
 
 
