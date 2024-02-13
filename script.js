@@ -28,6 +28,7 @@ const db = getFirestore(app);
 const auth = getAuth();
 let notesArr = [];
 let projectsArr = []
+let currentProject;
 
 
 
@@ -77,30 +78,22 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function addNoteToNavbar(note, containerForNoteCards) {
-    /*
-    const pinnedNotesContainer = document.querySelector('.nav-content');
-    const pinnedNotes = document.createElement('li');
-    const pinnedNote = document.createElement('button');
-    pinnedNote.type = 'button';
-    pinnedNote.classList.add('projectButton', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
-    pinnedNote.dataset.noteID = note.id;
-    */
 
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="w-full h-25 flex flex-col justify-between bg-transparent rounded-lg border border-[#3019bd] mb-6 py-5 px-4 cursor-pointer">\n' +
-        '                <div>\n' +
-        '                    <h4 class="text-[#3019bd] text-center font-bold mb-3">' + note.title + '</h4>\n' +
-        '                </div>\n' +
-        '                <div>\n' +
-        '                    <div class="flex items-center text-[#3019bd] justify-center">\n' +
-        '                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="[#3019bd]" stroke-linecap="round" stroke-linejoin="round">\n' +
-        '                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 14.707L11 12.414V6h2v5.586l3.707 3.707-1.414 1.414z"></path>\n' +
-        '                        </svg>\n' +
-        '                        <p class="text-sm  ml-1">' + note.lastUpdated.toLocaleDateString("en-us") + '</p>\n' +
-        '                    </div>\n' +
-        '                </div>\n' +
-        '            </div>'
+    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-200 cursor-pointer transition-all ease-in-out duration-300">\n' +
+        '                <div class="bg-[#3019bd] rounded-lg items-center">' +
+        '                    <h4 class="text-white text-center font-bold">' + note.title + '</h4>' +
+        '                </div>' +
+        '                <div>' +
+        '                    <div class="flex items-center text-[#3019bd] justify-center mt-5">' +
+        '                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="#3019bd" stroke-linecap="round" stroke-linejoin="round">' +
+        '                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 14.707L11 12.414V6h2v5.586l3.707 3.707-1.414 1.414z"></path>' +
+        '                        </svg>' +
+        '                        <p class="text-sm  ml-1">' + note.lastUpdated.toLocaleDateString("en-us") + '</p>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>';
     containerForNoteCards.appendChild(roundedDiv);
 
     let lastUpdated = note.lastUpdated.toLocaleDateString("en-us");
@@ -109,16 +102,6 @@ function addNoteToNavbar(note, containerForNoteCards) {
     if (noteTitle.length > 14) {
         noteTitle = noteTitle.substring(0, 12) + '...';
     }
-
-
-    /*  pinnedNote.innerHTML = `<svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-                                 <path d="M12.186 14.552c-.617 0-.977.587-.977 1.373 0 .791.371 1.35.983 1.35.617 0 .971-.588.971-1.374 0-.726-.348-1.349-.977-1.349z"></path><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM9.155 17.454c-.426.354-1.073.521-1.864.521-.475 0-.81-.03-1.038-.06v-3.971a8.16 8.16 0 0 1 1.235-.083c.768 0 1.266.138 1.655.432.42.312.684.81.684 1.522 0 .775-.282 1.309-.672 1.639zm2.99.546c-1.2 0-1.901-.906-1.901-2.058 0-1.211.773-2.116 1.967-2.116 1.241 0 1.919.929 1.919 2.045-.001 1.325-.805 2.129-1.985 2.129zm4.655-.762c.275 0 .581-.061.762-.132l.138.713c-.168.084-.546.174-1.037.174-1.397 0-2.117-.869-2.117-2.021 0-1.379.983-2.146 2.207-2.146.474 0 .833.096.995.18l-.186.726a1.979 1.979 0 0 0-.768-.15c-.726 0-1.29.438-1.29 1.338 0 .809.48 1.318 1.296 1.318zM14 9h-1V4l5 5h-4z"></path><path d="M7.584 14.563c-.203 0-.335.018-.413.036v2.645c.078.018.204.018.317.018.828.006 1.367-.449 1.367-1.415.006-.84-.485-1.284-1.271-1.284z"></path>
-                             </svg>
-                     <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">${noteTitle}</span>`
-     pinnedNotesContainer.appendChild(pinnedNotes)
-     pinnedNotes.appendChild(pinnedNote);
-
-     pinnedNote.addEventListener('click', () => loadDataOfNote(note))*/
     roundedDiv.addEventListener('click', () => loadDataOfNote(note));
 }
 
@@ -140,14 +123,6 @@ function loadDataOfNote(note) {
 
 
 function addProjectToNavbar(project, containerForProjectCards) {
-    /*const pinnedProjectsContainer = document.querySelector('.nav-content');
-    const pinnedProjAndNotes = document.createElement('li');
-    const pinnedProject = document.createElement('button');
-    pinnedProject.type = 'button';
-    pinnedProject.classList.add('projectButton', 'flex', 'items-center', 'w-full', 'p-2', 'text-gray-900', 'transition', 'duration-75', 'rounded-lg', 'group', 'hover:bg-gray-100');
-    pinnedProject.dataset.projectID = project.id;
-    pinnedProject.dataset.isDropdown = "false";*/
-
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-200 cursor-pointer transition-all ease-in-out duration-300">\n' +
@@ -173,34 +148,22 @@ function addProjectToNavbar(project, containerForProjectCards) {
         projectTitle = projectTitle.substring(0, 12) + '...';
     }
 
-    /*pinnedProject.innerHTML = `<i class='bx bx-chevron-down dropdown'></i>
-        <span id="projecttitle">${projectTitle}</span>
-        <span id="last-updated">${dueDate}</span>`*/
-    /*pinnedProject.innerHTML = `<svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-                         <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2z"></path>
-                    </svg>
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">${projectTitle}</span>
-                       <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-                           <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                        </svg>`;
-
-    pinnedProjectsContainer.appendChild(pinnedProjAndNotes);
-    pinnedProjAndNotes.appendChild(pinnedProject);*/
-
-    //pinnedProject.addEventListener('click', () => flipDropdown(project));
     roundedDiv.addEventListener('click', () => flipDropdown(project));
 }
 
-function updatePinnedNotes() {
+function updatePinnedNotes(project) {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
+    currentProject = project;
     const containerForNoteCards = document.querySelector('.container-for-cards');
     containerForNoteCards.innerHTML = "";
+    containerForNoteCards.classList.remove('hidden');
 
-    const containerForCards = document.querySelector('.container-for-cards');
-    containerForCards.classList.remove('hidden');
-
-
+    const title = document.createElement('div');
+    title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
+    title.innerHTML = 'Notes' +
+        '<div onclick="addNewNote(currentProject)" class="ml-4 bg-[#3019bd] w-10 h-10 font-bold text-xl text-white shadow-md rounded cursor-pointer flex justify-center items-center"> + </div>';
+    containerForNoteCards.appendChild(title);
 
     console.log("Update")
     notesArr.forEach((note, index) => {
@@ -215,10 +178,9 @@ function updatePinnedItems() {
     const richTextEditor = document.querySelector('.textEditor');
     richTextEditor.classList.add('hidden');
 
-    const containerForCards = document.querySelector('.container-for-cards');
-    containerForCards.classList.remove('hidden');
 
     const containerForProjectCards = document.querySelector('.container-for-cards');
+    containerForProjectCards.classList.remove('hidden');
     containerForProjectCards.innerHTML = "";
 
     const title = document.createElement('div');
@@ -232,35 +194,6 @@ function updatePinnedItems() {
         addProjectToNavbar(project, containerForProjectCards);
     })
 
-    // Durchlaufe alle Notizen und füge sie zur Sidebar hinzu
-    /*notesArr.forEach((noteObj, index) => {
-        const pinnedItem = document.createElement('div');
-        pinnedItem.classList.add('nav-project');
-        pinnedItem.dataset.noteId = noteObj.id;
-        let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-        let noteDate = noteObj.lastUpdated.toLocaleDateString("en-us");
-        let noteTitle = noteObj.title;
-        // Truncate the text content to 15 characters
-        if (noteTitle.length > 15) {
-            noteTitle = noteTitle.substring(0, 13) + '...';
-        }
-
-        pinnedItem.innerHTML = `<span>${noteTitle}</span><span id="last-updated">${noteDate}</span>`
-
-
-        // Füge einen Klick-Eventlistener hinzu, um die Notiz zu öffnen oder bearbeiten
-        pinnedItem.addEventListener('click', () => {
-            // Hier kannst du die Logik hinzufügen, um die Notiz zu öffnen oder zu bearbeiten
-            document.getElementById('title').innerHTML = noteObj.title;
-            document.getElementById('title').dataset.noteId = noteObj.id;
-            document.getElementById('text-content').innerHTML = noteObj.body;
-            document.getElementById('text-content').dataset.noteId = noteObj.id;
-
-            document.getElementById('text-content').focus()
-        });
-
-        pinnedItemsContainer.appendChild(pinnedItem);
-    });*/
 }
 
 function deleteNote(noteId) {
@@ -429,34 +362,6 @@ function flipDropdown(project) {
 
 
 function loadNotesOfProject(project) {
-
-    /*const navContent = document.querySelector('.nav-content');
-
-    navContent.innerHTML = '';
-    const addNotesButtonLi = document.createElement('li');
-    const addNotesButton = document.createElement('button');
-    addNotesButton.classList.add("flex", "w-full", "p-2", "text-white", "transition", "duration-75", "rounded-lg", "group", "bg-blue-700", "hover:text-white");
-    addNotesButton.innerHTML = '' +
-        '                   <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
-        '                       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>' +
-        '                    </svg>' +
-        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"> Add a Note </span>'
-    addNotesButton.addEventListener('click', () => addNewNote(project));
-    addNotesButtonLi.appendChild(addNotesButton);
-    navContent.appendChild(addNotesButtonLi);
-
-    const backToProjectsLi = document.createElement('li');
-    const backToProjectsButton = document.createElement('button');
-    backToProjectsButton.classList.add("flex", "items-center", "w-full", "p-2", "text-gray-900", "transition", "duration-75", "rounded-lg", "group", "hover:bg-gray-100");
-    backToProjectsButton.innerHTML = '' +
-        '                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
-        '                       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>' +
-        '                    </svg>' +
-        '                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">' + project.title + '</span>'
-    backToProjectsButton.addEventListener('click', () => showNotes());
-    backToProjectsLi.appendChild(backToProjectsButton);
-    navContent.appendChild(backToProjectsLi);*/
-
     notesArr.length = 0;
     const user = auth.currentUser;
     if (user) {
@@ -470,7 +375,7 @@ function loadNotesOfProject(project) {
 
                     notesArr.push(note);
                 });
-                updatePinnedNotes();
+                updatePinnedNotes(project);
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
