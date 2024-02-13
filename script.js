@@ -410,5 +410,6 @@ addBtn.addEventListener('click', (e) => {
 });
 
 document.querySelector('.back-to-notes').addEventListener('click', () => {
+    document.querySelector('.textEditor').classList.add('hidden');
     loadNotesOfProject(currentProject);
 })
