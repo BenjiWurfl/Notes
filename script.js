@@ -276,12 +276,6 @@ document.getElementById('title').addEventListener('input', function () {
     note.lastUpdated = new Date();
     notesArr.push(note);
     updateNoteToFirestore(note);
-
-    const project = projectsArr.find((project) => project.id === note.parentProject); // Hier wurde project.id === note.parentProject korrigiert
-
-    console.log("Project: ", project);
-
-    loadNotesOfProject(project);
 });
 
 document.getElementById('text-content').addEventListener('input', function () {
