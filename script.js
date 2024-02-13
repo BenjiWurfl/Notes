@@ -35,16 +35,6 @@ let currentProject;
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 function showNotes() {
-    /*const navContent = document.querySelector('.nav-content');
-    navContent.innerHTML = '';
-    navContent.innerHTML = '<li>\n' +
-        '                <button type="button" onclick="my_modal_1.showModal()" class="flex w-full p-2 text-white transition duration-75 rounded-lg group bg-[#3019bd] hover:text-white" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">\n' +
-        '                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">\n' +
-        '                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>\n' +
-        '                    </svg>\n' +
-        '                    <span class="flex-1 ms-3 text-left whitespace-nowrap">Add a Project</span>\n' +
-        '                </button>\n' +
-        '            </li>';*/
     projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
@@ -81,7 +71,7 @@ function addNoteToNavbar(note, containerForNoteCards) {
 
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-200 cursor-pointer transition-all ease-in-out duration-300">\n' +
+    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
         '                <div class="bg-[#3019bd] rounded-lg items-center">' +
         '                    <h4 class="text-white text-center font-bold">' + note.title + '</h4>' +
         '                </div>' +
@@ -125,7 +115,7 @@ function loadDataOfNote(note) {
 function addProjectToNavbar(project, containerForProjectCards) {
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-200 cursor-pointer transition-all ease-in-out duration-300">\n' +
+    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
         '                <div class="bg-[#3019bd] rounded-lg items-center">' +
         '                    <h4 class="text-white text-center font-bold">' + project.title + '</h4>' +
         '                </div>' +
@@ -411,10 +401,3 @@ addBtn.addEventListener('click', (e) => {
     addProjectToFirestore(newProject);
 
 });
-
-function findAdd(select) {
-    console.log(select.value);
-    if (select.value === "Add") {
-        let newCategory = prompt("Enter a name of the new Category: ");
-    }
-}
