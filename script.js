@@ -150,7 +150,7 @@ function addProjectToNavbar(project, containerForProjectCards) {
 
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="w-full h-25 flex flex-col justify-between bg-[#3019bd] hover:bg-[#27139d] rounded-lg border shadow-md mb-6 py-5 px-4 cursor-pointer">\n' +
+    roundedDiv.innerHTML = '<div class="w-full h-25 flex flex-col justify-between bg-[#401cdc] hover:bg-[#3019bd] rounded-lg border shadow-md mb-6 py-5 px-4 cursor-pointer">\n' +
         '                <div>\n' +
         '                    <h4 class="text-white text-center font-bold mb-3">' + project.title + '</h4>\n' +
         '                </div>\n' +
@@ -223,7 +223,7 @@ function updatePinnedItems() {
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
     title.innerHTML = 'Projects' +
-        '<div class="ml-4 bg-[#cbd2ff] w-10 h-10 font-bold text-xl text-white shadow-md rounded cursor-pointer flex justify-center items-center"> + </div>';
+        '<div class="ml-4 bg-[#3019bd] w-10 h-10 font-bold text-xl text-white shadow-md rounded cursor-pointer flex justify-center items-center"> + </div>';
     containerForProjectCards.appendChild(title);
 
 
