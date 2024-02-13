@@ -144,7 +144,6 @@ function addProjectToNavbar(project, containerForProjectCards) {
 function updatePinnedNotes(project) {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
-    currentProject = project;
     const overDiv = document.querySelector('.over-div');
     overDiv.classList.remove('hidden');
     const containerForNoteCards = document.querySelector('.container-for-cards');
@@ -353,6 +352,8 @@ function formatDoc(cmd, value = null) {
 
 function flipDropdown(project) {
 
+    currentProject = project;
+
     loadNotesOfProject(project);
 }
 
@@ -407,3 +408,7 @@ addBtn.addEventListener('click', (e) => {
     addProjectToFirestore(newProject);
 
 });
+
+document.querySelector('.back-to-notes').addEventListener('click', () => {
+    loadNotesOfProject(currentProject);
+})
