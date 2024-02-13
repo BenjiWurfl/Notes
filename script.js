@@ -221,11 +221,13 @@ function updatePinnedItems() {
     containerForProjectCards.innerHTML = "";
 
     const title = document.createElement('div');
-    title.classList.add('text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
-    title.innerHTML = 'Projects' + '<div class="bg-[#8E2CDE] w-5 rounded"><svg  onclick ="my_modal_1.showModal()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="white" stroke-linecap="round" stroke-linejoin="round">' +
-        '                                         <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>' +
-        '                                   </svg>' +
-        '                               </div>';
+    title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
+    title.innerHTML = 'Projects' +
+        '<div class="ml-2 bg-[#8E2CDE] w-5 rounded cursor-pointer">' +
+        '   <svg onclick="my_modal_1.showModal()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="white" stroke-linecap="round" stroke-linejoin="round">' +
+        '       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>' +
+        '   </svg>' +
+        '</div>';
     containerForProjectCards.appendChild(title);
 
 
