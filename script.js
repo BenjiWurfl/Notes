@@ -99,7 +99,7 @@ function loadDataOfNote(note) {
     const richTextEditor = document.querySelector('.textEditor');
     richTextEditor.classList.remove('hidden');
 
-    const containerForCards = document.querySelector('.container-for-cards');
+    const containerForCards = document.querySelector('.over-div');
     containerForCards.classList.add('hidden');
 
     document.getElementById('title').innerHTML = note.title;
@@ -145,9 +145,10 @@ function updatePinnedNotes(project) {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
     currentProject = project;
-    const containerForNoteCards = document.querySelector('.container-for-cards');
-    containerForNoteCards.innerHTML = "";
-    containerForNoteCards.classList.remove('hidden');
+    const overDiv = document.querySelector('.over-div');
+    overDiv.classList.remove('hidden');
+    const containerForProjectCards = document.querySelector('.container-for-cards');
+    containerForProjectCards.innerHTML = "";
 
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
@@ -169,8 +170,9 @@ function updatePinnedItems() {
     richTextEditor.classList.add('hidden');
 
 
+    const overDiv = document.querySelector('.over-div');
+    overDiv.classList.remove('hidden');
     const containerForProjectCards = document.querySelector('.container-for-cards');
-    containerForProjectCards.classList.remove('hidden');
     containerForProjectCards.innerHTML = "";
 
     const title = document.createElement('div');
