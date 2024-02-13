@@ -153,8 +153,8 @@ function updatePinnedNotes(project) {
     addNoteButton.innerHTML = '+';
     addNoteButton.addEventListener('click', () => addNewNote(project));
     title.append(addNoteButton);
-    backToProjectsButton.append(title);
     containerForNoteCards.appendChild(backToProjectsButton);
+    containerForNoteCards.appendChild(title);
 
     console.log("Update")
     notesArr.forEach((note, index) => {
