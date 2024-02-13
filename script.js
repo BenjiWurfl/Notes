@@ -152,7 +152,7 @@ function updatePinnedNotes(project) {
 
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
-    title.innerHTML = 'Notes';
+    title.innerHTML = 'Notes of <span class="bg-[#3019bd] text-white rounded-2xl"> ' + project.title + '';
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('ml-4', 'bg-[#3019bd]', 'w-10', 'h-10', 'font-bold', 'text-xl', 'text-white', 'shadow-md', 'rounded', 'cursor-pointer', 'flex', 'justify-center', 'items-center')
     addNoteButton.addEventListener('click', () => addNewNote(project));
