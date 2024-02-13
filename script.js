@@ -155,6 +155,7 @@ function updatePinnedNotes(project) {
     title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2"> ' + project.title + '</span>';
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('ml-4', 'bg-[#3019bd]', 'w-10', 'h-10', 'font-bold', 'text-xl', 'text-white', 'shadow-md', 'rounded', 'cursor-pointer', 'flex', 'justify-center', 'items-center')
+    addNoteButton.innerHTML = '+';
     addNoteButton.addEventListener('click', () => addNewNote(project));
     title.append(addNoteButton);
     containerForNoteCards.appendChild(title);
