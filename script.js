@@ -222,18 +222,10 @@ function updatePinnedItems() {
 
     const title = document.createElement('div');
     title.classList.add('text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
-    title.innerHTML = 'Projects' +
-        '<div onclick="my_modal_1.showModal()" class="w-1/4 h-25 justify-center bg-[#170E48] rounded-lg border mb-6 py-5 px-4 cursor-pointer">' +
-        '                       <div>' +
-        '                            <h4 class="text-white text-center font-bold mb-3"> Add Project </h4>' +
-        '                        </div>' +
-        '                        <div class="flex items-center text-white justify-center">' +
-        '                               <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="white" stroke-linecap="round" stroke-linejoin="round">' +
-        '                                    <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>' +
-        '                                </svg>' +
-        '                                <p class="text-sm  ml-1"></p>' +
-        '                            </div>' +
-        '        </div>';
+    title.innerHTML = 'Projects' + '<svg  onclick ="my_modal_1.showModal()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="white" stroke-linecap="round" stroke-linejoin="round">' +
+        '                                         <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>' +
+        '                                   </svg>';
+
 
     const addProjectDiv = document.createElement('div');
     addProjectDiv.classList.add('rounded', 'col-span-4');
