@@ -223,7 +223,7 @@ function updatePinnedItems() {
     const title = document.createElement('div');
     title.classList.add('text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
     title.innerHTML = 'Projects' +
-        '<div onclick="my_modal_1.showModal()" class="col-span-1 h-25 justify-center bg-[#170E48] rounded-lg border mb-6 py-5 px-4 cursor-pointer">' +
+        '<div onclick="my_modal_1.showModal()" class="w-1/4 h-25 justify-center bg-[#170E48] rounded-lg border mb-6 py-5 px-4 cursor-pointer">' +
         '                       <div>' +
         '                            <h4 class="text-white text-center font-bold mb-3"> Add Project </h4>' +
         '                        </div>' +
