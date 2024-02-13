@@ -68,7 +68,6 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function addNoteToNavbar(note, containerForNoteCards) {
-
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
@@ -130,14 +129,6 @@ function addProjectToNavbar(project, containerForProjectCards) {
         '            </div>';
     containerForProjectCards.appendChild(roundedDiv);
 
-
-    let dueDate = project.dueDate.toLocaleDateString("en-us");
-    let projectTitle = project.title;
-    // Truncate the text content to 15 characters
-    if (projectTitle.length > 14) {
-        projectTitle = projectTitle.substring(0, 12) + '...';
-    }
-
     roundedDiv.addEventListener('click', () => flipDropdown(project));
 }
 
@@ -148,6 +139,13 @@ function updatePinnedNotes(project) {
     overDiv.classList.remove('hidden');
     const containerForNoteCards = document.querySelector('.container-for-cards');
     containerForNoteCards.innerHTML = "";
+
+    const backToProjectsButton = document.createElement('div');
+    backToProjectsButton.classList.add('back-to-projects', 'text-[#3019bd]', 'font-bold', 'text-lg', 'cursor-pointer');
+    backToProjectsButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#3019bd">\n' +
+        '                   <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>\n' +
+        '             </svg>\n' +
+        '            Back to projects'
 
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
@@ -412,4 +410,8 @@ addBtn.addEventListener('click', (e) => {
 document.querySelector('.back-to-notes').addEventListener('click', () => {
     document.querySelector('.textEditor').classList.add('hidden');
     loadNotesOfProject(currentProject);
-})
+});
+
+function backToProjects() {
+    showNotes();
+}
