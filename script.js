@@ -146,6 +146,7 @@ function updatePinnedNotes(project) {
         '                   <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>\n' +
         '             </svg>\n' +
         '            Back to projects'
+    backToProjectsButton.addEventListener('click', () => backToProjects());
 
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
