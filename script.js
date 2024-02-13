@@ -150,18 +150,18 @@ function addProjectToNavbar(project, containerForProjectCards) {
 
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="w-full h-25 flex flex-col justify-between bg-[#401cdc] hover:bg-[#3019bd] rounded-lg border shadow-md mb-6 py-5 px-4 cursor-pointer">\n' +
-        '                <div>\n' +
-        '                    <h4 class="text-white text-center font-bold mb-3">' + project.title + '</h4>\n' +
-        '                </div>\n' +
-        '                <div>\n' +
-        '                    <div class="flex items-center text-white justify-center">\n' +
-        '                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="white" stroke-linecap="round" stroke-linejoin="round">\n' +
-        '                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 14.707L11 12.414V6h2v5.586l3.707 3.707-1.414 1.414z"></path>\n' +
-        '                        </svg>\n' +
-        '                        <p class="text-sm  ml-1">' + project.dueDate.toLocaleDateString("en-us") + '</p>\n' +
-        '                    </div>\n' +
-        '                </div>\n' +
+    roundedDiv.innerHTML = '<div class="w-full h-25 flex flex-col justify-between bg-transparent hover:bg-[#3019bd] rounded-lg border shadow-lg mb-6 py-5 px-4 cursor-pointer">\n' +
+        '                <div class="bg-[#3019bd] rounded">' +
+        '                    <h4 class="text-white text-center font-bold mb-3">' + project.title + '</h4>' +
+        '                </div>' +
+        '                <div>' +
+        '                    <div class="flex items-center text-white justify-center">' +
+        '                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" fill="white" stroke-linecap="round" stroke-linejoin="round">' +
+        '                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 14.707L11 12.414V6h2v5.586l3.707 3.707-1.414 1.414z"></path>' +
+        '                        </svg>' +
+        '                        <p class="text-sm  ml-1">' + project.dueDate.toLocaleDateString("en-us") + '</p>' +
+        '                    </div>' +
+        '                </div>' +
         '            </div>';
     containerForProjectCards.appendChild(roundedDiv);
 
