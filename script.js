@@ -150,7 +150,7 @@ function addProjectToNavbar(project, containerForProjectCards) {
 
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
-    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:px-0 hover:shadow-2xl cursor-pointer hover:transition hover:ease-in-out">\n' +
+    roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:px-0 hover:shadow-2xl cursor-pointer transition ease-in-out duration-300">\n' +
         '                <div class="bg-[#3019bd] rounded-lg items-center">' +
         '                    <h4 class="text-white text-center font-bold">' + project.title + '</h4>' +
         '                </div>' +
@@ -164,6 +164,7 @@ function addProjectToNavbar(project, containerForProjectCards) {
         '                </div>' +
         '            </div>';
     containerForProjectCards.appendChild(roundedDiv);
+
 
     let dueDate = project.dueDate.toLocaleDateString("en-us");
     let projectTitle = project.title;
