@@ -150,7 +150,7 @@ function updatePinnedNotes(project) {
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
     title.append(backToProjectsButton);
-    title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
+    title.append('Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>');
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('ml-4', 'bg-[#3019bd]', 'w-10', 'h-10', 'font-bold', 'text-xl', 'text-white', 'shadow-md', 'rounded', 'cursor-pointer', 'flex', 'justify-center', 'items-center')
     addNoteButton.innerHTML = '+';
