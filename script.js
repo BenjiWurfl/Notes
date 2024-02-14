@@ -146,8 +146,8 @@ function updatePinnedNotes(project) {
     backToProjectsButton.addEventListener('click', () => backToProjects());
 
     const title = document.createElement('div');
-    title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'col-span-4', 'p-4', 'w-full', 'font-bold', 'text-center');
-    title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
+    title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'col-span-4', 'px-4', 'w-full', 'font-bold', 'text-center');
+    title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-0 ml-3"> ' + project.title + '</span>';
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('ml-4', 'bg-[#3019bd]', 'w-10', 'h-10', 'font-bold', 'text-xl', 'text-white', 'shadow-md', 'rounded', 'cursor-pointer', 'flex', 'justify-center', 'items-center')
     addNoteButton.innerHTML = '+';
