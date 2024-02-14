@@ -433,7 +433,7 @@ function editProject(project) {
         project.title = modalName.value;
     });
     modalDate.addEventListener('change', () => {
-        project.dueDate = new Date(modalDate.value);
+        project.dueDate = new Date(modalDate.value + "T00:00");
     });
     modalCategory.addEventListener('change', () => {
         project.category = modalCategory.value;
