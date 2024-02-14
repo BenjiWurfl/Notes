@@ -227,7 +227,7 @@ a {
     display: flex;
     flex-direction: column; /* Änderung: Flexbox in Spaltenrichtung */
     align-items: center;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px lightgrey;
     clip-path: inset(0px -10px -10px -10px); /* Entfernen vom Schatten oben */
 }
 
