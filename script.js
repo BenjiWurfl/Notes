@@ -418,17 +418,16 @@ function backToProjects() {
 }
 
 function editProject(project) {
-    my_modal_1.showModal();
+    my_modal_2.showModal();
 
-    const modalName = document.querySelector('.inputTitle');
-    const modalDate = document.querySelector('.inputDate');
-    const modalCategory = document.querySelector('#category');
-    const submit = document.querySelector('.submit-btn');
+    const modalName = document.querySelector('.input-name');
+    const modalDate = document.querySelector('.input-date');
+    const modalCategory = document.querySelector('.input-category');
+    const submit = document.querySelector('.update-project');
 
     modalName.value = project.title;
     modalDate.value = project.dueDate.valueAsDate;
     modalCategory.value = project.category;
-    submit.innerHTML = "Update";
 
 
 }
