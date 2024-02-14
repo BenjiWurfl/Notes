@@ -141,7 +141,7 @@ function updatePinnedNotes(project) {
     containerForNoteCards.innerHTML = "";
 
     const backToProjectsButton = document.createElement('div');
-    backToProjectsButton.classList.add('back-to-projects', 'col-span-4', 'px-4', 'w-full', 'text-[#3019bd]', 'text-lg', 'cursor-pointer');
+    backToProjectsButton.classList.add('back-to-projects', 'col-span-4', 'px-4', 'w-full', 'text-[#3019bd]', 'text-md', 'cursor-pointer');
     backToProjectsButton.innerHTML = '< back to projects'
     backToProjectsButton.addEventListener('click', () => backToProjects());
 
