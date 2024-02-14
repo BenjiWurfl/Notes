@@ -142,7 +142,7 @@ header .image-text .profession {
     border-radius: 6px;
 }
 
-.sidebar header .toggle {
+.sidebar header .toggle-sidebar {
     position: absolute;
     top: 50%;
     right: -25px;
@@ -160,11 +160,11 @@ header .image-text .profession {
     transition: var(--tran-05);
 }
 
-body.dark .sidebar header .toggle {
+body.dark .sidebar header .toggle-sidebar {
     color: var(--text-color);
 }
 
-.sidebar.close .toggle {
+.sidebar.close .toggle-sidebar {
     transform: translateY(-50%) rotate(0deg);
 }
 
