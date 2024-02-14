@@ -429,7 +429,29 @@ function editProject(project) {
     modalDate.value = project.dueDate.valueAsDate;
     modalCategory.value = project.category;
 
+    modalName.addEventListener('change', () => {
+        project.title = modalName.value;
+    });
+    modalDate.addEventListener('change', () => {
+        project.dueDate = modalDate.value.getDate();
+    });
+    modalCategory.addEventListener('change', () => {
+        project.category = modalName.value;
+    });
 
+    submit.addEventListener('click', () => {
+        const user = auth.currentUser;
+        console.log("Updated project: ", project);
+        if (user) {
+            const projRef = doc(db, "users", user.uid, "projects", project.id);
+            updateDoc(projRef, project)
+                .then(() => {
+                })
+                .catch((error) => {
+                    console.error("Error updating note in Firestore: ", error);
+                });
+        }
+    })
 }
 
 //Navbar
