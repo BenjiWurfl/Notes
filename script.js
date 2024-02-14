@@ -433,10 +433,10 @@ function editProject(project) {
         project.title = modalName.value;
     });
     modalDate.addEventListener('change', () => {
-        project.dueDate = modalDate.value.getDate();
+        project.dueDate = modalDate.value;
     });
     modalCategory.addEventListener('change', () => {
-        project.category = modalName.value;
+        project.category = modalCategory.value;
     });
 
     submit.addEventListener('click', () => {
