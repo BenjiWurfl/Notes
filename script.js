@@ -423,9 +423,10 @@ function editProject(project) {
     const modalName = document.querySelector('.input-name');
     const modalDate = document.querySelector('.input-date');
     const modalCategory = document.querySelector('.input-category');
+    const submit = document.querySelector('.update-project');
 
     modalName.value = project.title;
-    modalDate.value = project.dueDate;
+    modalDate.value = project.dueDate.valueAsDate;
     modalCategory.value = project.category;
 
 
