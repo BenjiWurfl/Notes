@@ -426,7 +426,7 @@ function editProject(project) {
     const submit = document.querySelector('.update-project');
 
     modalName.value = project.title;
-    modalDate.value = project.dueDate.valueAsDate;
+    modalDate.value = project.dueDate.toISOString().substring(0, 10);
     modalCategory.value = project.category;
 
     modalName.addEventListener('change', () => {
