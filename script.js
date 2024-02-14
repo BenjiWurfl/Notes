@@ -43,8 +43,14 @@ function showNotes() {
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const projectData = doc.data();
-                    let dueDate = projectData.dueDate.toDate();
+                    let dueDate;
 
+                    // Überprüfen, ob dueDate bereits ein Date-Objekt ist
+                    if (projectData.dueDate instanceof Date) {
+                        dueDate = projectData.dueDate;
+                    } else {
+                        dueDate = projectData.dueDate.toDate();
+                    }
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
 
                     projectsArr.push(project);
