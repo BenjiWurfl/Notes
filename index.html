@@ -14,50 +14,139 @@
 
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
+<nav class="sidebar close">
+    <header>
+        <div class="image-text">
+              <span class="image">
+                  <img src="images/Thinkwise-Logo-Quadr-Tr.png" alt="">
+              </span>
 
-
-<dialog id="my_modal_1" class="modal">
-    <div class="modal-box bg-white shadow-2xl">
-        <i class="closeIcon bx bx-x bx-lg text-[#3019BD] self-right"></i>
-        <h3 class="font-bold text-lg text-[#3019BD] mb-5 text-center -mt-10">Add Project</h3>
-
-        <input type="text" placeholder="Name of the project"
-               class="input w-full max-w-xl mb-5 inputTitle border-[#3019BD]"/>
-        <p class="text-m text-[#3019BD] my-5 text-center">Due date:</p>
-        <input type="date" class="input w-full max-w-xl inputDate mb-5 border-[#3019BD]"/>
-        <div class="col-span-2 sm:col-span-1">
-            <p class="text-m text-[#3019BD] my-5 text-center">Category</p>
-            <select id="category"
-                    class="bg-gray-50 border border-[#3019BD] text-gray-900 text-sm rounded-lg focus:ring-[#3019BD] block w-full p-2.5">
-                <option selected="">Select category</option>
-                <option value="School">School</option>
-                <option value="Work">Work</option>
-                <option value="Leisure">Leisure Time</option>
-
-            </select>
+            <div class="text logo-text">
+                <span class="name">Thinkwise</span>
+                <span class="profession">App Interface</span>
+            </div>
         </div>
 
-        <div class="modal-action">
-            <form method="dialog">
-                <button class="submit-btn btn content-center bg-[#3019bd] text-white">Submit</button>
-            </form>
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="https://benjiwurfl.github.io/Home/">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Home</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-file icon'></i>
+                        <span class="text nav-text">Projects</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="https://benjiwurfl.github.io/">
+                        <i class='bx bx-calendar icon'></i>
+                        <span class="text nav-text">Calendar</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-edit icon'></i>
+                        <span class="text nav-text">Notes</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="https://benjiwurfl.github.io/MindMaps/">
+                        <i class='bx bx-vector icon'></i>
+                        <span class="text nav-text">MindMaps</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="text nav-text">Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <li class="">
+                <a href="#">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+
         </div>
     </div>
-</dialog>
+</nav>
 
-<div class="p-4 mx-auto container over-div">
 
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 container-for-cards">
+<section class="home">
+
+    <dialog id="my_modal_1" class="modal">
+        <div class="modal-box bg-white shadow-2xl">
+            <i class="closeIcon bx bx-x bx-lg text-[#3019BD] self-right"></i>
+            <h3 class="font-bold text-lg text-[#3019BD] mb-5 text-center -mt-10">Add Project</h3>
+
+            <input type="text" placeholder="Name of the project"
+                   class="input w-full max-w-xl mb-5 inputTitle border-[#3019BD]"/>
+            <p class="text-m text-[#3019BD] my-5 text-center">Due date:</p>
+            <input type="date" class="input w-full max-w-xl inputDate mb-5 border-[#3019BD]"/>
+            <div class="col-span-2 sm:col-span-1">
+                <p class="text-m text-[#3019BD] my-5 text-center">Category</p>
+                <select id="category"
+                        class="bg-gray-50 border border-[#3019BD] text-gray-900 text-sm rounded-lg focus:ring-[#3019BD] block w-full p-2.5">
+                    <option selected="">Select category</option>
+                    <option value="School">School</option>
+                    <option value="Work">Work</option>
+                    <option value="Leisure">Leisure Time</option>
+
+                </select>
+            </div>
+
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="submit-btn btn content-center bg-[#3019bd] text-white">Submit</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <div class="p-4 mx-auto container over-div">
+
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 container-for-cards">
+        </div>
     </div>
-</div>
 
-<div class="container mx-auto textEditor hidden">
-    <div class="back-to-notes text-[#3019bd] font-bold text-md cursor-pointer pt-2">
-        < back to notes
-    </div>
-    <div class="toolbar">
-        <div class="head">
-            <label for="formatSelect"></label><select id="formatSelect">
+    <div class="container mx-auto textEditor hidden">
+        <div class="back-to-notes text-[#3019bd] font-bold text-md cursor-pointer pt-2">
+            < back to notes
+        </div>
+        <div class="toolbar">
+            <div class="head">
+                <label for="formatSelect"></label><select id="formatSelect">
                 <option value="" selected hidden disabled>Format</option>
                 <option value="h1">Heading 1</option>
                 <option value="h2">Heading 2</option>
@@ -67,55 +156,57 @@
                 <option value="h6">Heading 6</option>
                 <option value="p">Paragraph</option>
             </select>
-            <select id="fontSizeSelect">
-                <option value="" selected hidden disabled>Font size</option>
-                <option value="1">Extra small</option>
-                <option value="2">Small</option>
-                <option value="3">Regular</option>
-                <option value="4">Medium</option>
-                <option value="5">Large</option>
-                <option value="6">Extra Large</option>
-                <option value="7">Big</option>
-            </select>
-            <div class="color">
-                <span>Color</span>
-                <input type="color" id="foreColorInput">
-            </div>
-            <div class="color">
-                <span>Background</span>
-                <input type="color" id="hiliteColorInput">
-            </div>
+                <select id="fontSizeSelect">
+                    <option value="" selected hidden disabled>Font size</option>
+                    <option value="1">Extra small</option>
+                    <option value="2">Small</option>
+                    <option value="3">Regular</option>
+                    <option value="4">Medium</option>
+                    <option value="5">Large</option>
+                    <option value="6">Extra Large</option>
+                    <option value="7">Big</option>
+                </select>
+                <div class="color">
+                    <span>Color</span>
+                    <input type="color" id="foreColorInput">
+                </div>
+                <div class="color">
+                    <span>Background</span>
+                    <input type="color" id="hiliteColorInput">
+                </div>
 
+            </div>
+            <div class="btn-toolbar">
+                <button id="undoBtn"><i class='bx bx-undo'></i></button>
+                <button id="redoBtn"><i class='bx bx-redo'></i></button>
+                <button id="boldBtn"><i class='bx bx-bold'></i></button>
+                <button id="underlineBtn"><i class='bx bx-underline'></i></button>
+                <button id="italicBtn"><i class='bx bx-italic'></i></button>
+                <button id="strikeBtn"><i class='bx bx-strikethrough'></i></button>
+                <button id="leftAlignBtn"><i class='bx bx-align-left'></i></button>
+                <button id="centerAlignBtn"><i class='bx bx-align-middle'></i></button>
+                <button id="rightAlignBtn"><i class='bx bx-align-right'></i></button>
+                <button id="justifyBtn"><i class='bx bx-align-justify'></i></button>
+                <button id="orderedListBtn"><i class='bx bx-list-ol'></i></button>
+                <button id="unorderedListBtn"><i class='bx bx-list-ul'></i></button>
+                <button id="linkBtn"><i class='bx bx-link'></i></button>
+                <button id="unlinkBtn"><i class='bx bx-unlink'></i></button>
+                <button id="askAI"><i class='bx bxs-bolt'></i></button>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
         </div>
-        <div class="btn-toolbar">
-            <button id="undoBtn"><i class='bx bx-undo'></i></button>
-            <button id="redoBtn"><i class='bx bx-redo'></i></button>
-            <button id="boldBtn"><i class='bx bx-bold'></i></button>
-            <button id="underlineBtn"><i class='bx bx-underline'></i></button>
-            <button id="italicBtn"><i class='bx bx-italic'></i></button>
-            <button id="strikeBtn"><i class='bx bx-strikethrough'></i></button>
-            <button id="leftAlignBtn"><i class='bx bx-align-left'></i></button>
-            <button id="centerAlignBtn"><i class='bx bx-align-middle'></i></button>
-            <button id="rightAlignBtn"><i class='bx bx-align-right'></i></button>
-            <button id="justifyBtn"><i class='bx bx-align-justify'></i></button>
-            <button id="orderedListBtn"><i class='bx bx-list-ol'></i></button>
-            <button id="unorderedListBtn"><i class='bx bx-list-ul'></i></button>
-            <button id="linkBtn"><i class='bx bx-link'></i></button>
-            <button id="unlinkBtn"><i class='bx bx-unlink'></i></button>
-            <button id="askAI"><i class='bx bxs-bolt'></i></button>
+        <div id="title" contenteditable="true" spellcheck="false">
+            Please select a note to load data.
         </div>
-        <div>
+        <div id="text-content" contenteditable="true" spellcheck="false">
         </div>
-        <div>
-    </div>
-    </div>
-    <div id="title" contenteditable="true" spellcheck="false">
-        Please select a note to load data.
-    </div>
-    <div id="text-content" contenteditable="true" spellcheck="false">
-    </div>
 
-</div>
+    </div>
+</section>
+
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="module" src="script.js"></script>
