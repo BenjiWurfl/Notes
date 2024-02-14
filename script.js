@@ -135,8 +135,8 @@ function addProjectToNavbar(project, containerForProjectCards) {
 function updatePinnedNotes(project) {
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
-    const overDiv = document.querySelector('.over-div');
-    overDiv.classList.remove('hidden');
+    const cardsCompletelyHiddenToggle = document.querySelector('.over-div');
+    cardsCompletelyHiddenToggle.classList.remove('hidden');
     const containerForNoteCards = document.querySelector('.container-for-cards');
     containerForNoteCards.innerHTML = "";
 

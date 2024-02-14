@@ -227,8 +227,8 @@ a {
     display: flex;
     flex-direction: column; /* Änderung: Flexbox in Spaltenrichtung */
     align-items: center;
-    box-shadow: 1px 1px 5px 1px lightgrey;
-
+    box-shadow: 0 0 10px black;
+    clip-path: inset(0px -10px -10px -10px); /* Entfernen vom Schatten oben */
 }
 
 .toolbar .head {
