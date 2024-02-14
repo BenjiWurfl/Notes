@@ -44,8 +44,8 @@ function showNotes() {
                 querySnapshot.forEach(doc => {
                     const projectData = doc.data();
                     console.log("unconv: ", projectData.dueDate)
-                    let dueDate = projectData.dueDate.second;
-                    console.log("conv: ", dueDate);
+                    let dueDate = projectData.dueDate.toDate();
+                    console.log("Conv: ", dueDate);
 
                     const project = {id: doc.id, ...projectData, dueDate: dueDate};
 
