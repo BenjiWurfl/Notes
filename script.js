@@ -26,8 +26,6 @@ const firebaseConfig = {
     measurementId: "G-8957WM4SB7"
 };
 
-require('dotenv').config();
-
 console.log(process.env)
 
 // Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
