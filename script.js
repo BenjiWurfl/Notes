@@ -275,14 +275,29 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => async function () {
+    try {
+        const response = await fetch('https://api.openai.com/v1/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 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' // Ersetzen Sie dies durch Ihren tatsächlichen API-Schlüssel
+            },
+            body: JSON.stringify({
+                model: "text-davinci-003",
+                prompt: "Once upon a time",
+                max_tokens: 5
+            })
+        });
 
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
 
-    const completion = await openai.chat.completions.create({
-        messages: [{role: "system", content: "You are a helpful assistant."}],
-        model: "gpt-3.5-turbo",
-    });
-
-    console.log(completion.choices[0]);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 });
 
 document.getElementById('title').addEventListener('input', function () {
