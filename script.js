@@ -12,10 +12,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-import {config} from "dotenv"
+import OpenAI from 'openai';
 
-config()
-import {Configuration, OpenAIApi} from "openai"
+const openai = new OpenAI({
+    apiKey: process.env['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'], // This is the default and can be omitted
+});
 
 
 const firebaseConfig = {
@@ -278,16 +279,12 @@ document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => async function () {
 
-    const openai = new OpenAIApi(new Configuration({
-        apiKey: process.env.OPENAI_API_KEY
-    }))
+    const chatCompletion = await openai.chat.completions.create({
+        messages: [{role: 'user', content: 'Say this is a test'}],
+        model: 'gpt-3.5-turbo',
+    });
 
-    openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: "Hello ChatGPT"}]
-    }).then(res => {
-        console.log(res);
-    })
+
 });
 
 document.getElementById('title').addEventListener('input', function () {
