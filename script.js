@@ -29,7 +29,7 @@ require('dotenv').config();
 const OpenAI = require('openai');
 
 // Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
+const openai = new OpenAI(process.env.OPEN_API_KEY);
 
 
 const app = initializeApp(firebaseConfig);
