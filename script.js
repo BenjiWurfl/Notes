@@ -13,7 +13,7 @@ import {
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: apiKey,
+    apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
     authDomain: "thinkwise-c7673.firebaseapp.com",
     databaseURL: "https://thinkwise-c7673-default-rtdb.europe-west1.firebasedatabase.app/",
     projectId: "thinkwise-c7673",
