@@ -11,7 +11,6 @@ import {
     Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import OpenAI from "openai";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
@@ -30,9 +29,6 @@ const auth = getAuth();
 let notesArr = [];
 let projectsArr = []
 let currentProject;
-
-const openai = new OpenAI();
-
 
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
@@ -280,7 +276,7 @@ document.getElementById('askAI').addEventListener('click', () => async function 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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' // Ersetzen Sie dies durch Ihren tatsächlichen API-Schlüssel
+                'Authorization': 'Bearer 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' // Ersetzen Sie dies durch Ihren tatsächlichen API-Schlüssel
             },
             body: JSON.stringify({
                 model: "text-davinci-003",
