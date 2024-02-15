@@ -11,8 +11,7 @@ import {
     Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import dotenv from 'dotenv';
-
+import * as dotenv from 'dotenv'
 dotenv.config()
 
 const firebaseConfig = {
