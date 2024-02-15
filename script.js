@@ -12,8 +12,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
+require('dotenv').config();
+
+const apiKey = process.env.OPENAI_API_KEY;
+
 const firebaseConfig = {
-    apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
+    apiKey: apiKey,
     authDomain: "thinkwise-c7673.firebaseapp.com",
     databaseURL: "https://thinkwise-c7673-default-rtdb.europe-west1.firebasedatabase.app/",
     projectId: "thinkwise-c7673",
