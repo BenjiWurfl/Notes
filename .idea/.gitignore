@@ -5,4 +5,4 @@
 /httpRequests/
 
 # Ingore .env file
-.env
+./env

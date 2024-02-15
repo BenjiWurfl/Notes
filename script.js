@@ -12,9 +12,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-require('dotenv').config();
+import {config} from "dotenv"
 
-const apiKey = process.env.OPENAI_API_KEY;
+config()
+import {Configuration, OpenAIApi} from "openai"
+
 
 const firebaseConfig = {
     apiKey: apiKey,
@@ -275,29 +277,17 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => async function () {
-    try {
-        const response = await fetch('https://api.openai.com/v1/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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' // Ersetzen Sie dies durch Ihren tatsächlichen API-Schlüssel
-            },
-            body: JSON.stringify({
-                model: "text-davinci-003",
-                prompt: "Once upon a time",
-                max_tokens: 5
-            })
-        });
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch data');
-        }
+    const openai = new OpenAIApi(new Configuration({
+        apiKey: process.env.OPENAI_API_KEY
+    }))
 
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error('Error:', error);
-    }
+    openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "user", content: "Hello ChatGPT"}]
+    }).then(res => {
+        console.log(res);
+    })
 });
 
 document.getElementById('title').addEventListener('input', function () {
@@ -503,7 +493,6 @@ modeSwitch.addEventListener("click", () => {
         modeText.innerText = "Light mode";
     } else {
         modeText.innerText = "Dark mode";
-
     }
 });
 
