@@ -12,13 +12,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-    apiKey: process.env['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'], // This is the default and can be omitted
-});
-
-
 const firebaseConfig = {
     apiKey: apiKey,
     authDomain: "thinkwise-c7673.firebaseapp.com",
@@ -29,6 +22,15 @@ const firebaseConfig = {
     appId: "1:37732571551:web:9b90a849ac5454f33a85aa",
     measurementId: "G-8957WM4SB7"
 };
+
+require('dotenv').config();
+
+// Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
+const OpenAI = require('openai');
+
+// Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
+
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -278,12 +280,17 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => async function () {
-
-    const chatCompletion = await openai.chat.completions.create({
-        messages: [{role: 'user', content: 'Say this is a test'}],
-        model: 'gpt-3.5-turbo',
-    });
-
+    const prompt = "Was ist deine Frage?";
+    try {
+        const response = await openai.complete({
+            engine: 'text-davinci-002', // Der Name des Modells, das du verwenden möchtest
+            prompt: prompt,
+            maxTokens: 100 // Maximale Anzahl von Tokens in der Antwort
+        });
+        console.log(response.data.choices[0].text); // Zeige die Antwort in der Konsole an (kann angepasst werden)
+    } catch (error) {
+        console.error('OpenAI request failed:', error);
+    }
 
 });
 
