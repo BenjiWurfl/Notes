@@ -11,7 +11,7 @@ import {
     Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-
+import OpenAI from "openai";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
@@ -30,6 +30,8 @@ const auth = getAuth();
 let notesArr = [];
 let projectsArr = []
 let currentProject;
+
+const openai = new OpenAI();
 
 
 
@@ -146,99 +148,6 @@ function updatePinnedNotes(project) {
     backToProjectsButton.innerHTML = '< back to projects'
     backToProjectsButton.addEventListener('click', () => backToProjects());
 
-    const ratingBar = document.createElement('span');
-    ratingBar.innerHTML = '<!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> \n' +
-        '<ul\n' +
-        '  id="events-example"\n' +
-        '  class="my-1 flex list-none gap-1 p-0"\n' +
-        '  data-te-rating-init>\n' +
-        '  <li>\n' +
-        '    <span\n' +
-        '      class="text-primary [&>svg]:h-5 [&>svg]:w-5"\n' +
-        '      data-te-rating-icon-ref>\n' +
-        '      <svg\n' +
-        '        xmlns="http://www.w3.org/2000/svg"\n' +
-        '        fill="none"\n' +
-        '        viewBox="0 0 24 24"\n' +
-        '        stroke-width="1.5"\n' +
-        '        stroke="currentColor">\n' +
-        '        <path\n' +
-        '          stroke-linecap="round"\n' +
-        '          stroke-linejoin="round"\n' +
-        '          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />\n' +
-        '      </svg>\n' +
-        '    </span>\n' +
-        '  </li>\n' +
-        '  <li>\n' +
-        '    <span\n' +
-        '      class="text-primary [&>svg]:h-5 [&>svg]:w-5"\n' +
-        '      data-te-rating-icon-ref>\n' +
-        '      <svg\n' +
-        '        xmlns="http://www.w3.org/2000/svg"\n' +
-        '        fill="none"\n' +
-        '        viewBox="0 0 24 24"\n' +
-        '        stroke-width="1.5"\n' +
-        '        stroke="currentColor">\n' +
-        '        <path\n' +
-        '          stroke-linecap="round"\n' +
-        '          stroke-linejoin="round"\n' +
-        '          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />\n' +
-        '      </svg>\n' +
-        '    </span>\n' +
-        '  </li>\n' +
-        '  <li>\n' +
-        '    <span\n' +
-        '      class="text-primary [&>svg]:h-5 [&>svg]:w-5"\n' +
-        '      data-te-rating-icon-ref>\n' +
-        '      <svg\n' +
-        '        xmlns="http://www.w3.org/2000/svg"\n' +
-        '        fill="none"\n' +
-        '        viewBox="0 0 24 24"\n' +
-        '        stroke-width="1.5"\n' +
-        '        stroke="currentColor">\n' +
-        '        <path\n' +
-        '          stroke-linecap="round"\n' +
-        '          stroke-linejoin="round"\n' +
-        '          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />\n' +
-        '      </svg>\n' +
-        '    </span>\n' +
-        '  </li>\n' +
-        '  <li>\n' +
-        '    <span\n' +
-        '      class="text-primary [&>svg]:h-5 [&>svg]:w-5"\n' +
-        '      data-te-rating-icon-ref>\n' +
-        '      <svg\n' +
-        '        xmlns="http://www.w3.org/2000/svg"\n' +
-        '        fill="none"\n' +
-        '        viewBox="0 0 24 24"\n' +
-        '        stroke-width="1.5"\n' +
-        '        stroke="currentColor">\n' +
-        '        <path\n' +
-        '          stroke-linecap="round"\n' +
-        '          stroke-linejoin="round"\n' +
-        '          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />\n' +
-        '      </svg>\n' +
-        '    </span>\n' +
-        '  </li>\n' +
-        '  <li>\n' +
-        '    <span\n' +
-        '      class="text-primary [&>svg]:h-5 [&>svg]:w-5"\n' +
-        '      data-te-rating-icon-ref>\n' +
-        '      <svg\n' +
-        '        xmlns="http://www.w3.org/2000/svg"\n' +
-        '        fill="none"\n' +
-        '        viewBox="0 0 24 24"\n' +
-        '        stroke-width="1.5"\n' +
-        '        stroke="currentColor">\n' +
-        '        <path\n' +
-        '          stroke-linecap="round"\n' +
-        '          stroke-linejoin="round"\n' +
-        '          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />\n' +
-        '      </svg>\n' +
-        '    </span>\n' +
-        '  </li>\n' +
-        '</ul>'
-
 
     const editProjectButton = document.createElement('span');
     editProjectButton.classList.add('edit-project', 'px-4', 'w-screen', 'font-bold', 'text-[#3019bd]', 'text-md', 'cursor-pointer', 'text-right', 'justify-end');
@@ -256,7 +165,6 @@ function updatePinnedNotes(project) {
     addNoteButton.addEventListener('click', () => addNewNote(project));
     title.append(addNoteButton);
     containerForNoteCards.appendChild(backToProjectsButton);
-    containerForNoteCards.appendChild(ratingBar);
     containerForNoteCards.appendChild(editProjectButton);
     containerForNoteCards.appendChild(title);
 
@@ -366,6 +274,16 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
+document.getElementById('askAI').addEventListener('click', () => async function () {
+
+
+    const completion = await openai.chat.completions.create({
+        messages: [{role: "system", content: "You are a helpful assistant."}],
+        model: "gpt-3.5-turbo",
+    });
+
+    console.log(completion.choices[0]);
+});
 
 document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
