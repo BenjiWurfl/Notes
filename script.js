@@ -12,10 +12,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-console.log("load")
-import * as dotenv from 'dotenv'
-dotenv.config()
-
 const firebaseConfig = {
     apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
     authDomain: "thinkwise-c7673.firebaseapp.com",
@@ -26,8 +22,6 @@ const firebaseConfig = {
     appId: "1:37732571551:web:9b90a849ac5454f33a85aa",
     measurementId: "G-8957WM4SB7"
 };
-
-console.log(process.env)
 
 // Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
 const OpenAI = require('openai');
