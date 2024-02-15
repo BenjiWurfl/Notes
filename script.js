@@ -11,6 +11,12 @@ import {
     Timestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import {
+    Rating,
+    initTE,
+} from "tw-elements";
+
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe7d9bllq8RnmI6xxEBk3oub3qogPT2aM",
@@ -572,3 +578,16 @@ modeSwitch.addEventListener("click", () => {
 
     }
 });
+
+initTE({Rating});
+
+const icon = document.querySelectorAll('#events-example [data-te-rating-icon-ref]');
+
+icon.forEach((el) => {
+    el.addEventListener('onHover.te.rating', (e) => {
+        console.log('onHover', e);
+    });
+    el.addEventListener('onSelect.te.rating', (e) => {
+        console.log('onSelect', e);
+    });
+})
