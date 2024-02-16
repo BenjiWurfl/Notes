@@ -274,7 +274,7 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
-document.getElementById('askAI').addEventListener('click', () => async function () {
+document.getElementById('askAI').addEventListener('click', () => function () {
     console.log("AskAI CLicked")
     const user = auth.currentUser;
     console.log("AskAI: User: ", user)
@@ -302,7 +302,7 @@ document.getElementById('askAI').addEventListener('click', () => async function 
 
     const prompt = "Was ist deine Frage?";
     try {
-        const response = await openai.complete({
+        const response = openai.complete({
             engine: 'text-davinci-002', // Der Name des Modells, das du verwenden möchtest
             prompt: prompt,
             maxTokens: 100 // Maximale Anzahl von Tokens in der Antwort

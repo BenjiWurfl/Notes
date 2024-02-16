@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="CHATGPT">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="log">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
@@ -96,15 +96,7 @@
       <workItem from="1707312016639" duration="5000" />
       <workItem from="1707331317353" duration="105041000" />
       <workItem from="1707894112395" duration="36500000" />
-      <workItem from="1708021530473" duration="4436000" />
-    </task>
-    <task id="LOCAL-00386" summary="edit project button">
-      <option name="closed" value="true" />
-      <created>1707931175627</created>
-      <option name="number" value="00386" />
-      <option name="presentableId" value="LOCAL-00386" />
-      <option name="project" value="LOCAL" />
-      <updated>1707931175627</updated>
+      <workItem from="1708021530473" duration="5039000" />
     </task>
     <task id="LOCAL-00387" summary="edit project button">
       <option name="closed" value="true" />
@@ -490,7 +482,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708073770591</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <task id="LOCAL-00435" summary="log">
+      <option name="closed" value="true" />
+      <created>1708073971898</created>
+      <option name="number" value="00435" />
+      <option name="presentableId" value="LOCAL-00435" />
+      <option name="project" value="LOCAL" />
+      <updated>1708073971898</updated>
+    </task>
+    <option name="localTasksCounter" value="436" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,10 +530,10 @@
     <MESSAGE value="navbar hinzugefügt script.js" />
     <MESSAGE value="edit project button" />
     <MESSAGE value="edit project modal" />
-    <MESSAGE value="log" />
     <MESSAGE value="log entfernen" />
     <MESSAGE value="CHATGPT" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHATGPT" />
+    <MESSAGE value="log" />
+    <option name="LAST_COMMIT_MESSAGE" value="log" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
