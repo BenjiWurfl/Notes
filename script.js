@@ -23,7 +23,7 @@ const firebaseConfig = {
     measurementId: "G-8957WM4SB7"
 };
 
-
+const OpenAI = require('openai');
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -291,12 +291,12 @@ document.getElementById('askAI').addEventListener('click', () => function () {
             .catch(error => {
                 console.error("Error loading notes: ", error);
             });
+    } else {
+        console.error("User not found");
     }
 
-    // Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
-    const OpenAI = require('openai');
 
-// Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
+    // Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
     const openai = new OpenAI(token);
 
 
