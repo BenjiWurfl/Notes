@@ -297,7 +297,11 @@ async function ai() {
                         },
                         body: JSON.stringify({
                             model: "gpt-3.5-turbo",
-                            messages: [{role: "user", content: prompt}],
+                            messages: [{
+                                role: "user",
+                                content: "Halte dich bitte ganz kurz, es soll ja nicht zu lange werden: ",
+                                prompt
+                            }],
                         })
                     });
 
