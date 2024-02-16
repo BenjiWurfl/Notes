@@ -31,8 +31,6 @@ let projectsArr = []
 let currentProject;
 let token;
 
-
-
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 function showNotes() {
@@ -272,7 +270,9 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
-document.getElementById('askAI').addEventListener('click', () => {
+document.getElementById('askAI').addEventListener('click', () => ai());
+
+function ai() {
     console.log("AskAI CLicked")
     const user = auth.currentUser;
     console.log("AskAI: User: ", user)
@@ -284,7 +284,6 @@ document.getElementById('askAI').addEventListener('click', () => {
                     token = doc.data();
 
                 });
-                console.log("token: ", token)
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
@@ -292,6 +291,8 @@ document.getElementById('askAI').addEventListener('click', () => {
     } else {
         console.error("User not found");
     }
+
+    console.log("token: ", token)
 
     console.log("Calling GPT3")
     var url = "https://api.openai.com/v1/engines/davinci/completions";
@@ -329,8 +330,7 @@ document.getElementById('askAI').addEventListener('click', () => {
             console.log('Something bad happened ' + error)
         });
 
-
-});
+}
 
 document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
