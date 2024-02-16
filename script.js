@@ -277,12 +277,13 @@ function ai() {
     const user = auth.currentUser;
     console.log("AskAI: User: ", user)
     if (user) {
-        const notesRef = collection(db, "openai", "token");
-        getDoc(notesRef)
+        const tokenRef = collection(db, "openai", "token");
+        console.log("Ref: ", tokenRef);
+        getDoc(tokenRef)
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     token = doc.data();
-
+                    console.log("Get Token");
                 });
             })
             .catch(error => {
