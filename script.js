@@ -302,7 +302,7 @@ function ai() {
                             "stream": false,
                             "logprobs": null,
                             "stop": "\n",
-                            "model": "text-davinci-002"
+                            "model": "gpt-3.5-turbo"
                         })
                     });
                 } else {
