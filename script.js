@@ -281,7 +281,8 @@ function ai() {
         getDoc(tokenRef)
             .then(docSnapshot => {
                 if (docSnapshot.exists()) {
-                    const token = docSnapshot.data();
+                    const tokenData = docSnapshot.data();
+                    const token = tokenData.token;
 
                     console.log("Calling GPT3 with Token: ", token);
                     var url = "https://api.openai.com/v1/engines/davinci/completions";
