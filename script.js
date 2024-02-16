@@ -301,7 +301,8 @@ function ai() {
                             "n": 1,
                             "stream": false,
                             "logprobs": null,
-                            "stop": "\n"
+                            "stop": "\n",
+                            "model": "text-davinci-002"
                         })
                     });
                 } else {
