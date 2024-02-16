@@ -273,67 +273,61 @@ document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('
 document.getElementById('askAI').addEventListener('click', () => ai());
 
 function ai() {
-    console.log("AskAI CLicked")
+    console.log("AskAI CLicked");
     const user = auth.currentUser;
-    console.log("AskAI: User: ", user)
+    console.log("AskAI: User: ", user);
     if (user) {
         const tokenRef = doc(db, "openai", "token");
         getDoc(tokenRef)
             .then(docSnapshot => {
                 if (docSnapshot.exists()) {
                     const token = docSnapshot.data();
-                    console.log("Token:", token);
-                    // Hier kannst du das Token verwenden, wie du es benötigst
+
+                    console.log("Calling GPT3");
+                    var url = "https://api.openai.com/v1/engines/davinci/completions";
+                    var bearer = 'Bearer ' + token;
+                    return fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': bearer,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "prompt": "Once upon a time",
+                            "max_tokens": 5,
+                            "temperature": 1,
+                            "top_p": 1,
+                            "n": 1,
+                            "stream": false,
+                            "logprobs": null,
+                            "stop": "\n"
+                        })
+                    });
                 } else {
                     console.log("Token-Dokument existiert nicht");
                 }
             })
+            .then(response => {
+                if (response) {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                if (data) {
+                    console.log(data);
+                    console.log(typeof data);
+                    console.log(Object.keys(data));
+                    console.log(data['choices'][0].text);
+                }
+            })
             .catch(error => {
-                console.error("Fehler beim Laden des Token-Dokuments: ", error);
+                console.error("Fehler beim Laden des Token-Dokuments oder beim Aufrufen von GPT3: ", error);
             });
     } else {
         console.error("Benutzer nicht gefunden");
     }
-
-    console.log("token: ", token)
-
-    console.log("Calling GPT3")
-    var url = "https://api.openai.com/v1/engines/davinci/completions";
-    var bearer = 'Bearer ' + token
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Authorization': bearer,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "prompt": "Once upon a time",
-            "max_tokens": 5,
-            "temperature": 1,
-            "top_p": 1,
-            "n": 1,
-            "stream": false,
-            "logprobs": null,
-            "stop": "\n"
-        })
-
-
-    }).then(response => {
-
-        return response.json()
-
-    }).then(data => {
-        console.log(data)
-        console.log(typeof data)
-        console.log(Object.keys(data))
-        console.log(data['choices'][0].text)
-
-    })
-        .catch(error => {
-            console.log('Something bad happened ' + error)
-        });
-
 }
+
 
 document.getElementById('title').addEventListener('input', function () {
     const noteId = this.dataset.noteId;
