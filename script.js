@@ -278,12 +278,10 @@ function ai() {
     console.log("AskAI: User: ", user)
     if (user) {
         const tokenRef = doc(db, "openai", "token");
-        console.log("Ref: ", tokenRef);
         getDoc(tokenRef)
             .then(docSnapshot => {
                 if (docSnapshot.exists()) {
-                    const tokenData = docSnapshot.data();
-                    const token = tokenData.Token;
+                    const token = docSnapshot.data();
                     console.log("Token:", token);
                     // Hier kannst du das Token verwenden, wie du es benötigst
                 } else {
