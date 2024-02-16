@@ -273,6 +273,8 @@ document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('
 document.getElementById('askAI').addEventListener('click', () => ai());
 
 async function ai() {
+
+    let prompt = window.prompt("Please enter the prompt: ", "Write an essay about...");
     console.log("AskAI CLicked");
     const user = auth.currentUser;
     console.log("AskAI: User: ", user);
@@ -295,7 +297,7 @@ async function ai() {
                         },
                         body: JSON.stringify({
                             model: "gpt-3.5-turbo",
-                            messages: [{role: "user", content: "Schreibe, dass Benni ein spasti ist."}],
+                            messages: [{role: "user", content: prompt}],
                         })
                     });
 
@@ -521,4 +523,6 @@ modeSwitch.addEventListener("click", () => {
         modeText.innerText = "Dark mode";
     }
 });
+
+
 
