@@ -283,7 +283,7 @@ function ai() {
                 if (docSnapshot.exists()) {
                     const token = docSnapshot.data();
 
-                    console.log("Calling GPT3");
+                    console.log("Calling GPT3 with Token: ", token);
                     var url = "https://api.openai.com/v1/engines/davinci/completions";
                     var bearer = 'Bearer ' + token;
                     return fetch(url, {
