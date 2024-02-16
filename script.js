@@ -275,7 +275,9 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => async function () {
+    console.log("AskAI CLicked")
     const user = auth.currentUser;
+    console.log("AskAI: User: ", user)
     if (user) {
         const notesRef = collection(db, "openai", "token");
         getDoc(notesRef)
@@ -284,14 +286,11 @@ document.getElementById('askAI').addEventListener('click', () => async function 
                     token = doc.data();
 
                 });
+                console.log("token: ", token)
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
             });
-    }
-
-    if (token) {
-        console.log("token: ", token)
     }
 
     // Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
