@@ -295,12 +295,12 @@ async function ai() {
                         },
                         body: JSON.stringify({
                             model: "gpt-3.5-turbo",
-                            messages: [{role: "user", content: "Hello"}],
+                            messages: [{role: "user", content: "Schreibe, dass Benni ein spasti ist."}],
                         })
                     });
 
                     const data = await response.json();
-                    console.log("Output: ", data.choices[0].message.content);
+                    document.getElementById('text-content').append(data.choices[0].message.content)
 
 
                 } else {
