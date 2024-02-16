@@ -277,20 +277,24 @@ function ai() {
     const user = auth.currentUser;
     console.log("AskAI: User: ", user)
     if (user) {
-        const tokenRef = collection(db, "openai", "token");
+        const tokenRef = doc(db, "openai", "token");
         console.log("Ref: ", tokenRef);
         getDoc(tokenRef)
-            .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                    token = doc.data();
-                    console.log("Get Token");
-                });
+            .then(docSnapshot => {
+                if (docSnapshot.exists()) {
+                    const tokenData = docSnapshot.data();
+                    const token = tokenData.Token;
+                    console.log("Token:", token);
+                    // Hier kannst du das Token verwenden, wie du es benötigst
+                } else {
+                    console.log("Token-Dokument existiert nicht");
+                }
             })
             .catch(error => {
-                console.error("Error loading notes: ", error);
+                console.error("Fehler beim Laden des Token-Dokuments: ", error);
             });
     } else {
-        console.error("User not found");
+        console.error("Benutzer nicht gefunden");
     }
 
     console.log("token: ", token)
