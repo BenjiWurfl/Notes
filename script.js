@@ -23,7 +23,7 @@ const firebaseConfig = {
     measurementId: "G-8957WM4SB7"
 };
 
-import OpenAI from "https://deno.land/x/openai@v4.28.0/mod.ts';"
+import OpenAI from "https://deno.land/x/openai@v4.28.0/mod.ts"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
