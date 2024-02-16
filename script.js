@@ -272,14 +272,14 @@ document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => ai());
 
-function ai() {
+async function ai() {
     console.log("AskAI CLicked");
     const user = auth.currentUser;
     console.log("AskAI: User: ", user);
     if (user) {
         const tokenRef = doc(db, "openai", "token");
         getDoc(tokenRef)
-            .then(docSnapshot => {
+            .then(async docSnapshot => {
                 if (docSnapshot.exists()) {
                     const tokenData = docSnapshot.data();
                     const token = tokenData.token;
@@ -287,41 +287,24 @@ function ai() {
                     console.log("Calling GPT3 with Token: ", token);
                     var url = "https://api.openai.com/v1/chat/completions";
                     var bearer = 'Bearer ' + token;
-                    return fetch(url, {
+                    const response = await fetch(url, {
                         method: 'POST',
                         headers: {
                             'Authorization': bearer,
-                            'Content-Type': 'application/json'
+                            "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            "model": "gpt-3.5-turbo",
-                            "messages": [
-                                {
-                                    "role": "system",
-                                    "content": "You are a helpful assistant."
-                                },
-                                {
-                                    "role": "user",
-                                    "content": "Hello!"
-                                }
-                            ]
+                            model: "gpt-3.5-turbo",
+                            messages: [{role: "user", content: "Hello"}],
                         })
                     });
+
+                    const data = await response.json();
+                    console.log("Output: ", data.choices[0].message.content);
+
+
                 } else {
                     console.log("Token-Dokument existiert nicht");
-                }
-            })
-            .then(response => {
-                if (response) {
-                    return response.json();
-                }
-            })
-            .then(data => {
-                if (data) {
-                    console.log(data);
-                    console.log(typeof data);
-                    console.log(Object.keys(data));
-                    console.log(data['choices'][0].text);
                 }
             })
             .catch(error => {
