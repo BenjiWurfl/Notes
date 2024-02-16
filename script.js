@@ -23,7 +23,7 @@ const firebaseConfig = {
     measurementId: "G-8957WM4SB7"
 };
 
-const OpenAI = require('openai');
+import OpenAI from "openai";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
