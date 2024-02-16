@@ -272,7 +272,7 @@ document.getElementById('orderedListBtn').addEventListener('click', () => format
 document.getElementById('unorderedListBtn').addEventListener('click', () => formatDoc('insertUnorderedList', null));
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
-document.getElementById('askAI').addEventListener('click', () => function () {
+document.getElementById('askAI').addEventListener('click', () => {
     console.log("AskAI CLicked")
     const user = auth.currentUser;
     console.log("AskAI: User: ", user)
