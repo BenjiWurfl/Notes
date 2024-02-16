@@ -23,11 +23,6 @@ const firebaseConfig = {
     measurementId: "G-8957WM4SB7"
 };
 
-// Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
-const OpenAI = require('openai');
-
-// Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
-const openai = new OpenAI(process.env.OPEN_API_KEY);
 
 
 const app = initializeApp(firebaseConfig);
@@ -36,6 +31,8 @@ const auth = getAuth();
 let notesArr = [];
 let projectsArr = []
 let currentProject;
+let token;
+
 
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
@@ -278,6 +275,32 @@ document.getElementById('unorderedListBtn').addEventListener('click', () => form
 document.getElementById('linkBtn').addEventListener('click', addLink);
 document.getElementById('unlinkBtn').addEventListener('click', () => formatDoc('unlink', null));
 document.getElementById('askAI').addEventListener('click', () => async function () {
+    const user = auth.currentUser;
+    if (user) {
+        const notesRef = collection(db, "openai", "token");
+        getDoc(notesRef)
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    token = doc.data();
+
+                });
+            })
+            .catch(error => {
+                console.error("Error loading notes: ", error);
+            });
+    }
+
+    if (token) {
+        console.log("token: ", token)
+    }
+
+    // Füge diese Zeile hinzu, um die OpenAI-Bibliothek zu importieren
+    const OpenAI = require('openai');
+
+// Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
+    const openai = new OpenAI(token);
+
+
     const prompt = "Was ist deine Frage?";
     try {
         const response = await openai.complete({
