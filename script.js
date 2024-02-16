@@ -23,12 +23,6 @@ const firebaseConfig = {
     measurementId: "G-8957WM4SB7"
 };
 
-import {OpenAI} from 'https://deno.land/x/openai@v4.28.0/mod.ts';
-
-const instance = new OpenAI('YOUR_API_KEY');
-
-console.log(await instance.createCompletion('The meaning of life is'))
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
@@ -299,22 +293,42 @@ document.getElementById('askAI').addEventListener('click', () => function () {
         console.error("User not found");
     }
 
+    console.log("Calling GPT3")
+    var url = "https://api.openai.com/v1/engines/davinci/completions";
+    var bearer = 'Bearer ' + token
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Authorization': bearer,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "prompt": "Once upon a time",
+            "max_tokens": 5,
+            "temperature": 1,
+            "top_p": 1,
+            "n": 1,
+            "stream": false,
+            "logprobs": null,
+            "stop": "\n"
+        })
 
-    // Konfiguriere den OpenAI-Client mit deinem API-Schlüssel
-    const openai = new OpenAI(token);
 
+    }).then(response => {
 
-    const prompt = "Was ist deine Frage?";
-    try {
-        const response = openai.complete({
-            engine: 'text-davinci-002', // Der Name des Modells, das du verwenden möchtest
-            prompt: prompt,
-            maxTokens: 100 // Maximale Anzahl von Tokens in der Antwort
+        return response.json()
+
+    }).then(data => {
+        console.log(data)
+        console.log(typeof data)
+        console.log(Object.keys(data))
+        console.log(data['choices'][0].text)
+
+    })
+        .catch(error => {
+            console.log('Something bad happened ' + error)
         });
-        console.log(response.data.choices[0].text); // Zeige die Antwort in der Konsole an (kann angepasst werden)
-    } catch (error) {
-        console.error('OpenAI request failed:', error);
-    }
+
 
 });
 
