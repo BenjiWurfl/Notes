@@ -7,8 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="log">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="import openai">
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,63 +95,10 @@
       <workItem from="1707312016639" duration="5000" />
       <workItem from="1707331317353" duration="105041000" />
       <workItem from="1707894112395" duration="36500000" />
-      <workItem from="1708021530473" duration="5694000" />
-    </task>
-    <task id="LOCAL-00389" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707935368971</created>
-      <option name="number" value="00389" />
-      <option name="presentableId" value="LOCAL-00389" />
-      <option name="project" value="LOCAL" />
-      <updated>1707935368971</updated>
-    </task>
-    <task id="LOCAL-00390" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707935434204</created>
-      <option name="number" value="00390" />
-      <option name="presentableId" value="LOCAL-00390" />
-      <option name="project" value="LOCAL" />
-      <updated>1707935434204</updated>
-    </task>
-    <task id="LOCAL-00391" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707935950556</created>
-      <option name="number" value="00391" />
-      <option name="presentableId" value="LOCAL-00391" />
-      <option name="project" value="LOCAL" />
-      <updated>1707935950556</updated>
-    </task>
-    <task id="LOCAL-00392" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707936394652</created>
-      <option name="number" value="00392" />
-      <option name="presentableId" value="LOCAL-00392" />
-      <option name="project" value="LOCAL" />
-      <updated>1707936394652</updated>
-    </task>
-    <task id="LOCAL-00393" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707936784667</created>
-      <option name="number" value="00393" />
-      <option name="presentableId" value="LOCAL-00393" />
-      <option name="project" value="LOCAL" />
-      <updated>1707936784667</updated>
-    </task>
-    <task id="LOCAL-00394" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707939974849</created>
-      <option name="number" value="00394" />
-      <option name="presentableId" value="LOCAL-00394" />
-      <option name="project" value="LOCAL" />
-      <updated>1707939974849</updated>
-    </task>
-    <task id="LOCAL-00395" summary="edit project modal">
-      <option name="closed" value="true" />
-      <created>1707942739573</created>
-      <option name="number" value="00395" />
-      <option name="presentableId" value="LOCAL-00395" />
-      <option name="project" value="LOCAL" />
-      <updated>1707942739573</updated>
+      <workItem from="1708021530473" duration="6589000" />
+      <workItem from="1708076140218" duration="636000" />
+      <workItem from="1708077316413" duration="367000" />
+      <workItem from="1708077960863" duration="276000" />
     </task>
     <task id="LOCAL-00396" summary="edit project modal">
       <option name="closed" value="true" />
@@ -490,7 +436,63 @@
       <option name="project" value="LOCAL" />
       <updated>1708074983074</updated>
     </task>
-    <option name="localTasksCounter" value="438" />
+    <task id="LOCAL-00438" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708075239909</created>
+      <option name="number" value="00438" />
+      <option name="presentableId" value="LOCAL-00438" />
+      <option name="project" value="LOCAL" />
+      <updated>1708075239909</updated>
+    </task>
+    <task id="LOCAL-00439" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708076736972</created>
+      <option name="number" value="00439" />
+      <option name="presentableId" value="LOCAL-00439" />
+      <option name="project" value="LOCAL" />
+      <updated>1708076736973</updated>
+    </task>
+    <task id="LOCAL-00440" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708076765138</created>
+      <option name="number" value="00440" />
+      <option name="presentableId" value="LOCAL-00440" />
+      <option name="project" value="LOCAL" />
+      <updated>1708076765138</updated>
+    </task>
+    <task id="LOCAL-00441" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708076877080</created>
+      <option name="number" value="00441" />
+      <option name="presentableId" value="LOCAL-00441" />
+      <option name="project" value="LOCAL" />
+      <updated>1708076877080</updated>
+    </task>
+    <task id="LOCAL-00442" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708077019537</created>
+      <option name="number" value="00442" />
+      <option name="presentableId" value="LOCAL-00442" />
+      <option name="project" value="LOCAL" />
+      <updated>1708077019537</updated>
+    </task>
+    <task id="LOCAL-00443" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708077378040</created>
+      <option name="number" value="00443" />
+      <option name="presentableId" value="LOCAL-00443" />
+      <option name="project" value="LOCAL" />
+      <updated>1708077378041</updated>
+    </task>
+    <task id="LOCAL-00444" summary="import openai">
+      <option name="closed" value="true" />
+      <created>1708078060335</created>
+      <option name="number" value="00444" />
+      <option name="presentableId" value="LOCAL-00444" />
+      <option name="project" value="LOCAL" />
+      <updated>1708078060336</updated>
+    </task>
+    <option name="localTasksCounter" value="445" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,7 +510,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cursor of cards -&gt; pointer" />
     <MESSAGE value="verstecke navbar" />
     <MESSAGE value="design von note cards" />
     <MESSAGE value="add project button, navbar entfernt" />
@@ -533,7 +534,8 @@
     <MESSAGE value="log entfernen" />
     <MESSAGE value="CHATGPT" />
     <MESSAGE value="log" />
-    <option name="LAST_COMMIT_MESSAGE" value="log" />
+    <MESSAGE value="import openai" />
+    <option name="LAST_COMMIT_MESSAGE" value="import openai" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
