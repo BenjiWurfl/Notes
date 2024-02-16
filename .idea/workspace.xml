@@ -8,6 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="completions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="10479000" />
-    </task>
-    <task id="LOCAL-00412" summary="log entfernen">
-      <option name="closed" value="true" />
-      <created>1707982243701</created>
-      <option name="number" value="00412" />
-      <option name="presentableId" value="LOCAL-00412" />
-      <option name="project" value="LOCAL" />
-      <updated>1707982243701</updated>
+      <workItem from="1708077960863" duration="11236000" />
     </task>
     <task id="LOCAL-00413" summary="CHATGPT">
       <option name="closed" value="true" />
@@ -492,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708109414917</updated>
     </task>
-    <option name="localTasksCounter" value="461" />
+    <task id="LOCAL-00461" summary="completions">
+      <option name="closed" value="true" />
+      <created>1708110163471</created>
+      <option name="number" value="00461" />
+      <option name="presentableId" value="LOCAL-00461" />
+      <option name="project" value="LOCAL" />
+      <updated>1708110163471</updated>
+    </task>
+    <option name="localTasksCounter" value="462" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
