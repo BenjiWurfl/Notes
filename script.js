@@ -285,7 +285,7 @@ function ai() {
                     const token = tokenData.token;
 
                     console.log("Calling GPT3 with Token: ", token);
-                    var url = "https://api.openai.com/v1/engines/davinci/completions";
+                    var url = "https://api.openai.com/v1/chat/completions";
                     var bearer = 'Bearer ' + token;
                     return fetch(url, {
                         method: 'POST',
