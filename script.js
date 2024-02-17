@@ -341,12 +341,10 @@ async function sendOpenAIRequest(token) {
             }
 
             const decodedChunk = decoder.decode(value);
+            const lines = decodedChunk.split("\n");
+            console.log(lines);
 
-            console.log("Decoded: ", decodedChunk);
-            // Massage and parse the chunk of data
-            /*const chunk = decoder.decode(value);
-            const lines = chunk.split("\\n");
-            const parsedLines = lines
+            /*const parsedLines = lines
                 .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
                 .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
                 .map((line) => JSON.parse(line)); // Parse the JSON string
