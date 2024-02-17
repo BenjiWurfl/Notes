@@ -333,13 +333,16 @@ async function sendOpenAIRequest(token) {
         const decoder = new TextDecoder("utf-8");
 
         while (true) {
-            const abc = await reader.read();
-            const {done, value} = abc;
+            const chunk = await reader.read();
+            const {done, value} = chunk;
             if (done) {
                 console.log("Break")
                 break;
             }
-            console.log("Value: ", value);
+
+            const decodedChunk = decoder.decode(value);
+
+            console.log("Decoded: ", decodedChunk);
             // Massage and parse the chunk of data
             /*const chunk = decoder.decode(value);
             const lines = chunk.split("\\n");
