@@ -364,7 +364,7 @@ async function sendOpenAIRequest(token, prompt) {
                             content: (prompt + "\'" + window.getSelection().toString() + "\'")
                         }
                     ],
-                    stream: true,
+                    stream: false,
                     temperature: 1,
                     max_tokens: 1642,
                     top_p: 1,
