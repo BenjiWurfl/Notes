@@ -309,9 +309,9 @@ async function sendOpenAIRequest(token, prompt) {
         const bearer = 'Bearer ' + token; // Bearer + token für die Authentifizierung benötigt. Bearer = Inhaber des Tokens
 
         let response;
-        console.log(window.getSelection());
+        console.log(window.getSelection().toString());
 
-        if (window.getSelection() === null) {
+        if (window.getSelection().toString() === null) {
 
             response = await fetch(url, {
                 method: 'POST',
@@ -358,7 +358,7 @@ async function sendOpenAIRequest(token, prompt) {
                         },
                         {
                             role: "user",
-                            content: (prompt + "\'" + window.getSelection() + "\'")
+                            content: (prompt + "\'" + window.getSelection().toString() + "\'")
                         }
                     ],
                     stream: true,
