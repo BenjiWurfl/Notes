@@ -313,6 +313,8 @@ async function sendOpenAIRequest(token, prompt) {
 
         if (window.getSelection().toString() === null) {
 
+            console.log("1")
+
             response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -339,6 +341,7 @@ async function sendOpenAIRequest(token, prompt) {
                 })
             });
         } else {
+            console.log("2")
             response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -391,7 +394,7 @@ async function sendOpenAIRequest(token, prompt) {
                             const {content} = delta;
                             // Update the UI with the new content
                             if (content) {
-                                textContent.innerText += content;
+                                textContent.innerText += "\n" + content;
                                 console.log(content)
                             }
                         }
