@@ -333,6 +333,7 @@ async function sendOpenAIRequest(token) {
         const decoder = new TextDecoder("utf-8");
 
         while (true) {
+            console.log("Endless loop enter")
             const {done, value} = await reader.read();
             if (done) {
                 break;
