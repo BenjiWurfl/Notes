@@ -305,7 +305,7 @@ async function ai() {
     }
 }
 
-async function sendOpenAIRequest() {
+async function sendOpenAIRequest(token) {
     const textContent = document.getElementById('text-content');
     console.log("Calling GPT3 with Token: ", token);
     try {
