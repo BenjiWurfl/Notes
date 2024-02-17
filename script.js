@@ -287,7 +287,7 @@ async function ai() {
                         const tokenData = docSnapshot.data();
                         const token = tokenData.token;
 
-                        await sendOpenAIRequest(token);
+                        await sendOpenAIRequest(token, prompt);
 
                         //ocument.getElementById('text-content').append(await response);
 
@@ -305,7 +305,7 @@ async function ai() {
     }
 }
 
-async function sendOpenAIRequest(token) {
+async function sendOpenAIRequest(token, prompt) {
     const textContent = document.getElementById('text-content');
     console.log("Calling GPT3 with Token: ", token);
     try {

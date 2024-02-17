@@ -7,7 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="log" />
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="log">
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,15 +98,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="20285000" />
-    </task>
-    <task id="LOCAL-00428" summary="CHATGPT">
-      <option name="closed" value="true" />
-      <created>1708023527794</created>
-      <option name="number" value="00428" />
-      <option name="presentableId" value="LOCAL-00428" />
-      <option name="project" value="LOCAL" />
-      <updated>1708023527794</updated>
+      <workItem from="1708077960863" duration="21073000" />
     </task>
     <task id="LOCAL-00429" summary="CHATGPT">
       <option name="closed" value="true" />
@@ -490,7 +484,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708159262607</updated>
     </task>
-    <option name="localTasksCounter" value="477" />
+    <task id="LOCAL-00477" summary="log">
+      <option name="closed" value="true" />
+      <created>1708159944053</created>
+      <option name="number" value="00477" />
+      <option name="presentableId" value="LOCAL-00477" />
+      <option name="project" value="LOCAL" />
+      <updated>1708159944053</updated>
+    </task>
+    <option name="localTasksCounter" value="478" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
