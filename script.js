@@ -287,7 +287,7 @@ async function ai() {
                         const tokenData = docSnapshot.data();
                         const token = tokenData.token;
 
-                        const response = sendOpenAIRequest(token);
+                        await sendOpenAIRequest(token);
 
                         //ocument.getElementById('text-content').append(await response);
 
@@ -352,6 +352,7 @@ async function sendOpenAIRequest(token) {
                 // Update the UI with the new content
                 if (content) {
                     textContent.innerText += content;
+                    console.log(content)
                 }
             }
         }
