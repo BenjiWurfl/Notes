@@ -333,13 +333,15 @@ async function sendOpenAIRequest(token) {
         const decoder = new TextDecoder("utf-8");
 
         while (true) {
-            console.log("Endless loop enter")
-            const {done, value} = await reader.read();
+            const abc = await reader.read();
+            const {done, value} = abc;
             if (done) {
+                console.log("Break")
                 break;
             }
+            console.log("Value: ", value);
             // Massage and parse the chunk of data
-            const chunk = decoder.decode(value);
+            /*const chunk = decoder.decode(value);
             const lines = chunk.split("\\n");
             const parsedLines = lines
                 .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
@@ -355,7 +357,7 @@ async function sendOpenAIRequest(token) {
                     textContent.innerText += content;
                     console.log(content)
                 }
-            }
+            }*/
         }
     } catch {
     }
