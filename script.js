@@ -276,9 +276,7 @@ async function ai() {
 
     let prompt = window.prompt("Please enter the prompt: ", "Write an essay about...");
     if (prompt != null) {
-        console.log("AskAI CLicked");
         const user = auth.currentUser;
-        console.log("AskAI: User: ", user);
         if (user) {
             const tokenRef = doc(db, "openai", "token");
             getDoc(tokenRef)
@@ -288,8 +286,6 @@ async function ai() {
                         const token = tokenData.token;
 
                         await sendOpenAIRequest(token, prompt);
-
-                        //ocument.getElementById('text-content').append(await response);
 
 
                     } else {
@@ -309,25 +305,66 @@ async function sendOpenAIRequest(token, prompt) {
     const textContent = document.getElementById('text-content');
     console.log("Calling GPT3 with Token: ", token);
     try {
-        var url = "https://api.openai.com/v1/chat/completions";
-        var bearer = 'Bearer ' + token;
+        const url = "https://api.openai.com/v1/chat/completions";
+        const bearer = 'Bearer ' + token; // Bearer + token für die Authentifizierung benötigt. Bearer = Inhaber des Tokens
 
-        let response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Authorization': bearer,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{
-                    role: "user",
-                    content: ("Halte dich bitte ganz kurz, es soll ja nicht zu lange werden: " +
-                        prompt)
-                }],
-                stream: true,
-            })
-        });
+        let response;
+        console.log(window.getSelection());
+
+        if (window.getSelection() === null) {
+
+            response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': bearer,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [
+                        {
+                            role: "system",
+                            content: "Your usage is in an note application. " +
+                                "The user is giving you instructions like writing something, " +
+                                "summing something up or translate something." +
+                                "Do not answer with an \'okay\' or something like that. Simply, just fulfill your job " +
+                                "without any confirmation. Stay friendly and do not use any curse words. Do not give too long answers."
+                        },
+                        {
+                            role: "user",
+                            content: prompt
+                        }
+                    ],
+                    stream: true,
+                })
+            });
+        } else {
+            response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': bearer,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [
+                        {
+                            role: "system",
+                            content: "Your usage is in an note application. " +
+                                "The user is giving you instructions like writing something, " +
+                                "summing something up or translate something." +
+                                "Do not answer with an \'okay\' or something like that. Simply, just fulfill your job " +
+                                "without any confirmation. Stay friendly and do not use any curse words. Do not give too long answers."
+                        },
+                        {
+                            role: "user",
+                            content: (prompt + "\'" + window.getSelection() + "\'")
+                        }
+                    ],
+                    stream: true,
+                })
+            });
+        }
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
@@ -513,9 +550,11 @@ function backToProjects() {
 function editProject(project) {
     my_modal_2.showModal();
 
+    const modal = document.querySelector('.modal2');
     const modalName = document.querySelector('.input-name');
     const modalDate = document.querySelector('.input-date');
     const modalCategory = document.querySelector('.input-category');
+    const closeIcon = document.querySelector('.close-icon');
     const submit = document.querySelector('.update-project');
 
     modalName.value = project.title;
@@ -530,6 +569,12 @@ function editProject(project) {
     });
     modalCategory.addEventListener('change', () => {
         project.category = modalCategory.value;
+    });
+    closeIcon.addEventListener('click', () => {
+        modalName.value = '';
+        modalDate.value = '';
+        modal.removeAttribute('open');
+        window.location.reload();
     });
 
     submit.addEventListener('click', () => {
@@ -547,7 +592,7 @@ function editProject(project) {
     })
 }
 
-//Navbar
+// --- NavBar
 
 const body = document.querySelector('body'),
     sidebar = body.querySelector('nav'),
@@ -569,6 +614,7 @@ modeSwitch.addEventListener("click", () => {
         modeText.innerText = "Dark mode";
     }
 });
+// ---
 
 
 
