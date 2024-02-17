@@ -394,8 +394,10 @@ async function sendOpenAIRequest(token, prompt) {
                             const {content} = delta;
                             // Update the UI with the new content
                             if (content) {
+                                if (window.getSelection().toString() !== null) {
+                                    window.getSelection().deleteFromDocument();
+                                }
                                 textContent.innerText += content;
-                                console.log(content)
                             }
                         }
         }

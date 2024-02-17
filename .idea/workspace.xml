@@ -7,7 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="modal class">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="entferne zeilenumbruch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="24926000" />
-    </task>
-    <task id="LOCAL-00434" summary="CHATGPT">
-      <option name="closed" value="true" />
-      <created>1708073770591</created>
-      <option name="number" value="00434" />
-      <option name="presentableId" value="LOCAL-00434" />
-      <option name="project" value="LOCAL" />
-      <updated>1708073770591</updated>
+      <workItem from="1708077960863" duration="25814000" />
     </task>
     <task id="LOCAL-00435" summary="log">
       <option name="closed" value="true" />
@@ -492,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708169899507</updated>
     </task>
-    <option name="localTasksCounter" value="483" />
+    <task id="LOCAL-00483" summary="entferne zeilenumbruch">
+      <option name="closed" value="true" />
+      <created>1708170077931</created>
+      <option name="number" value="00483" />
+      <option name="presentableId" value="LOCAL-00483" />
+      <option name="project" value="LOCAL" />
+      <updated>1708170077931</updated>
+    </task>
+    <option name="localTasksCounter" value="484" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dicke des plus" />
     <MESSAGE value="farbe" />
     <MESSAGE value="hover" />
     <MESSAGE value="transition on hover" />
@@ -535,7 +535,8 @@
     <MESSAGE value="log" />
     <MESSAGE value="const url und bearer" />
     <MESSAGE value="modal class" />
-    <option name="LAST_COMMIT_MESSAGE" value="modal class" />
+    <MESSAGE value="entferne zeilenumbruch" />
+    <option name="LAST_COMMIT_MESSAGE" value="entferne zeilenumbruch" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
