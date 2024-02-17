@@ -275,49 +275,87 @@ document.getElementById('askAI').addEventListener('click', () => ai());
 async function ai() {
 
     let prompt = window.prompt("Please enter the prompt: ", "Write an essay about...");
-    console.log("AskAI CLicked");
-    const user = auth.currentUser;
-    console.log("AskAI: User: ", user);
-    if (user) {
-        const tokenRef = doc(db, "openai", "token");
-        getDoc(tokenRef)
-            .then(async docSnapshot => {
-                if (docSnapshot.exists()) {
-                    const tokenData = docSnapshot.data();
-                    const token = tokenData.token;
+    if (prompt != null) {
+        console.log("AskAI CLicked");
+        const user = auth.currentUser;
+        console.log("AskAI: User: ", user);
+        if (user) {
+            const tokenRef = doc(db, "openai", "token");
+            getDoc(tokenRef)
+                .then(async docSnapshot => {
+                    if (docSnapshot.exists()) {
+                        const tokenData = docSnapshot.data();
+                        const token = tokenData.token;
 
-                    console.log("Calling GPT3 with Token: ", token);
-                    var url = "https://api.openai.com/v1/chat/completions";
-                    var bearer = 'Bearer ' + token;
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': bearer,
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            model: "gpt-3.5-turbo",
-                            messages: [{
-                                role: "user",
-                                content: ("Halte dich bitte ganz kurz, es soll ja nicht zu lange werden: " +
-                                    prompt)
-                            }],
-                        })
-                    });
+                        const response = sendOpenAIRequest(token);
 
-                    const data = await response.json();
-                    document.getElementById('text-content').append(data.choices[0].message.content)
+                        //ocument.getElementById('text-content').append(await response);
 
 
-                } else {
-                    console.log("Token-Dokument existiert nicht");
-                }
+                    } else {
+                        console.log("Token-Dokument existiert nicht");
+                    }
+                })
+                .catch(error => {
+                    console.error("Fehler beim Laden des Token-Dokuments oder beim Aufrufen von GPT3: ", error);
+                });
+        } else {
+            console.error("Benutzer nicht gefunden");
+        }
+    }
+}
+
+async function sendOpenAIRequest() {
+    const textContent = document.getElementById('text-content');
+    console.log("Calling GPT3 with Token: ", token);
+    try {
+        var url = "https://api.openai.com/v1/chat/completions";
+        var bearer = 'Bearer ' + token;
+
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': bearer,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{
+                    role: "user",
+                    content: ("Halte dich bitte ganz kurz, es soll ja nicht zu lange werden: " +
+                        prompt)
+                }],
+                stream: true,
             })
-            .catch(error => {
-                console.error("Fehler beim Laden des Token-Dokuments oder beim Aufrufen von GPT3: ", error);
-            });
-    } else {
-        console.error("Benutzer nicht gefunden");
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+
+        while (true) {
+            const {done, value} = await reader.read();
+            if (done) {
+                break;
+            }
+            // Massage and parse the chunk of data
+            const chunk = decoder.decode(value);
+            const lines = chunk.split("\\n");
+            const parsedLines = lines
+                .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
+                .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
+                .map((line) => JSON.parse(line)); // Parse the JSON string
+
+            for (const parsedLine of parsedLines) {
+                const {choices} = parsedLine;
+                const {delta} = choices[0];
+                const {content} = delta;
+                // Update the UI with the new content
+                if (content) {
+                    textContent.innerText += content;
+                }
+            }
+        }
+    } catch {
     }
 }
 
