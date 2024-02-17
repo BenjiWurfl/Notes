@@ -365,6 +365,9 @@ async function sendOpenAIRequest(token, prompt) {
                         }
                     ],
                     stream: true,
+                    temperature: 1,
+                    max_tokens: 1642,
+                    top_p: 1,
                 })
             });
         }
@@ -388,18 +391,18 @@ async function sendOpenAIRequest(token, prompt) {
                 .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
                 .map(line => JSON.parse(line)); // Parse the JSON string
 
-                        for (const parsedLine of parsedLines) {
-                            const {choices} = parsedLine;
-                            const {delta} = choices[0];
-                            const {content} = delta;
-                            // Update the UI with the new content
-                            if (content) {
-                                if (window.getSelection().toString() !== null) {
-                                    window.getSelection().deleteFromDocument();
-                                }
-                                textContent.innerText += content;
-                            }
-                        }
+            for (const parsedLine of parsedLines) {
+                const {choices} = parsedLine;
+                const {delta} = choices[0];
+                const {content} = delta;
+                // Update the UI with the new content
+                if (content) {
+                    if (window.getSelection().toString() !== null) {
+                        window.getSelection().deleteFromDocument();
+                    }
+                    textContent.innerText += content;
+                }
+            }
         }
     } catch {
     }
