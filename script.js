@@ -344,21 +344,22 @@ async function sendOpenAIRequest(token) {
             const lines = decodedChunk.split("\n");
             console.log(lines);
 
-            /*const parsedLines = lines
+            const parsedLines = lines
                 .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
                 .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
-                .map((line) => JSON.parse(line)); // Parse the JSON string
-
-            for (const parsedLine of parsedLines) {
-                const {choices} = parsedLine;
-                const {delta} = choices[0];
-                const {content} = delta;
-                // Update the UI with the new content
-                if (content) {
-                    textContent.innerText += content;
-                    console.log(content)
-                }
-            }*/
+                .map(line => JSON.parse(line)); // Parse the JSON string
+            console.log(parsedLines);
+            /*
+                        for (const parsedLine of parsedLines) {
+                            const {choices} = parsedLine;
+                            const {delta} = choices[0];
+                            const {content} = delta;
+                            // Update the UI with the new content
+                            if (content) {
+                                textContent.innerText += content;
+                                console.log(content)
+                            }
+                        }*/
         }
     } catch {
     }
