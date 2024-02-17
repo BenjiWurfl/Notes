@@ -394,7 +394,7 @@ async function sendOpenAIRequest(token, prompt) {
                             const {content} = delta;
                             // Update the UI with the new content
                             if (content) {
-                                textContent.innerText += "\n" + content;
+                                textContent.innerText += content;
                                 console.log(content)
                             }
                         }
