@@ -372,6 +372,13 @@ async function sendOpenAIRequest(token, prompt) {
             });
         }
 
+        const data = await response.json();
+
+        if (data && data.choices && data.choices.length > 0) {
+            const {content} = data.choices[0].value;
+            textContent.innerHTML = content;
+        }
+        /*
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
 
@@ -403,7 +410,7 @@ async function sendOpenAIRequest(token, prompt) {
                     textContent.innerText += content;
                 }
             }
-        }
+        }*/
     } catch {
     }
 }
