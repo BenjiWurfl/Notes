@@ -299,8 +299,8 @@ async function ai() {
                             model: "gpt-3.5-turbo",
                             messages: [{
                                 role: "user",
-                                content: "Halte dich bitte ganz kurz, es soll ja nicht zu lange werden: ",
-                                prompt
+                                content: ("Halte dich bitte ganz kurz, es soll ja nicht zu lange werden: " +
+                                    prompt)
                             }],
                         })
                     });
