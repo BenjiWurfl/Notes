@@ -99,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="30305000" />
-    </task>
-    <task id="LOCAL-00443" summary="import openai">
-      <option name="closed" value="true" />
-      <created>1708077378040</created>
-      <option name="number" value="00443" />
-      <option name="presentableId" value="LOCAL-00443" />
-      <option name="project" value="LOCAL" />
-      <updated>1708077378041</updated>
+      <workItem from="1708077960863" duration="31701000" />
     </task>
     <task id="LOCAL-00444" summary="import openai">
       <option name="closed" value="true" />
@@ -493,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708247625161</updated>
     </task>
-    <option name="localTasksCounter" value="492" />
+    <task id="LOCAL-00492" summary="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)">
+      <option name="closed" value="true" />
+      <created>1708248040366</created>
+      <option name="number" value="00492" />
+      <option name="presentableId" value="LOCAL-00492" />
+      <option name="project" value="LOCAL" />
+      <updated>1708248040366</updated>
+    </task>
+    <option name="localTasksCounter" value="493" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
