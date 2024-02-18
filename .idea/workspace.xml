@@ -8,6 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="edit note und beginnen von review von note">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="38521000" />
-    </task>
-    <task id="LOCAL-00458" summary="LOG">
-      <option name="closed" value="true" />
-      <created>1708107687676</created>
-      <option name="number" value="00458" />
-      <option name="presentableId" value="LOCAL-00458" />
-      <option name="project" value="LOCAL" />
-      <updated>1708107687676</updated>
+      <workItem from="1708077960863" duration="38692000" />
     </task>
     <task id="LOCAL-00459" summary="completions">
       <option name="closed" value="true" />
@@ -492,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708295546941</updated>
     </task>
-    <option name="localTasksCounter" value="507" />
+    <task id="LOCAL-00507" summary="edit note und beginnen von review von note">
+      <option name="closed" value="true" />
+      <created>1708295837468</created>
+      <option name="number" value="00507" />
+      <option name="presentableId" value="LOCAL-00507" />
+      <option name="project" value="LOCAL" />
+      <updated>1708295837468</updated>
+    </task>
+    <option name="localTasksCounter" value="508" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
