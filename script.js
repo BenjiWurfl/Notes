@@ -391,6 +391,8 @@ async function sendOpenAIRequest(token, prompt) {
                 .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
                 .map(line => JSON.parse(line)); // Parse the JSON string
 
+            console.log("Parsed: ", parsedLines)
+
             for (const parsedLine of parsedLines) {
                 const {choices} = parsedLine;
                 const {delta} = choices[0];

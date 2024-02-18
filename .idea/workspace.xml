@@ -7,8 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="max tokens geändert">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="Log">
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,15 +98,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="29101000" />
-    </task>
-    <task id="LOCAL-00440" summary="import openai">
-      <option name="closed" value="true" />
-      <created>1708076765138</created>
-      <option name="number" value="00440" />
-      <option name="presentableId" value="LOCAL-00440" />
-      <option name="project" value="LOCAL" />
-      <updated>1708076765138</updated>
+      <workItem from="1708077960863" duration="29424000" />
     </task>
     <task id="LOCAL-00441" summary="import openai">
       <option name="closed" value="true" />
@@ -493,7 +484,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708203790166</updated>
     </task>
-    <option name="localTasksCounter" value="489" />
+    <task id="LOCAL-00489" summary="Log">
+      <option name="closed" value="true" />
+      <created>1708246611636</created>
+      <option name="number" value="00489" />
+      <option name="presentableId" value="LOCAL-00489" />
+      <option name="project" value="LOCAL" />
+      <updated>1708246611636</updated>
+    </task>
+    <option name="localTasksCounter" value="490" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +510,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="hover" />
     <MESSAGE value="transition on hover" />
     <MESSAGE value="note cards" />
     <MESSAGE value="hovercolor bg" />
@@ -536,7 +534,8 @@
     <MESSAGE value="modal class" />
     <MESSAGE value="entferne zeilenumbruch" />
     <MESSAGE value="max tokens geändert" />
-    <option name="LAST_COMMIT_MESSAGE" value="max tokens geändert" />
+    <MESSAGE value="Log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Log" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
