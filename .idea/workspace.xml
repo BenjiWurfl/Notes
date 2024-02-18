@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="Log">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
@@ -99,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="30097000" />
-    </task>
-    <task id="LOCAL-00442" summary="import openai">
-      <option name="closed" value="true" />
-      <created>1708077019537</created>
-      <option name="number" value="00442" />
-      <option name="presentableId" value="LOCAL-00442" />
-      <option name="project" value="LOCAL" />
-      <updated>1708077019537</updated>
+      <workItem from="1708077960863" duration="30305000" />
     </task>
     <task id="LOCAL-00443" summary="import openai">
       <option name="closed" value="true" />
@@ -493,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708246941047</updated>
     </task>
-    <option name="localTasksCounter" value="491" />
+    <task id="LOCAL-00491" summary="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)">
+      <option name="closed" value="true" />
+      <created>1708247625161</created>
+      <option name="number" value="00491" />
+      <option name="presentableId" value="LOCAL-00491" />
+      <option name="project" value="LOCAL" />
+      <updated>1708247625161</updated>
+    </task>
+    <option name="localTasksCounter" value="492" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="transition on hover" />
     <MESSAGE value="note cards" />
     <MESSAGE value="hovercolor bg" />
     <MESSAGE value="farbe vom schatten toolbar" />
@@ -536,7 +535,8 @@
     <MESSAGE value="entferne zeilenumbruch" />
     <MESSAGE value="max tokens geändert" />
     <MESSAGE value="Log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Log" />
+    <MESSAGE value="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
