@@ -405,6 +405,7 @@ async function sendOpenAIRequest(token, prompt) {
             }
         }
     } catch {
+        console.error("Error")
     }
 }
 
