@@ -1,14 +1,13 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import {
-    getFirestore,
-    collection,
-    getDocs,
-    getDoc,
     addDoc,
+    collection,
     deleteDoc,
-    updateDoc,
     doc,
-    Timestamp
+    getDoc,
+    getDocs,
+    getFirestore,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
@@ -106,6 +105,23 @@ function loadDataOfNote(note) {
     document.getElementById('title').dataset.noteId = note.id;
     document.getElementById('text-content').innerHTML = note.body;
     document.getElementById('text-content').dataset.noteId = note.id;
+    switch (note.rating) {
+        case 1:
+            star1.setAttribute('checked', 'checked')
+            break;
+        case 2:
+            star2.setAttribute('checked', 'checked')
+            break;
+        case 3:
+            star3.setAttribute('checked', 'checked')
+            break;
+        case 4:
+            star4.setAttribute('checked', 'checked')
+            break;
+        case 5:
+            star5.setAttribute('checked', 'checked')
+            break;
+    }
 
     document.getElementById('text-content').focus();
 
@@ -662,6 +678,26 @@ modeSwitch.addEventListener("click", () => {
     }
 });
 // ---
+
+const star1 = document.querySelector('.rating-1'),
+    star2 = document.querySelector('.rating-2'),
+    star3 = document.querySelector('.rating-3'),
+    star4 = document.querySelector('.rating-4'),
+    star5 = document.querySelector('.rating-5');
+
+star1.addEventListener('click', () => rated(1));
+star2.addEventListener('click', () => rated(2));
+star3.addEventListener('click', () => rated(3));
+star4.addEventListener('click', () => rated(4));
+star5.addEventListener('click', () => rated(5));
+
+
+async function rated(index) {
+    const user = auth.currentUser;
+    const noteRef = doc(db, "users", user.uid, "projects", currentProject.id, "notes", currentNote.id)
+    currentNote.rating = index;
+    await updateDoc(noteRef, currentNote)
+}
 
 
 
