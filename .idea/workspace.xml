@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="EDITPROJECT HOD FUNKTIONIERT JZ MOCHI EDIT NOTE HAHAAA JAAAAAA">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="edit note und beginnen von review von note">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -99,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="36632000" />
-    </task>
-    <task id="LOCAL-00451" summary="import openai">
-      <option name="closed" value="true" />
-      <created>1708081083166</created>
-      <option name="number" value="00451" />
-      <option name="presentableId" value="LOCAL-00451" />
-      <option name="project" value="LOCAL" />
-      <updated>1708081083166</updated>
+      <workItem from="1708077960863" duration="36970000" />
     </task>
     <task id="LOCAL-00452" summary="LOG">
       <option name="closed" value="true" />
@@ -493,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708291487520</updated>
     </task>
-    <option name="localTasksCounter" value="500" />
+    <task id="LOCAL-00500" summary="edit note und beginnen von review von note">
+      <option name="closed" value="true" />
+      <created>1708294011132</created>
+      <option name="number" value="00500" />
+      <option name="presentableId" value="LOCAL-00500" />
+      <option name="project" value="LOCAL" />
+      <updated>1708294011132</updated>
+    </task>
+    <option name="localTasksCounter" value="501" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="farbe vom schatten toolbar" />
     <MESSAGE value="dicke von backtoprojects, backtonotes" />
     <MESSAGE value="design modal" />
     <MESSAGE value="backtoproj" />
@@ -536,7 +535,8 @@
     <MESSAGE value="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)" />
     <MESSAGE value="Align editPRoject right (ZUMINDEST PROBIER IS WEILS EH NED FUNKTIONIERT)&#10;UND LÖSCHEN JAAAAAA I WÜ NIMMA" />
     <MESSAGE value="EDITPROJECT HOD FUNKTIONIERT JZ MOCHI EDIT NOTE HAHAAA JAAAAAA" />
-    <option name="LAST_COMMIT_MESSAGE" value="EDITPROJECT HOD FUNKTIONIERT JZ MOCHI EDIT NOTE HAHAAA JAAAAAA" />
+    <MESSAGE value="edit note und beginnen von review von note" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit note und beginnen von review von note" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
