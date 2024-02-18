@@ -29,7 +29,7 @@ const auth = getAuth();
 let notesArr = [];
 let projectsArr = []
 let currentProject;
-let token;
+let currentNote;
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
@@ -99,6 +99,8 @@ function loadDataOfNote(note) {
 
     const containerForCards = document.querySelector('.over-div');
     containerForCards.classList.add('hidden');
+
+    currentNote = note;
 
     document.getElementById('title').innerHTML = note.title;
     document.getElementById('title').dataset.noteId = note.id;
@@ -582,6 +584,15 @@ document.querySelector('.back-to-notes').addEventListener('click', () => {
 function backToProjects() {
     showNotes();
 }
+
+document.querySelector('.delete-note').addEventListener('click', () => {
+    let confirmDelete = confirm("Are you sure you want to delete this note?");
+    if (!confirmDelete) return;
+    const user = auth.currentUser;
+    const noteRef = doc(db, "users", user.uid, "projects", currentProject.id, "notes", currentNote.id);
+    deleteDoc(noteRef).then(() => loadNotesOfProject(currentProject))
+        .catch(error => console.error(error));
+})
 
 function editProject(project) {
     my_modal_2.showModal();
