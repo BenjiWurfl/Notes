@@ -605,19 +605,7 @@ function addLink() {
 
 function formatDoc(cmd, value = null) {
     console.log("formatCodeEntry")
-    if (cmd === "insertOrderedList") {
-        let selection = window.getSelection().toString();
-        let wrappedSelection = '<span class="list-style-type: decimal;">' + selection + '</span>';
-        document.execCommand('insertOrderedList', false, wrappedSelection);
-    }
-    if (cmd === "insertUnorderedList") {
-        let selection = window.getSelection().toString();
-        let wrappedSelection = '<span class="list-style-type: decimal;">' + selection + '</span>';
-        document.execCommand('insertUnorderedList', false, wrappedSelection);
-    } else {
-        document.execCommand(cmd, false, value);
-    }
-
+    document.execCommand(cmd, false, value);
 }
 
 function flipDropdown(project) {
