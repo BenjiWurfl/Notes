@@ -186,7 +186,7 @@ function updatePinnedNotes(project) {
     title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
 
     const sortBy = document.createElement('div');
-    sortBy.classList.add('flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
+    sortBy.classList.add('cursor-pointer', 'flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
     sortBy.innerHTML = "Date";
     sortBy.addEventListener('click', () => sortNotes(project));
 
