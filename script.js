@@ -205,7 +205,7 @@ function updatePinnedNotes(project) {
     containerForNoteCards.appendChild(sortBy);
 
     if (currentSortByState === "Date down") {
-        sortArrayByDateDown();
+        notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
     }
 
     notesArr.forEach((note, index) => {
@@ -232,13 +232,14 @@ function sortNotes(project) {
             sortArrayByDateDown(project);
             break;
         default:
-            sortArrayByDateDown();
+            sortArrayByDateDown(project);
     }
 }
 
 function sortArrayByDateDown(project) {
     currentSortByState = "Date down";
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+    console.log(project);
     updatePinnedNotes(project);
 }
 
