@@ -33,7 +33,11 @@ html, body {
 }
 
 ul {
-    list-style: circle;
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
 }
 
 .document {
