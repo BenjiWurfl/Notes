@@ -67,7 +67,6 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function addNoteToNavbar(note, containerForNoteCards) {
-    console.log(note);
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
@@ -182,7 +181,6 @@ function updatePinnedNotes(project) {
     deleteProjectButton.addEventListener('click', () => deleteProject(project));
 
 
-    console.log("Title: ", project.title)
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'col-span-4', 'px-4', 'w-full', 'font-bold', 'text-center');
     title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
@@ -239,7 +237,6 @@ function sortNotes(project) {
 function sortArrayByDateDown(project) {
     currentSortByState = "Date down";
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
-    console.log(project);
     updatePinnedNotes(project);
 }
 
@@ -383,7 +380,6 @@ async function ai() {
 
 async function sendOpenAIRequest(token, prompt) {
     const textContent = document.getElementById('text-content');
-    console.log("Calling GPT3 with Token: ", token);
     try {
         const url = "https://api.openai.com/v1/chat/completions";
         const bearer = 'Bearer ' + token; // Bearer + token für die Authentifizierung benötigt. Bearer = Inhaber des Tokens
