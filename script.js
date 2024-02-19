@@ -29,6 +29,7 @@ let notesArr = [];
 let projectsArr = []
 let currentProject;
 let currentNote;
+let currentSortByState = "Date down";
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
@@ -150,7 +151,6 @@ function addProjectToNavbar(project, containerForProjectCards) {
 }
 
 function updatePinnedNotes(project) {
-    notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
 
     const cardsCompletelyHiddenToggle = document.querySelector('.over-div');
     cardsCompletelyHiddenToggle.classList.remove('hidden');
@@ -186,20 +186,30 @@ function updatePinnedNotes(project) {
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'col-span-4', 'px-4', 'w-full', 'font-bold', 'text-center');
     title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
+
+    const sortBy = document.createElement('div');
+    sortBy.classList.add('flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
+    sortBy.innerHTML = "Date";
+    sortBy.addEventListener('click', () => sortNotes(project));
+
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('ml-4', 'bg-[#3019bd]', 'w-10', 'h-10', 'font-bold', 'text-xl', 'text-white', 'shadow-md', 'rounded', 'cursor-pointer', 'flex', 'justify-center', 'items-center')
     addNoteButton.innerHTML = '+';
     addNoteButton.addEventListener('click', () => addNewNote(project));
     title.append(addNoteButton);
     containerForNoteCards.appendChild(backToProjectsButton);
-
     modifyProjectSpan.appendChild(editProjectButton);
     modifyProjectSpan.appendChild(deleteProjectButton);
     containerForNoteCards.appendChild(modifyProjectSpan);
     containerForNoteCards.appendChild(title);
+    containerForNoteCards.appendChild(sortBy);
 
-    console.log("Update")
+    if (currentSortByState === "Date down") {
+        sortArrayByDateDown();
+    }
+
     notesArr.forEach((note, index) => {
+
         addNoteToNavbar(note, containerForNoteCards);
     })
 }
@@ -212,6 +222,32 @@ function deleteProject(project) {
     deleteDoc(projRef).then(() => showNotes())
         .catch(error => console.error(error));
 }
+
+function sortNotes(project) {
+    switch (currentSortByState) {
+        case "Date down":
+            sortArrayByDateUp(project);
+            break;
+        case "Date up":
+            sortArrayByDateDown(project);
+            break;
+        default:
+            sortArrayByDateDown();
+    }
+}
+
+function sortArrayByDateDown(project) {
+    currentSortByState = "Date down";
+    notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+    updatePinnedNotes(project);
+}
+
+function sortArrayByDateUp(project) {
+    currentSortByState = "Date up";
+    notesArr = notesArr.slice().sort((a, b) => a.lastUpdated - b.lastUpdated);
+    updatePinnedNotes(project);
+}
+
 
 function updatePinnedItems() {
     // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
