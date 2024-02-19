@@ -186,9 +186,13 @@ function updatePinnedNotes(project) {
     title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
 
     const sortBy = document.createElement('div');
-    sortBy.classList.add('cursor-pointer', 'flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
-    sortBy.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='#3019bd'><path d=\"m6 20 4-4H7V4H5v12H2zm5-12h9v2h-9zm0 4h7v2h-7zm0-8h11v2H11zm0 12h5v2h-5z\"></path></svg>" +
-        "Date ";
+    sortBy.classList.add('sort-by', 'cursor-pointer', 'flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
+    sortBy.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"' +
+        'fill="#3019bd">' +
+        '<path d="M7 20h2V8h3L8 4 4 8h3zm13-4h-3V4h-2v12h-3l4 4z"></path>' +
+        '</svg> Date down';
+
     sortBy.addEventListener('click', () => sortNotes(project, sortBy));
 
     const addNoteButton = document.createElement('div');
@@ -222,17 +226,23 @@ function deleteProject(project) {
         .catch(error => console.error(error));
 }
 
-function sortNotes(project, sortBy) {
+function sortNotes(project) {
     switch (currentSortByState) {
         case "Date down":
             sortArrayByDateUp(project);
-            sortBy.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='#3019bd'><path d=\"M11 9h9v2h-9zm0 4h7v2h-7zm0-8h11v2H11zm0 12h5v2h-5zm-6 3h2V8h3L6 4 2 8h3z\"></path></svg>" +
-                "Date up";
+            document.getElementById('sort-by').innerHTML =
+                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"' +
+                'fill="#3019bd">' +
+                '<path d="M7 20h2V8h3L8 4 4 8h3zm13-4h-3V4h-2v12h-3l4 4z"></path>' +
+                '</svg> Date up';
             break;
         case "Date up":
             sortArrayByDateDown(project);
-            sortBy.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='#3019bd'><path d=\"m6 20 4-4H7V4H5v12H2zm5-12h9v2h-9zm0 4h7v2h-7zm0-8h11v2H11zm0 12h5v2h-5z\"></path></svg>" +
-                "Date down";
+            document.getElementById('sort-by').innerHTML =
+                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"' +
+                'fill="#3019bd">' +
+                '<path d="M7 20h2V8h3L8 4 4 8h3zm13-4h-3V4h-2v12h-3l4 4z"></path>' +
+                '</svg> Date down';
             break;
         default:
             sortArrayByDateDown(project);
