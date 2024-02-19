@@ -266,13 +266,13 @@ function sortProjects() {
 
 function changeProjectsArrayByDateDown() {
     currentSortByState = "Date down";
-    projectsArr = projectsArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+    projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate);
     showNotes();
 }
 
 function changeProjectsArrayByDateUp() {
     currentSortByState = "Date up";
-    projectsArr = projectsArr.slice().sort((a, b) => a.lastUpdated - b.lastUpdated);
+    projectsArr = projectsArr.slice().sort((a, b) => a.dueDate - b.dueDate);
     showNotes();
 }
 
