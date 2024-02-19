@@ -187,8 +187,9 @@ function updatePinnedNotes(project) {
 
     const sortBy = document.createElement('div');
     sortBy.classList.add('cursor-pointer', 'flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
-    sortBy.innerHTML = "Date";
-    sortBy.addEventListener('click', () => sortNotes(project));
+    sortBy.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" style=\"fill: rgba(0, 0, 0, 1);transform: ;msFilter:;\"><path d=\"m6 20 4-4H7V4H5v12H2zm5-12h9v2h-9zm0 4h7v2h-7zm0-8h11v2H11zm0 12h5v2h-5z\"></path></svg>" +
+        "Date ";
+    sortBy.addEventListener('click', () => sortNotes(project, sortBy));
 
     const addNoteButton = document.createElement('div');
     addNoteButton.classList.add('ml-4', 'bg-[#3019bd]', 'w-10', 'h-10', 'font-bold', 'text-xl', 'text-white', 'shadow-md', 'rounded', 'cursor-pointer', 'flex', 'justify-center', 'items-center')
@@ -221,13 +222,18 @@ function deleteProject(project) {
         .catch(error => console.error(error));
 }
 
-function sortNotes(project) {
+function sortNotes(project, sortBy) {
+    sortBy
     switch (currentSortByState) {
         case "Date down":
             sortArrayByDateUp(project);
+            sortBy.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" style=\"fill: rgba(0, 0, 0, 1);transform: ;msFilter:;\"><path d=\"M11 9h9v2h-9zm0 4h7v2h-7zm0-8h11v2H11zm0 12h5v2h-5zm-6 3h2V8h3L6 4 2 8h3z\"></path></svg>" +
+                "Date";
             break;
         case "Date up":
             sortArrayByDateDown(project);
+            sortBy.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" style=\"fill: rgba(0, 0, 0, 1);transform: ;msFilter:;\"><path d=\"m6 20 4-4H7V4H5v12H2zm5-12h9v2h-9zm0 4h7v2h-7zm0-8h11v2H11zm0 12h5v2h-5z\"></path></svg>" +
+                "Date";
             break;
         default:
             sortArrayByDateDown(project);
