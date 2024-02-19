@@ -182,7 +182,7 @@ function updatePinnedNotes(project) {
     deleteProjectButton.addEventListener('click', () => deleteProject(project));
 
 
-
+    console.log("Title: ", project.title)
     const title = document.createElement('div');
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'col-span-4', 'px-4', 'w-full', 'font-bold', 'text-center');
     title.innerHTML = 'Notes of  <span class="bg-[#3019bd] text-white rounded-2xl p-2 ml-3"> ' + project.title + '</span>';
