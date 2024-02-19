@@ -67,6 +67,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function addNoteToNavbar(note, containerForNoteCards) {
+    console.log(note);
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
@@ -84,7 +85,6 @@ function addNoteToNavbar(note, containerForNoteCards) {
         '            </div>';
     containerForNoteCards.appendChild(roundedDiv);
 
-    let lastUpdated = note.lastUpdated.toLocaleDateString("en-us");
     let noteTitle = note.title;
     // Truncate the text content to 15 characters
     if (noteTitle.length > 14) {
