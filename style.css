@@ -32,6 +32,10 @@ html, body {
     font-family: 'Poppins', sans-serif;
 }
 
+ul {
+    list-style: circle;
+}
+
 .document {
     width: 50%;
 }
