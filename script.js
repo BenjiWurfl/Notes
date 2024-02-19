@@ -229,32 +229,54 @@ function deleteProject(project) {
 function sortNotes(project) {
     switch (currentSortByState) {
         case "Date down":
-            sortArrayByDateUp(project);
+            changeNotesArrayByDateUp(project);
             break;
         case "Date up":
-            sortArrayByDateDown(project);
+            changeNotesArrayByDateDown(project);
             break;
         default:
-            sortArrayByDateDown(project);
+            changeNotesArrayByDateDown(project);
     }
 }
 
-function sortArrayByDateDown(project) {
+function changeNotesArrayByDateDown(project) {
     currentSortByState = "Date down";
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
     updatePinnedNotes(project);
 }
 
-function sortArrayByDateUp(project) {
+function changeNotesArrayByDateUp(project) {
     currentSortByState = "Date up";
     notesArr = notesArr.slice().sort((a, b) => a.lastUpdated - b.lastUpdated);
     updatePinnedNotes(project);
 }
 
+function sortProjects() {
+    switch (currentSortByState) {
+        case "Date down":
+            changeProjectsArrayByDateUp();
+            break;
+        case "Date up":
+            changeProjectsArrayByDateDown();
+            break;
+        default:
+            changeProjectsArrayByDateDown();
+    }
+}
+
+function changeProjectsArrayByDateDown() {
+    currentSortByState = "Date down";
+    projectsArr = projectsArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
+    showNotes();
+}
+
+function changeProjectsArrayByDateUp() {
+    currentSortByState = "Date up";
+    projectsArr = projectsArr.slice().sort((a, b) => a.lastUpdated - b.lastUpdated);
+    showNotes();
+}
 
 function updatePinnedItems() {
-    // Sortiere notesArr nach lastUpdated in absteigender Reihenfolge
-    projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate);
 
     const richTextEditor = document.querySelector('.textEditor');
     richTextEditor.classList.add('hidden');
@@ -269,8 +291,23 @@ function updatePinnedItems() {
     title.classList.add('flex', 'items-center', 'text-4xl', 'text-[#3019bd]', 'p-4', 'font-bold', 'text-center', 'col-span-4', 'w-full');
     title.innerHTML = 'Projects' +
         '<div onclick="my_modal_1.showModal()" class="ml-4 bg-[#3019bd] w-10 h-10 font-bold text-xl text-white shadow-md rounded cursor-pointer flex justify-center items-center"> + </div>';
-    containerForProjectCards.appendChild(title);
 
+    const sortBy = document.createElement('div');
+    sortBy.classList.add('sort-by', 'cursor-pointer', 'flex', 'items-center', 'text-md', 'text-[#3019bd]', 'col-span-4', 'h-1', 'px-4', 'w-full', 'font-bold', 'text-center');
+    sortBy.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"' +
+        'fill="#3019bd">' +
+        '<path d="M7 20h2V8h3L8 4 4 8h3zm13-4h-3V4h-2v12h-3l4 4z"></path>' +
+        '</svg> Date down';
+
+    sortBy.addEventListener('click', () => sortProjects());
+
+    containerForProjectCards.appendChild(title);
+    containerForProjectCards.appendChild(sortBy);
+
+    if (currentSortByState === "Date down") {
+        projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate);
+    }
 
     projectsArr.forEach((project, index) => {
         addProjectToNavbar(project, containerForProjectCards);
