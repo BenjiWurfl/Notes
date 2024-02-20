@@ -1672,12 +1672,13 @@ html {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-ul {
-  list-style-type: disc;
+select {
+  color: black;
+  background-color: white;
 }
 
-ol {
-  list-style-type: decimal
+select:hover {
+  background-color: #3019bd;
 }
 
 .hover\:bg-gray-100:hover {
