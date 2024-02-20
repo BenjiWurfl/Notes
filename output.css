@@ -1681,6 +1681,24 @@ select:hover {
   background-color: #3019bd;
 }
 
+.color {
+  color: black;
+  background-color: white;
+}
+
+.color:hover {
+  background-color: #3019bd;
+}
+
+button {
+  color: black;
+  background-color: white;
+}
+
+.color:hover {
+  background-color: #3019bd;
+}
+
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));

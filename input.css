@@ -10,3 +10,21 @@ select {
 select:hover {
     background-color: #3019bd;
 }
+
+.color {
+    color: black;
+    background-color: white;
+}
+
+.color:hover {
+    background-color: #3019bd;
+}
+
+button {
+    color: black;
+    background-color: white;
+}
+
+.color:hover {
+    background-color: #3019bd;
+}
