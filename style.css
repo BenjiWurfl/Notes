@@ -71,6 +71,7 @@ ol {
 }
 
 .toolbar .head select {
+    background: #fff;
     border: none;
     outline: none;
     cursor: pointer;

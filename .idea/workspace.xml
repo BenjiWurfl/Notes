@@ -8,9 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="OUTPUT.CSS geändert für editor">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,23 +98,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="67167000" />
-    </task>
-    <task id="LOCAL-00517" summary="edit note und beginnen von review von note">
-      <option name="closed" value="true" />
-      <created>1708330033151</created>
-      <option name="number" value="00517" />
-      <option name="presentableId" value="LOCAL-00517" />
-      <option name="project" value="LOCAL" />
-      <updated>1708330033151</updated>
-    </task>
-    <task id="LOCAL-00518" summary="sort von notes">
-      <option name="closed" value="true" />
-      <created>1708331513930</created>
-      <option name="number" value="00518" />
-      <option name="presentableId" value="LOCAL-00518" />
-      <option name="project" value="LOCAL" />
-      <updated>1708331513930</updated>
+      <workItem from="1708077960863" duration="67234000" />
     </task>
     <task id="LOCAL-00519" summary="log">
       <option name="closed" value="true" />
@@ -494,7 +476,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708426580672</updated>
     </task>
-    <option name="localTasksCounter" value="566" />
+    <task id="LOCAL-00566" summary="OUTPUT.CSS geändert für editor">
+      <option name="closed" value="true" />
+      <created>1708427487133</created>
+      <option name="number" value="00566" />
+      <option name="presentableId" value="LOCAL-00566" />
+      <option name="project" value="LOCAL" />
+      <updated>1708427487133</updated>
+    </task>
+    <task id="LOCAL-00567" summary="OUTPUT.CSS geändert für editor">
+      <option name="closed" value="true" />
+      <created>1708427493646</created>
+      <option name="number" value="00567" />
+      <option name="presentableId" value="LOCAL-00567" />
+      <option name="project" value="LOCAL" />
+      <updated>1708427493646</updated>
+    </task>
+    <option name="localTasksCounter" value="568" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
