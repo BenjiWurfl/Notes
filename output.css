@@ -1679,6 +1679,12 @@ select {
 
 select:hover {
   background-color: #3019bd;
+  color: white;
+}
+
+input {
+  background-color: white;
+  color: black;
 }
 
 .color {

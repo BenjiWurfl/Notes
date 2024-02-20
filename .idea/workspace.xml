@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="preflight disabled">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="design">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/input.css" beforeDir="false" afterPath="$PROJECT_DIR$/input.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/output.css" afterDir="false" />
@@ -100,15 +100,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="72977000" />
-    </task>
-    <task id="LOCAL-00525" summary="log">
-      <option name="closed" value="true" />
-      <created>1708336566363</created>
-      <option name="number" value="00525" />
-      <option name="presentableId" value="LOCAL-00525" />
-      <option name="project" value="LOCAL" />
-      <updated>1708336566363</updated>
+      <workItem from="1708077960863" duration="73915000" />
     </task>
     <task id="LOCAL-00526" summary="log">
       <option name="closed" value="true" />
@@ -494,7 +486,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708460735746</updated>
     </task>
-    <option name="localTasksCounter" value="574" />
+    <task id="LOCAL-00574" summary="design">
+      <option name="closed" value="true" />
+      <created>1708462482319</created>
+      <option name="number" value="00574" />
+      <option name="presentableId" value="LOCAL-00574" />
+      <option name="project" value="LOCAL" />
+      <updated>1708462482319</updated>
+    </task>
+    <option name="localTasksCounter" value="575" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="navbar hinzugefügt" />
     <MESSAGE value="navbar hinzugefügt script.js" />
     <MESSAGE value="edit project button" />
     <MESSAGE value="edit project modal" />
@@ -537,7 +536,8 @@
     <MESSAGE value="log" />
     <MESSAGE value="OUTPUT.CSS geändert für editor" />
     <MESSAGE value="preflight disabled" />
-    <option name="LAST_COMMIT_MESSAGE" value="preflight disabled" />
+    <MESSAGE value="design" />
+    <option name="LAST_COMMIT_MESSAGE" value="design" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
