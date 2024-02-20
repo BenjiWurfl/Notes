@@ -12,12 +12,8 @@
     --navbar-light-secondary: #606060;
     --navbar-border-color: #303030;
     --navbar-bordder-color: #19068d;
-
 }
 
-#text-content {
-    all: initial;
-}
 
 html, body {
     margin: 0;
