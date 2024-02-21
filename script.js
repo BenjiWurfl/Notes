@@ -364,7 +364,6 @@ function addProjectToFirestore(newProject) {
 
     const eventTitle = newProject.title;
     const eventDescription = "This project is from the tab \'Projects\'";
-    const allDay = newProject.dueDate;
     let eventTimeFrom = '00:00';
     let eventTimeTo = '23:59';
     let day = newProject.dueDate.getDay();
@@ -376,7 +375,7 @@ function addProjectToFirestore(newProject) {
         description: eventDescription,
         timeFrom: eventTimeFrom,
         timeTo: eventTimeTo,
-        allDay: allDay,
+        allDay: true,
         day: day,
         month: month + 1,
         year: year,
