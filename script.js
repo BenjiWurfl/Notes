@@ -354,9 +354,6 @@ function addProjectToFirestore(newProject) {
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
-        projectsArr.push(newProject);
-        showNotes();
-        closeIcon.click();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
@@ -387,6 +384,11 @@ function addProjectToFirestore(newProject) {
     addDoc(eventsRef, event).then(docRef => {
         console.log("Event added with ID: ", event);
         event.id = docRef.id; // ID zum Ereignis hinzufügen
+        newProject.eventId = event.id;
+        projectsArr.push(newProject);
+        showNotes();
+        closeIcon.click();
+
 
     }).catch(error => {
         console.error("Error adding event: ", error);
@@ -726,7 +728,7 @@ function editProject(project) {
         const allDay = project.dueDate;
         let eventTimeFrom = '00:00';
         let eventTimeTo = '23:59';
-        let day = project.dueDate.getDay();
+        let day = project.dueDate.getDate();
         let month = project.dueDate.getMonth();
         let year = project.dueDate.getFullYear();
 
@@ -741,10 +743,10 @@ function editProject(project) {
             year: year,
             date: project.dueDate // Datum des Events
         };
-        const eventsRef = collection(db, "users", user.uid, "events");
+        const eventsRef = collection(db, "users", user.uid, "events", project.eventId);
 
         // Neues Ereignis zur Datenbank hinzufügen
-        addDoc(eventsRef, event).then(docRef => {
+        updateDoc(eventsRef, event).then(docRef => {
             console.log("Event added with ID: ", event);
             event.id = docRef.id; // ID zum Ereignis hinzufügen
 
