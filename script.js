@@ -730,48 +730,48 @@ function editProject(project) {
 
     submit.addEventListener('click', () => {
         const user = auth.currentUser;
-        if (user) {
-            const projRef = doc(db, "users", user.uid, "projects", project.id);
-            updateDoc(projRef, project)
-                .then(() => {
-                })
-                .catch((error) => {
-                    console.error("Error updating note in Firestore: ", error);
+        const projRef = doc(db, "users", user.uid, "projects", project.id);
+        updateDoc(projRef, project)
+            .then(() => {
+                project.dueDate = new Date(modalDate.value + "T00:00");
+
+
+                const eventTitle = project.title;
+                const eventDescription = "This project is from the tab \'Projects\'";
+                const allDay = project.dueDate;
+                let eventTimeFrom = '00:00';
+                let eventTimeTo = '23:59';
+                let day = project.dueDate.getDate();
+                let month = project.dueDate.getMonth();
+                let year = project.dueDate.getFullYear();
+
+                const event = {
+                    title: eventTitle,
+                    description: eventDescription,
+                    timeFrom: eventTimeFrom,
+                    timeTo: eventTimeTo,
+                    allDay: allDay,
+                    day: day,
+                    month: month + 1,
+                    year: year,
+                    date: project.dueDate // Datum des Events
+                };
+                const eventsRef = collection(db, "users", user.uid, "events", project.eventId);
+
+                // Neues Ereignis zur Datenbank hinzufügen
+                updateDoc(eventsRef, event).then(docRef => {
+                    console.log("Event added with ID: ", event);
+                    event.id = docRef.id; // ID zum Ereignis hinzufügen
+
+                }).catch(error => {
+                    console.error("Error adding event: ", error);
                 });
-        }
+            })
+            .catch((error) => {
+                console.error("Error updating note in Firestore: ", error);
+            });
 
-        project.dueDate = new Date(modalDate.value + "T00:00");
 
-        const eventTitle = project.title;
-        const eventDescription = "This project is from the tab \'Projects\'";
-        const allDay = project.dueDate;
-        let eventTimeFrom = '00:00';
-        let eventTimeTo = '23:59';
-        let day = project.dueDate.getDate();
-        let month = project.dueDate.getMonth();
-        let year = project.dueDate.getFullYear();
-
-        const event = {
-            title: eventTitle,
-            description: eventDescription,
-            timeFrom: eventTimeFrom,
-            timeTo: eventTimeTo,
-            allDay: allDay,
-            day: day,
-            month: month + 1,
-            year: year,
-            date: project.dueDate // Datum des Events
-        };
-        const eventsRef = collection(db, "users", user.uid, "events", project.eventId);
-
-        // Neues Ereignis zur Datenbank hinzufügen
-        updateDoc(eventsRef, event).then(docRef => {
-            console.log("Event added with ID: ", event);
-            event.id = docRef.id; // ID zum Ereignis hinzufügen
-
-        }).catch(error => {
-            console.error("Error adding event: ", error);
-        });
     })
 }
 
