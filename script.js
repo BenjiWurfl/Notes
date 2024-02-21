@@ -356,7 +356,6 @@ function addProjectToFirestore(newProject) {
         newProject.id = docRef.id;
         projectsArr.push(newProject);
         showNotes();
-        console.log("New project day: ", newProject.dueDate.getDay())
         closeIcon.click();
     }).catch(error => {
         console.error("Error adding event: ", error);
@@ -367,7 +366,7 @@ function addProjectToFirestore(newProject) {
     const eventDescription = "This project is from the tab \'Projects\'";
     let eventTimeFrom = '00:00';
     let eventTimeTo = '23:59';
-    let day = newProject.dueDate.getDay();
+    let day = new Date(newProject.dueDate).getDay();
     let month = newProject.dueDate.getMonth();
     let year = newProject.dueDate.getFullYear();
 
