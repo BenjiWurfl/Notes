@@ -59,7 +59,6 @@ function showNotes() {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        console.log("User is signed in with UID:", user.uid);
         showNotes();
     } else {
         console.log("No user is signed in.");
@@ -315,14 +314,6 @@ function updatePinnedItems() {
 
 }
 
-function deleteNote(noteId) {
-    let confirmDelete = confirm("Are you sure you want to delete this note?");
-    if (!confirmDelete) return;
-    notes.splice(noteId, 1);
-    localStorage.setItem('notes', JSON.stringify(notes));
-    showNotes();
-}
-
 function addNewNote(project) {
     let noteTitle = "Enter Title";
     let lastUpdated = new Date();
@@ -360,8 +351,6 @@ function addProjectToFirestore(newProject) {
         return;
     }
 
-    console.log("AddProjectClicked");
-
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
@@ -371,6 +360,39 @@ function addProjectToFirestore(newProject) {
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
+
+
+    const eventTitle = newProject.title;
+    const eventDescription = "This project is from the tab \'Projects\'";
+    const allDay = newProject.dueDate;
+    let eventTimeFrom = '00:00';
+    let eventTimeTo = '23:59';
+    let day = newProject.dueDate.getDay();
+    let month = newProject.dueDate.getMonth();
+    let year = newProject.dueDate.getFullYear();
+
+    const event = {
+        title: eventTitle,
+        description: eventDescription,
+        timeFrom: eventTimeFrom,
+        timeTo: eventTimeTo,
+        allDay: allDay,
+        day: day,
+        month: month + 1,
+        year: year,
+        date: newProject.dueDate // Datum des Events
+    };
+    const eventsRef = collection(db, "users", user.uid, "events");
+
+    // Neues Ereignis zur Datenbank hinzufügen
+    addDoc(eventsRef, event).then(docRef => {
+        console.log("Event added with ID: ", event);
+        event.id = docRef.id; // ID zum Ereignis hinzufügen
+
+    }).catch(error => {
+        console.error("Error adding event: ", error);
+    });
+
 }
 
 
@@ -427,11 +449,9 @@ async function sendOpenAIRequest(token, prompt) {
         const bearer = 'Bearer ' + token; // Bearer + token für die Authentifizierung benötigt. Bearer = Inhaber des Tokens
 
         let response;
-        console.log(window.getSelection().toString());
 
         if (window.getSelection().toString() === null) {
 
-            console.log("1")
 
             response = await fetch(url, {
                 method: 'POST',
@@ -459,7 +479,6 @@ async function sendOpenAIRequest(token, prompt) {
                 })
             });
         } else {
-            console.log("2")
             response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -497,7 +516,6 @@ async function sendOpenAIRequest(token, prompt) {
             const chunk = await reader.read();
             const {done, value} = chunk;
             if (done) {
-                console.log("Break")
                 break;
             }
 
@@ -509,7 +527,6 @@ async function sendOpenAIRequest(token, prompt) {
                 .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
                 .map(line => JSON.parse(line)); // Parse the JSON string
 
-            console.log("Parsed: ", parsedLines)
 
             for (const parsedLine of parsedLines) {
                 const {choices} = parsedLine;
@@ -563,7 +580,6 @@ document.getElementById('text-content').addEventListener('input', function () {
 
 function updateNoteToFirestore(updatedNote) {
     const user = auth.currentUser;
-    console.log("Updated note: ", updatedNote);
     if (user) {
         const noteRef = doc(db, "users", user.uid, "projects", updatedNote.parentProject, "notes", updatedNote.id);
         updateDoc(noteRef, updatedNote)
@@ -604,7 +620,6 @@ function addLink() {
 }
 
 function formatDoc(cmd, value = null) {
-    console.log("formatCodeEntry")
     document.execCommand(cmd, false, value);
 }
 
@@ -704,6 +719,39 @@ function editProject(project) {
     });
     modalDate.addEventListener('change', () => {
         project.dueDate = new Date(modalDate.value + "T00:00");
+
+        const user = auth.currentUser;
+
+        const eventTitle = project.title;
+        const eventDescription = "This project is from the tab \'Projects\'";
+        const allDay = project.dueDate;
+        let eventTimeFrom = '00:00';
+        let eventTimeTo = '23:59';
+        let day = project.dueDate.getDay();
+        let month = project.dueDate.getMonth();
+        let year = project.dueDate.getFullYear();
+
+        const event = {
+            title: eventTitle,
+            description: eventDescription,
+            timeFrom: eventTimeFrom,
+            timeTo: eventTimeTo,
+            allDay: allDay,
+            day: day,
+            month: month + 1,
+            year: year,
+            date: project.dueDate // Datum des Events
+        };
+        const eventsRef = collection(db, "users", user.uid, "events");
+
+        // Neues Ereignis zur Datenbank hinzufügen
+        addDoc(eventsRef, event).then(docRef => {
+            console.log("Event added with ID: ", event);
+            event.id = docRef.id; // ID zum Ereignis hinzufügen
+
+        }).catch(error => {
+            console.error("Error adding event: ", error);
+        });
     });
     modalCategory.addEventListener('change', () => {
         project.category = modalCategory.value;
@@ -717,7 +765,6 @@ function editProject(project) {
 
     submit.addEventListener('click', () => {
         const user = auth.currentUser;
-        console.log("Updated project: ", project);
         if (user) {
             const projRef = doc(db, "users", user.uid, "projects", project.id);
             updateDoc(projRef, project)
