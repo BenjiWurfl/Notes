@@ -354,13 +354,16 @@ function addProjectToFirestore(newProject) {
     const projectsRef = collection(db, "users", user.uid, "projects");
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
+        projectsArr.push(newProject);
+        showNotes();
+        closeIcon.click();
     }).catch(error => {
         console.error("Error adding event: ", error);
     });
 
 
     const eventTitle = newProject.title;
-    const eventDescription = "This project is from the tab \'Projects\'";
+    const eventDescription = "This project is from the tab \'Notes\'";
     let eventTimeFrom = '00:00';
     let eventTimeTo = '23:59';
     let day = newProject.dueDate.getDate();
@@ -384,11 +387,6 @@ function addProjectToFirestore(newProject) {
     addDoc(eventsRef, event).then(docRef => {
         console.log("Event added with ID: ", event);
         event.id = docRef.id; // ID zum Ereignis hinzufügen
-        newProject.eventId = event.id;
-        projectsArr.push(newProject);
-        showNotes();
-        closeIcon.click();
-
 
     }).catch(error => {
         console.error("Error adding event: ", error);
@@ -718,6 +716,42 @@ function editProject(project) {
     modalName.addEventListener('change', () => {
         project.title = modalName.value;
     });
+    modalDate.addEventListener('change', () => {
+        project.dueDate = new Date(modalDate.value + "T00:00");
+
+        const user = auth.currentUser;
+
+        const eventTitle = project.title;
+        const eventDescription = "This project is from the tab \'Projects\'";
+        const allDay = project.dueDate;
+        let eventTimeFrom = '00:00';
+        let eventTimeTo = '23:59';
+        let day = project.dueDate.getDay();
+        let month = project.dueDate.getMonth();
+        let year = project.dueDate.getFullYear();
+
+        const event = {
+            title: eventTitle,
+            description: eventDescription,
+            timeFrom: eventTimeFrom,
+            timeTo: eventTimeTo,
+            allDay: allDay,
+            day: day,
+            month: month + 1,
+            year: year,
+            date: project.dueDate // Datum des Events
+        };
+        const eventsRef = collection(db, "users", user.uid, "events");
+
+        // Neues Ereignis zur Datenbank hinzufügen
+        addDoc(eventsRef, event).then(docRef => {
+            console.log("Event added with ID: ", event);
+            event.id = docRef.id; // ID zum Ereignis hinzufügen
+
+        }).catch(error => {
+            console.error("Error adding event: ", error);
+        });
+    });
     modalCategory.addEventListener('change', () => {
         project.category = modalCategory.value;
     });
@@ -730,48 +764,15 @@ function editProject(project) {
 
     submit.addEventListener('click', () => {
         const user = auth.currentUser;
-        const projRef = doc(db, "users", user.uid, "projects", project.id);
-        updateDoc(projRef, project)
-            .then(() => {
-                project.dueDate = new Date(modalDate.value + "T00:00");
-
-
-                const eventTitle = project.title;
-                const eventDescription = "This project is from the tab \'Projects\'";
-                const allDay = project.dueDate;
-                let eventTimeFrom = '00:00';
-                let eventTimeTo = '23:59';
-                let day = project.dueDate.getDate();
-                let month = project.dueDate.getMonth();
-                let year = project.dueDate.getFullYear();
-
-                const event = {
-                    title: eventTitle,
-                    description: eventDescription,
-                    timeFrom: eventTimeFrom,
-                    timeTo: eventTimeTo,
-                    allDay: allDay,
-                    day: day,
-                    month: month + 1,
-                    year: year,
-                    date: project.dueDate // Datum des Events
-                };
-                const eventsRef = collection(db, "users", user.uid, "events", project.eventId);
-
-                // Neues Ereignis zur Datenbank hinzufügen
-                updateDoc(eventsRef, event).then(docRef => {
-                    console.log("Event added with ID: ", event);
-                    event.id = docRef.id; // ID zum Ereignis hinzufügen
-
-                }).catch(error => {
-                    console.error("Error adding event: ", error);
+        if (user) {
+            const projRef = doc(db, "users", user.uid, "projects", project.id);
+            updateDoc(projRef, project)
+                .then(() => {
+                })
+                .catch((error) => {
+                    console.error("Error updating note in Firestore: ", error);
                 });
-            })
-            .catch((error) => {
-                console.error("Error updating note in Firestore: ", error);
-            });
-
-
+        }
     })
 }
 
