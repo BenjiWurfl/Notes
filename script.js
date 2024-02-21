@@ -366,7 +366,7 @@ function addProjectToFirestore(newProject) {
     const eventDescription = "This project is from the tab \'Projects\'";
     let eventTimeFrom = '00:00';
     let eventTimeTo = '23:59';
-    let day = new Date(newProject.dueDate).getDay();
+    let day = newProject.dueDate.getDate();
     let month = newProject.dueDate.getMonth();
     let year = newProject.dueDate.getFullYear();
 
