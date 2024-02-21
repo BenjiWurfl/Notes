@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="project duedate -&gt; Kalender">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="edit project kalender">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
@@ -99,15 +99,7 @@
       <workItem from="1708021530473" duration="6589000" />
       <workItem from="1708076140218" duration="636000" />
       <workItem from="1708077316413" duration="367000" />
-      <workItem from="1708077960863" duration="80372000" />
-    </task>
-    <task id="LOCAL-00533" summary="log">
-      <option name="closed" value="true" />
-      <created>1708347558650</created>
-      <option name="number" value="00533" />
-      <option name="presentableId" value="LOCAL-00533" />
-      <option name="project" value="LOCAL" />
-      <updated>1708347558650</updated>
+      <workItem from="1708077960863" duration="80768000" />
     </task>
     <task id="LOCAL-00534" summary="log">
       <option name="closed" value="true" />
@@ -493,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708516328755</updated>
     </task>
-    <option name="localTasksCounter" value="582" />
+    <task id="LOCAL-00582" summary="edit project kalender">
+      <option name="closed" value="true" />
+      <created>1708517750403</created>
+      <option name="number" value="00582" />
+      <option name="presentableId" value="LOCAL-00582" />
+      <option name="project" value="LOCAL" />
+      <updated>1708517750403</updated>
+    </task>
+    <option name="localTasksCounter" value="583" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit project button" />
     <MESSAGE value="edit project modal" />
     <MESSAGE value="log entfernen" />
     <MESSAGE value="CHATGPT" />
@@ -536,7 +535,8 @@
     <MESSAGE value="preflight disabled" />
     <MESSAGE value="design" />
     <MESSAGE value="project duedate -&gt; Kalender" />
-    <option name="LAST_COMMIT_MESSAGE" value="project duedate -&gt; Kalender" />
+    <MESSAGE value="edit project kalender" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit project kalender" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

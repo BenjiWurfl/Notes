@@ -718,10 +718,29 @@ function editProject(project) {
     modalName.addEventListener('change', () => {
         project.title = modalName.value;
     });
-    modalDate.addEventListener('change', () => {
-        project.dueDate = new Date(modalDate.value + "T00:00");
+    modalCategory.addEventListener('change', () => {
+        project.category = modalCategory.value;
+    });
+    closeIcon.addEventListener('click', () => {
+        modalName.value = '';
+        modalDate.value = '';
+        modal.removeAttribute('open');
+        window.location.reload();
+    });
 
+    submit.addEventListener('click', () => {
         const user = auth.currentUser;
+        if (user) {
+            const projRef = doc(db, "users", user.uid, "projects", project.id);
+            updateDoc(projRef, project)
+                .then(() => {
+                })
+                .catch((error) => {
+                    console.error("Error updating note in Firestore: ", error);
+                });
+        }
+
+        project.dueDate = new Date(modalDate.value + "T00:00");
 
         const eventTitle = project.title;
         const eventDescription = "This project is from the tab \'Projects\'";
@@ -753,28 +772,6 @@ function editProject(project) {
         }).catch(error => {
             console.error("Error adding event: ", error);
         });
-    });
-    modalCategory.addEventListener('change', () => {
-        project.category = modalCategory.value;
-    });
-    closeIcon.addEventListener('click', () => {
-        modalName.value = '';
-        modalDate.value = '';
-        modal.removeAttribute('open');
-        window.location.reload();
-    });
-
-    submit.addEventListener('click', () => {
-        const user = auth.currentUser;
-        if (user) {
-            const projRef = doc(db, "users", user.uid, "projects", project.id);
-            updateDoc(projRef, project)
-                .then(() => {
-                })
-                .catch((error) => {
-                    console.error("Error updating note in Firestore: ", error);
-                });
-        }
     })
 }
 
