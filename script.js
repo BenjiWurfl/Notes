@@ -7,7 +7,8 @@ import {
     getDoc,
     getDocs,
     getFirestore,
-    updateDoc
+    updateDoc,
+    recursiveDelete
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
@@ -221,7 +222,7 @@ function deleteProject(project) {
     if (!confirmDelete) return;
     const user = auth.currentUser;
     const projRef = doc(db, "users", user.uid, "projects", project.id);
-    deleteDoc(projRef).then(() => showNotes())
+    recursiveDelete(projRef).then(() => showNotes())
         .catch(error => console.error(error));
 }
 
