@@ -221,8 +221,6 @@ function deleteProject(project) {
     if (!confirmDelete) return;
     const user = auth.currentUser;
     const projRef = doc(db, "users", user.uid, "projects", project.id);
-    collection(db, "users", user.uid, "projects", project.id, "notes").delete();
-
     deleteDoc(projRef).then(() => showNotes())
         .catch(error => console.error(error));
 
