@@ -468,7 +468,7 @@ async function sendOpenAIRequest(token, prompt) {
                                 "The user is giving you instructions like writing something, " +
                                 "summing something up or translate something." +
                                 "Do not answer with an \'okay\' or something like that. Simply, just fulfill your job " +
-                                "without any confirmation. Stay friendly and do not use any curse words. Do not give too long answers."
+                                "without any confirmation. Stay friendly and do not use any curse words."
                         },
                         {
                             role: "user",
