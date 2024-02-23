@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="delete project angepasst">
+    <list default="true" id="db03da50-46b6-4774-81d3-40386388a79a" name="Changes" comment="redirect navbar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -107,15 +107,9 @@
       <workItem from="1708602966236" duration="18000" />
       <workItem from="1708609509809" duration="25000" />
       <workItem from="1708629136670" duration="8000" />
-      <workItem from="1708638031229" duration="47000" />
-    </task>
-    <task id="LOCAL-00541" summary="log">
-      <option name="closed" value="true" />
-      <created>1708355390080</created>
-      <option name="number" value="00541" />
-      <option name="presentableId" value="LOCAL-00541" />
-      <option name="project" value="LOCAL" />
-      <updated>1708355390080</updated>
+      <workItem from="1708638031229" duration="144000" />
+      <workItem from="1708638257585" duration="616000" />
+      <workItem from="1708682723402" duration="6000" />
     </task>
     <task id="LOCAL-00542" summary="log">
       <option name="closed" value="true" />
@@ -501,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708594214523</updated>
     </task>
-    <option name="localTasksCounter" value="590" />
+    <task id="LOCAL-00590" summary="redirect navbar">
+      <option name="closed" value="true" />
+      <created>1708638089007</created>
+      <option name="number" value="00590" />
+      <option name="presentableId" value="LOCAL-00590" />
+      <option name="project" value="LOCAL" />
+      <updated>1708638089007</updated>
+    </task>
+    <option name="localTasksCounter" value="591" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="log entfernen" />
     <MESSAGE value="CHATGPT" />
     <MESSAGE value="import openai" />
     <MESSAGE value="LOG" />
@@ -544,7 +545,8 @@
     <MESSAGE value="project duedate -&gt; Kalender" />
     <MESSAGE value="edit project kalender" />
     <MESSAGE value="delete project angepasst" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete project angepasst" />
+    <MESSAGE value="redirect navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="redirect navbar" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
