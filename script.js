@@ -33,7 +33,7 @@ let currentSortByState = "Date down";
 
 const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
-function showNotes() {
+function showProjects() {
     projectsArr.length = 0;
     const user = auth.currentUser;
     if (user) {
@@ -48,7 +48,7 @@ function showNotes() {
 
                     projectsArr.push(project);
                 });
-                updatePinnedItems();
+                updateProjectView();
             })
             .catch(error => {
                 console.error("Error loading projects: ", error);
@@ -59,13 +59,13 @@ function showNotes() {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        showNotes();
+        showProjects();
     } else {
         console.log("No user is signed in.");
     }
 });
 
-function addNoteToNavbar(note, containerForNoteCards) {
+function addNoteToGrid(note, containerForNoteCards) {
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
@@ -126,8 +126,7 @@ function loadDataOfNote(note) {
 
 }
 
-
-function addProjectToNavbar(project, containerForProjectCards) {
+function addProjectToGrid(project, containerForProjectCards) {
     const roundedDiv = document.createElement('div');
     roundedDiv.classList.add('rounded');
     roundedDiv.innerHTML = '<div class="group w-full h-25 flex flex-col justify-between bg-transparent rounded-lg shadow-lg mb-6 py-5 px-4 hover:shadow-2xl hover:bg-gray-100 cursor-pointer transition-all ease-in-out duration-300">\n' +
@@ -145,10 +144,10 @@ function addProjectToNavbar(project, containerForProjectCards) {
         '            </div>';
     containerForProjectCards.appendChild(roundedDiv);
 
-    roundedDiv.addEventListener('click', () => flipDropdown(project));
+    roundedDiv.addEventListener('click', () => openProject(project));
 }
 
-function updatePinnedNotes(project) {
+function updateNotesView(project) {
 
     const cardsCompletelyHiddenToggle = document.querySelector('.over-div');
     cardsCompletelyHiddenToggle.classList.remove('hidden');
@@ -212,7 +211,7 @@ function updatePinnedNotes(project) {
 
     notesArr.forEach((note, index) => {
 
-        addNoteToNavbar(note, containerForNoteCards);
+        addNoteToGrid(note, containerForNoteCards);
     })
 }
 
@@ -221,7 +220,7 @@ function deleteProject(project) {
     if (!confirmDelete) return;
     const user = auth.currentUser;
     const projRef = doc(db, "users", user.uid, "projects", project.id);
-    deleteDoc(projRef).then(() => showNotes())
+    deleteDoc(projRef).then(() => showProjects())
         .catch(error => console.error(error));
 
 }
@@ -242,13 +241,13 @@ function sortNotes(project) {
 function changeNotesArrayByDateDown(project) {
     currentSortByState = "Date down";
     notesArr = notesArr.slice().sort((a, b) => b.lastUpdated - a.lastUpdated);
-    updatePinnedNotes(project);
+    updateNotesView(project);
 }
 
 function changeNotesArrayByDateUp(project) {
     currentSortByState = "Date up";
     notesArr = notesArr.slice().sort((a, b) => a.lastUpdated - b.lastUpdated);
-    updatePinnedNotes(project);
+    updateNotesView(project);
 }
 
 function sortProjects() {
@@ -267,16 +266,16 @@ function sortProjects() {
 function changeProjectsArrayByDateDown() {
     currentSortByState = "Date down";
     projectsArr = projectsArr.slice().sort((a, b) => b.dueDate - a.dueDate);
-    showNotes();
+    showProjects();
 }
 
 function changeProjectsArrayByDateUp() {
     currentSortByState = "Date up";
     projectsArr = projectsArr.slice().sort((a, b) => a.dueDate - b.dueDate);
-    showNotes();
+    showProjects();
 }
 
-function updatePinnedItems() {
+function updateProjectView() {
 
     const richTextEditor = document.querySelector('.textEditor');
     richTextEditor.classList.add('hidden');
@@ -310,7 +309,7 @@ function updatePinnedItems() {
     }
 
     projectsArr.forEach((project, index) => {
-        addProjectToNavbar(project, containerForProjectCards);
+        addProjectToGrid(project, containerForProjectCards);
     })
 
 }
@@ -356,7 +355,7 @@ function addProjectToFirestore(newProject) {
     addDoc(projectsRef, newProject).then(docRef => {
         newProject.id = docRef.id;
         projectsArr.push(newProject);
-        showNotes();
+        showProjects();
         closeIcon.click();
     }).catch(error => {
         console.error("Error adding event: ", error);
@@ -494,7 +493,7 @@ async function sendOpenAIRequest(token, prompt) {
                                 "The user is giving you instructions like writing something, " +
                                 "summing something up or translate something." +
                                 "Do not answer with an \'okay\' or something like that. Simply, just fulfill your job " +
-                                "without any confirmation. Stay friendly and do not use any curse words. Do not give too long answers."
+                                "without any confirmation. Stay friendly and do not use any curse words."
                         },
                         {
                             role: "user",
@@ -623,7 +622,7 @@ function formatDoc(cmd, value = null) {
     document.execCommand(cmd, false, value);
 }
 
-function flipDropdown(project) {
+function openProject(project) {
 
     currentProject = project;
 
@@ -645,7 +644,7 @@ function loadNotesOfProject(project) {
 
                     notesArr.push(note);
                 });
-                updatePinnedNotes(project);
+                updateNotesView(project);
             })
             .catch(error => {
                 console.error("Error loading notes: ", error);
@@ -688,7 +687,7 @@ document.querySelector('.back-to-notes').addEventListener('click', () => {
 });
 
 function backToProjects() {
-    showNotes();
+    showProjects();
 }
 
 document.querySelector('.delete-note').addEventListener('click', () => {
